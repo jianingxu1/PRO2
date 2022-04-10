@@ -32,11 +32,26 @@ int main() {
             cin >> p;
             if (not jugadores.existe_jugador(p)) {
                 jugadores.anadir_nuevo_jugador(p);
-                cout << jugadores.consultar_numero_jugadores() << endl;
+                cout << "El número de jugadores es " << jugadores.consultar_numero_jugadores() << '.' << endl;
             }
-            else cout << "ERROR1: Ya existe el jugador " << p << endl;
+            else cout << "ERROR1: Ya existe el jugador " << p << '.' << endl;
         }
-        else if (comando == "nuevo_torneo") {}
+        else if (comando == "nuevo_torneo") {
+            string t;
+            int c;
+            cin >> t >> c;
+            if (1 <= c and c <= C) {
+                if (not torneos.existe_torneo(t)) {
+                    Torneo aux_torneo(t, c);
+                    torneos.anadir_torneo(aux_torneo);
+                    cout << "El número de torneos del circuito es " << torneos.consultar_numero_torneos() << '.' << endl;
+                }
+                else cout << "ERROR2: el torneo " << t << " ya existe." << endl;
+            }
+            else {
+                cout << "ERROR2: la categoria " << c << " no es válida." << endl;
+            }
+        }
         else if (comando == "baja_jugador") {}
         else if (comando == "baja_torneo") {}
         else if (comando == "iniciar_torneo") {}

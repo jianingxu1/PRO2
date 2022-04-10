@@ -12,9 +12,6 @@ using namespace std;
 */
 class Cjt_torneos {
 private:
-    // TORNEO EDICIÓN PASADA, CON LOS STATS DE LOS JUGADORES PASADOS (MAP? DE JUGADORES)
-    // TORNEO EDICION ACTUAL (MAP? DE JUGADORES)
-    // AL FINALIZAR UN TORNEO, RECOPILAR LOS STATS DE CADA JUGADOR Y ACTUALIZAR SUS STATS PERSONALES
     
 public:
     
@@ -34,5 +31,26 @@ public:
         \post El parámetro implícito contiene el conjunto de torneos leídos en la entrada.
     */
     void leer(int T);
+
+    /** @brief Añade un torneo al conjunto de torneos
+        \pre Cierto.
+        \post Se le ha añadido un torneo al parámetro implícito.
+    */  
+    void anadir_torneo(Torneo torneo);
+
+
+    // Consultores
+
+    /** @brief Consulta si existe un torneo en el conjunto de torneos
+        \pre t representa el nombre de un torneo.
+        \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
+    */  
+    bool existe_torneo(string t);
+
+    /** @brief Consulta el número de torneos del conjunto de torneos
+        \pre Cierto.
+        \post Retorna el número de torneos del parámetro implícito.
+    */ 
+    int consultar_numero_torneos();
 };
 #endif
