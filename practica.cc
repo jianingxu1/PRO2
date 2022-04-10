@@ -18,7 +18,7 @@ int main() {
     torneos.leer(T);
     
     // 3. lectura del conjunto inicial de jugadores;
-    Cjt_jugadores jugadores;
+    Cjt_jugadores jugadores;    // contiene el conjunto de jugadores y ranking global del circuito
     int P;
     cin >> P;
     jugadores.leer(P);
@@ -31,7 +31,7 @@ int main() {
             string p;
             cin >> p;
             if (not jugadores.existe_jugador(p)) {
-                jugadores.anadir_nuevo_jugador(p);
+                jugadores.anadir_jugador(p);
                 cout << "El número de jugadores es " << jugadores.consultar_numero_jugadores() << '.' << endl;
             }
             else cout << "ERROR1: Ya existe el jugador " << p << '.' << endl;
@@ -52,7 +52,15 @@ int main() {
                 cout << "ERROR2: la categoria " << c << " no es válida." << endl;
             }
         }
-        else if (comando == "baja_jugador") {}
+        else if (comando == "baja_jugador") {
+            string p;
+            cin >> p;
+            if (jugadores.existe_jugador(p)) {
+                jugadores.eliminar_jugador(p);
+                cout << "El número de jugadores del circuito es " << jugadores.consultar_numero_jugadores() << '.' << endl;
+            }
+            else cout << "ERROR3: El jugador " << p << " no existe." << endl;
+        }
         else if (comando == "baja_torneo") {}
         else if (comando == "iniciar_torneo") {}
         else if (comando == "finalizar_torneo") {}

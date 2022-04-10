@@ -33,9 +33,15 @@ public:
     
     /** @brief Añade un jugador al conjunto de jugadores
         \pre p representa un identificador de un jugador. p no está en el parámetro implícito.
-        \post El parámetro contiene el jugador p, con todas sus estadísticas a cero y posicionado último en el ranking.
+        \post El parámetro implícito contiene el jugador p, con todas sus estadísticas a cero y posicionado último en el ranking.
     */  
-    void anadir_nuevo_jugador(string p);
+    void anadir_jugador(string p);
+
+    /** @brief Da de baja a un jugador del conjunto de jugadores
+        \pre p representa un identificador de un jugador. p está en el parámetro implícito.
+        \post El parámetro implícito no contiene el jugador p y éste ha sido eliminado del ranking. Se ha actualizado el ranking.
+    */
+   void eliminar_jugador(string p);
     
 
     // Consultores
