@@ -64,6 +64,6 @@ public:
         \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
         \post Retorna el torneo con nombre t.
     */    
-    Torneo consultar_torneo(string t);
+    Torneo consultar_torneo(string t);    
 };
 #endif

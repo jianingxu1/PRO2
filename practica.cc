@@ -70,7 +70,13 @@ int main() {
             }
             else cout << "ERROR4: El torneo " << t << " no existe." << endl;
         }
-        else if (comando == "iniciar_torneo") {}
+        else if (comando == "iniciar_torneo") {
+            string t;
+            int n;
+            cin >> t >> n;
+            torneos.consultar_torneo(t).iniciar_torneo(jugadores.consultar_ranking(), n);   // solo necesito el ranking ya que los jugadores estaran inicializados a cero en el torneo
+            torneos.consultar_torneo(t).imprimir_emparejamientos();
+        }
         else if (comando == "finalizar_torneo") {}
         else if (comando == "listar_ranking") {}
         else if (comando == "listar_jugadores") {}

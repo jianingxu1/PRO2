@@ -9,7 +9,7 @@ using namespace std;
 class Cjt_jugadores {
 private:
     int P;  // número de jugadores
-    // VECTOR CON EL RANKING DE LOS JUGADORES, solo con su nombre, QUE ACCEDA A LA INFORMACION DESDE EL MAP
+    vector<string> ranking; // ranking de jugadores con su nombre. accesos fáciles. modificaciones difíciles (altas, bajas, etc.)
     // MAP/SET CON LA INFO DE LOS JUGADORES, key siendo su nombre
     
 public:
@@ -69,5 +69,11 @@ public:
         \post Retorna el número de jugadores del parámetro implícito.
     */ 
     int consultar_numero_jugadores();
+
+    /** @brief Consulta el ranking
+        \pre Cierto.
+        \post Retorna el ranking del parámetro implícito.
+    */ 
+    vector<string> consultar_ranking();
 };
 #endif

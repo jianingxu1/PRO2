@@ -12,13 +12,13 @@ using namespace std;
 // - TORNEO EDICION ACTUAL (MAP? DE JUGADORES)
 // - AL FINALIZAR UN TORNEO, RECOPILAR LOS STATS DE CADA JUGADOR Y ACTUALIZAR SUS STATS PERSONALES
 class Torneo {
-	private:
+private:
     string t;       // nombre del torneo
 	int c;          // categoría del torneo
     int n;          // número de inscritos (una vez finalizado el período de inscripción). 8 <= n <= 2^(K-1)
     Cjt_jugadores jugadores;    // con info sobre la pos. en el ranking, nombre del jugador y int r, 1 <= r <= n.
-    // RANKING DEL TORNEO
-    
+    bool inicializado;
+
 public:
 
     // Constructores
@@ -38,7 +38,13 @@ public:
 
     // Modificadores
 
-    
+    /** @brief Inicia el torneo
+        \pre n representa el número de jugadores inscritos al torneo. Estan preparados en el canal de entrada n enteros que representan las posiciones de los jugadores inscritos al torneo en el ranking actual/global ordenados crecientemente.
+        \post El resultado es un torneo inicializado que contiene los jugadores inscritos iniciales y el ranking inicial del torneo.
+    */
+    void iniciar_torneo(vector<string> ranking, int n);
+
+
     // Consultores
 
     /** @brief Consulta los jugadores del torneo
@@ -46,5 +52,11 @@ public:
         \post Retorna el conjunto de jugadores del torneo.
     */    
     Cjt_jugadores consultar_jugadores();
+
+    /** @brief Imprime el cuadro de emparejamientos del torneo
+        \pre Cierto.
+        \post Imprime el cuadro de emparejamientos del torneo.
+    */  
+    void imprimir_emparejamientos();
 };
 #endif
