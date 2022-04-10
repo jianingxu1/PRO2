@@ -16,7 +16,7 @@ class Torneo {
     string t;       // nombre del torneo
 	int c;          // categoría del torneo
     int n;          // número de inscritos (una vez finalizado el período de inscripción). 8 <= n <= 2^(K-1)
-    Cjt_jugadores jugadores_inscritos;    // con info sobre la pos. en el ranking, nombre del jugador y int r, 1 <= r <= n.
+    Cjt_jugadores jugadores;    // con info sobre la pos. en el ranking, nombre del jugador y int r, 1 <= r <= n.
     // RANKING DEL TORNEO
     
 public:
@@ -37,5 +37,14 @@ public:
 
 
     // Modificadores
+
+    
+    // Consultores
+
+    /** @brief Consulta los jugadores del torneo
+        \pre Cierto.
+        \post Retorna el conjunto de jugadores del torneo.
+    */    
+    Cjt_jugadores consultar_jugadores();
 };
 #endif

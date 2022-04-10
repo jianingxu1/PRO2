@@ -41,8 +41,20 @@ public:
         \pre p representa un identificador de un jugador. p está en el parámetro implícito.
         \post El parámetro implícito no contiene el jugador p y éste ha sido eliminado del ranking. Se ha actualizado el ranking.
     */
-   void eliminar_jugador(string p);
-    
+    void eliminar_jugador(string p);
+
+    /** @brief Suma o resta los puntos de los jugadores del conjunto de jugadores al parámetro implícito
+        \pre Si el booleano suma_resta es true, se le suma los puntos a los jugadores. Altramente, se le restan los puntos.
+        \post Se le han sumado o restado los puntos de los jugadores del conjunto de jugadores a los jugadores del parámetro implícito.
+    */
+    void actualizar_puntos(Cjt_jugadores jugadores, bool suma_resta);
+
+    /** @brief Actualiza el ranking de jugadores
+        \pre Cierto.
+        \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar.
+    */
+    void actualizar_ranking();
+
 
     // Consultores
     

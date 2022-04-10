@@ -35,5 +35,10 @@ public:
 
 
     // Modificadores
+    /** @brief Suma o elimina puntos al jugador
+        \pre Si el booleano suma_resta es true, se le suma los puntos al jugador. Altramente, se le restan los puntos.
+        \post Se le han sumado o restado los puntos al parámetro implícito.
+    */ 
+    void actualizar_puntos(int puntos, bool suma_resta);
 };
 #endif

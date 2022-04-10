@@ -12,7 +12,8 @@ using namespace std;
 */
 class Cjt_torneos {
 private:
-    
+    // MAP/SET DE TORNEOS (necesario para encontrar mediante nombre un torneo)
+
 public:
     
     // Constructores
@@ -32,11 +33,17 @@ public:
     */
     void leer(int T);
 
-    /** @brief Añade un torneo al conjunto de torneos
-        \pre Cierto.
+    /** @brief Añade el torneo al conjunto de torneos
+        \pre torneo no está dentro del parámetro implícito.
         \post Se le ha añadido un torneo al parámetro implícito.
     */  
     void anadir_torneo(Torneo torneo);
+
+    /** @brief Elimina el torneo del conjunto de torneos
+        \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
+        \post Se ha eliminado el torneo del parámetro implícito. Se ha actualizado el ranking y los puntos del conjunto de jugadores.
+    */  
+    void eliminar_torneo(Cjt_jugadores jugadores, string t);
 
 
     // Consultores
@@ -52,5 +59,11 @@ public:
         \post Retorna el número de torneos del parámetro implícito.
     */ 
     int consultar_numero_torneos();
+
+    /** @brief Consulta un torneo del conjunto de torneos
+        \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
+        \post Retorna el torneo con nombre t.
+    */    
+    Torneo consultar_torneo(string t);
 };
 #endif

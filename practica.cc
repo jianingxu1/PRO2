@@ -61,7 +61,15 @@ int main() {
             }
             else cout << "ERROR3: El jugador " << p << " no existe." << endl;
         }
-        else if (comando == "baja_torneo") {}
+        else if (comando == "baja_torneo") {
+            string t;
+            cin >> t;
+            if (torneos.existe_torneo(t)) {
+                torneos.eliminar_torneo(jugadores, t);
+                cout << "El número de torneos del circuito es " << torneos.consultar_numero_torneos() << '.' << endl;
+            }
+            else cout << "ERROR4: El torneo " << t << " no existe." << endl;
+        }
         else if (comando == "iniciar_torneo") {}
         else if (comando == "finalizar_torneo") {}
         else if (comando == "listar_ranking") {}
