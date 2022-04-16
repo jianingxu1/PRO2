@@ -4,9 +4,13 @@
 #include <iostream>
 using namespace std;
 
-
+/** @class Jugador
+    @brief Representa un jugador
+*/
 class Jugador {
+
 private:
+
     string p;       // identificador del jugador
     int puntos;
     int torneos_disputados;

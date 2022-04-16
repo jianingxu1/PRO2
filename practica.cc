@@ -74,10 +74,19 @@ int main() {
             string t;
             int n;
             cin >> t >> n;
-            torneos.consultar_torneo(t).iniciar_torneo(jugadores.consultar_ranking(), n);   // solo necesito el ranking ya que los jugadores estaran inicializados a cero en el torneo
-            torneos.consultar_torneo(t).imprimir_emparejamientos();
+            Torneo aux = torneos.consultar_torneo(t);
+            aux.iniciar_torneo(jugadores.consultar_ranking(), n);   // solo necesito el ranking ya que los jugadores estaran inicializados a cero en el torneo
+            aux.imprimir_emparejamientos();
+            torneos.modificar_torneo(t, aux);
         }
-        else if (comando == "finalizar_torneo") {}
+        else if (comando == "finalizar_torneo") {
+            string t;
+            cin >> t;
+            Torneo aux = torneos.consultar_torneo(t);
+            aux.finalizar_torneo(jugadores);
+            torneos.modificar_torneo(t, aux);
+            jugadores.actualizar_ranking();
+        }
         else if (comando == "listar_ranking") {}
         else if (comando == "listar_jugadores") {}
         else if (comando == "consultar_jugador") {}

@@ -11,7 +11,9 @@ using namespace std;
     @brief Representa un conjunto de torneos
 */
 class Cjt_torneos {
+
 private:
+
     // MAP/SET DE TORNEOS (necesario para encontrar mediante nombre un torneo)
 
 public:
@@ -45,6 +47,11 @@ public:
     */  
     void eliminar_torneo(Cjt_jugadores jugadores, string t);
 
+    /** @brief Modifica el torneo
+        \pre Existe un torneo con nombre t en el parámetro implícito.
+        \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.
+    */
+    void modificar_torneo(string t, Torneo aux);
 
     // Consultores
 
@@ -64,6 +71,6 @@ public:
         \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
         \post Retorna el torneo con nombre t.
     */    
-    Torneo consultar_torneo(string t);    
+    Torneo consultar_torneo(string t);  
 };
 #endif

@@ -6,8 +6,13 @@
 #include <vector>
 using namespace std;
 
+/** @class Cjt_jugadores
+    @brief Representa un conjunto de jugadores
+*/
 class Cjt_jugadores {
+
 private:
+
     int P;  // número de jugadores
     vector<string> ranking; // ranking de jugadores con su nombre. accesos fáciles. modificaciones difíciles (altas, bajas, etc.)
     // MAP/SET CON LA INFO DE LOS JUGADORES, key siendo su nombre

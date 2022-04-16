@@ -9,7 +9,9 @@ using namespace std;
     @brief Representa un conjunto de categorías
 */
 class Cjt_categorias {
+    
 private:
+
     vector<string> nombre_categorias;     // tamaño C
     vector<int> puntos_categorias;        // tamaño C
     vector< vector<int> > puntos_por_nivel; // tamaño C x K
