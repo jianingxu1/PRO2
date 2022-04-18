@@ -60,7 +60,7 @@ public:
 
     /** @brief Actualiza el ranking de jugadores
         \pre Cierto.
-        \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar.
+        \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar. Al mismo tiempo, se ha actualizado el atributo posición de los jugadores según este nuevo ranking.
     */
     void actualizar_ranking();
 
@@ -101,6 +101,9 @@ public:
         \post Imprime el ranking por orden creciente de ranking actual, la posición, el nombre y los puntos de cada jugador del circuito.
     */
     void listar_ranking();
+
+
+    void listar_jugadores();
 
     /** @brief Consulta un jugador dado su nombre
         \pre p existe en el parámetro implícito.

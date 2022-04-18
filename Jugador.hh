@@ -13,6 +13,8 @@ class Jugador {
 
 private:
 
+    string p;
+    int posicion;
     int puntos;
     int torneos_disputados;
     int partidos_ganados;
@@ -27,9 +29,15 @@ public:
 
     /** @brief Constructora por defecto
         \pre Cierto.
-        \post El resultado es un jugador con todos sus atributos a cero.
+        \post El resultado es un jugador sin nombre y con todos sus atributos a cero.
     */
     Jugador();
+
+    /** @brief Constructora
+        \pre Cierto.
+        \post El resultado es un jugador con nombre y todos sus atributos a cero.
+    */
+    Jugador(string p);
 
 
     // Modificadores
@@ -46,6 +54,13 @@ public:
     */
     void actualizar_estadistica(string estadistica, int cantidad);
 
+    /** @brief 
+        \pre 
+        \post 
+    */    
+    void modificar_posicion(int posicion);
+
+
     // Consultores
 
     /** @brief Consulta los puntos del jugador
@@ -59,5 +74,11 @@ public:
         \post Si atributo == 1, devuelve los puntos. Si == 2, devuelve los torneos disputados. Si == 3, devuelve los partidos ganados. Si == 4, devuelve los partidos perdidos. Si == 5, devuelve los sets ganados. Si == 6, devuelve los sets perdidos. Si == 7, devuelve juegos ganados. Si == 8, devuelve los juegos perdidos.
     */
     int consultar_atributo(int atributo) const;
+
+    /** @brief 
+        \pre 
+        \post Se escribe la posición en el ranking, los puntos y el resto de las estadísticas del parámetro implícito.
+    */
+    void escribir();
 };
 #endif
