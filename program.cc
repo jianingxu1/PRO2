@@ -96,7 +96,15 @@ int main() {
         else if (comando == "listar_jugadores") {
             jugadores_global.listar_jugadores();
         }
-        else if (comando == "consultar_jugador") {}
+        else if (comando == "consultar_jugador") {
+            string p;
+            cin >> p;
+            if (jugadores_global.existe_jugador(p)) {
+                Jugador j = jugadores_global.consultar_jugador(p);
+                j.escribir();
+            }
+            else cout << "ERROR: El jugador " << p << " no existe." << endl;
+        }
         else if (comando == "listar_torneos") {}
         else if (comando == "listar_categorías") {}
         cin >> comando;
