@@ -13,7 +13,6 @@ class Jugador {
 
 private:
 
-    string p;
     int posicion;
     int puntos;
     int torneos_disputados;

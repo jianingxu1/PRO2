@@ -81,6 +81,6 @@ public:
         \pre Cierto.
         \post Se listan, por orden creciente de identificador (nombre), el nombre y la categoría de cada torneo del circuito.
     */  
-    void listar_torneos();
+    void listar_torneos() const;
 };
 #endif

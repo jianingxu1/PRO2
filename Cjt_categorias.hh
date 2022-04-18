@@ -14,7 +14,7 @@ class Cjt_categorias {
 
 private:
 
-    vector<string> nombre_categorias;     // tamaño C
+    map<string, int> categorias;    // nombre de la categoría y 0 <= posición en el vector < C
     vector< vector<int> > puntos_por_nivel; // tamaño C x K
 
 public:
@@ -31,8 +31,8 @@ public:
     // Modificadores
     
     /** @brief Operación de lectura
-        \pre C >= 0 que representa el número de categorías y K >= 0 que representa el número máximo de niveles. Estan preparados en el canal de entrada C strings con el nombre de cada categoría, y C × K enteros que representan los puntos por categoría y nivel. representa el nombre que identifica al torneo (sin repeticiones) y c la categoría entre 1 y C a la que pertenece el torneo.
-        \post El parámetro implícito contiene el conjunto de categorías leídos en la entrada, ordenados crecientemente por categorías y dentro de cada categoría, ordenados crecientemente por nivel.
+        \pre C >= 0 representa el número de categorías y K >= 0 representa el número máximo de niveles. Estan preparados en el canal de entrada C strings con el nombre de cada categoría, y C × K enteros que representan los puntos por categoría y nivel.
+        \post El parámetro implícito contiene el conjunto de categorías leídos en la entrada.
     */
     void leer(int C, int K);
     
@@ -44,5 +44,11 @@ public:
         \post Retorna los puntos por el nivel de la categoría.
     */
     int consultar_puntos_por_nivel(int c, int k) const;
+
+    /** @brief Escribe los torneos del circuito
+        \pre Cierto.
+        \post Escribe, por orden creciente de identificador, el nombre y la tabla de puntos por niveles (en orden creciente de nivel) de cada categoría del circuito.
+    */
+    void escribir() const;
 };
 #endif
