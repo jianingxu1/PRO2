@@ -78,14 +78,14 @@ int main() {
             int n;
             cin >> t >> n;
             Torneo aux = torneos.consultar_torneo(t);
-            aux.iniciar(jugadores_global.consultar_ranking(), n);   // solo necesito el ranking ya que los jugadores estaran inicializados a cero en el torneo
+            aux.iniciar(jugadores_global.consultar_ranking(), n);
             torneos.modificar_torneo(t, aux);
         }
         else if (comando == "finalizar_torneo") {
             string t;
             cin >> t;
             Torneo aux = torneos.consultar_torneo(t);
-            aux.finalizar(jugadores_global);
+            aux.finalizar(categorias, jugadores_global);
             torneos.modificar_torneo(t, aux);
             // actualizar ranking general
             jugadores_global.actualizar_ranking();

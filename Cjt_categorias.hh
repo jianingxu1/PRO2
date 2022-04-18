@@ -7,7 +7,6 @@
 using namespace std;
 #endif
 
-typedef vector< vector<int> > Matriz;
 /** @class Cjt_categorias
     @brief Representa un conjunto de categorías
 */
@@ -16,7 +15,7 @@ class Cjt_categorias {
 private:
 
     vector<string> nombre_categorias;     // tamaño C
-    Matriz puntos_por_nivel; // tamaño C x K
+    vector< vector<int> > puntos_por_nivel; // tamaño C x K
 
 public:
     
@@ -25,7 +24,7 @@ public:
     /** @brief Constructora por defecto
         \pre Cierto.
         \post El resultado es un conjunto de categorías vacío.
-    */ 
+    */
     Cjt_categorias();
 
 

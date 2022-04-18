@@ -22,7 +22,8 @@ private:
 	int c;          // categoría del torneo
     int n;          // número de inscritos (una vez finalizado el período de inscripción). 8 <= n <= 2^(K-1)
     map<string, int> jugadores_edicion_anterior;
-    Cjt_jugadores jugadores_edicion_actual;    // con info sobre la pos. en el ranking, nombre del jugador y int r, 1 <= r <= n.
+    vector<string> ranking; // con info sobre la pos. en el ranking, nombre del jugador y int r, 1 <= r <= n.
+    map<string, int> jugadores_edicion_actual;  // jugador - puntos
     bool iniciado;
     bool primera_edicion;   // True si no hay edición anterior. Altramente, false.
     BinTree< pair<string, string> > cuadro_emparejamientos;
@@ -40,17 +41,17 @@ private:
     */  
     void imprimir_cuadro_emparejamientos();
 
-    /** @brief Lee los resultados del torneo
+    /** @brief Lee los resultados y crea el cuadro de resultados del torneo
         \pre Cierto.
-        \post Se han leído los resultados del torneo.
+        \post Se han leído los resultados del torneo. Se ha creado el cuadro de resultados del torneo.
     */
     void leer_resultados();     // actualiza las estadísticas de los jugadores
 
-    /** @brief Crea el cuadro de resultados del torneo
-        \pre Cierto.
-        \post Se ha creado el cuadro de resultados del torneo.
-    */
-    void crear_cuadro_resultados();     // quizás no es necesario guardarlo, solo imprimirlo
+    // /** @brief Crea el cuadro de resultados del torneo
+    //     \pre Cierto.
+    //     \post Se ha creado el cuadro de resultados del torneo.
+    // */
+    // void crear_cuadro_resultados();     // quizás no es necesario guardarlo, solo imprimirlo
 
     /** @brief Imprime el cuadro de resultados del torneo
         \pre Cierto.
@@ -86,7 +87,7 @@ public:
     */
     Torneo();
 
-    /** @brief Constructora
+    /** @brief Constructora con nombre y categoría
         \pre Está preparado en el canal de entrada un par string t y entero c, donde t representa el nombre que identifica al torneo (sin repeticiones) y c la categoría entre 1 y C a la que pertenece el torneo.
         \post El resultado es un torneo con nombre t y categoría c.
     */    
@@ -95,17 +96,23 @@ public:
 
     // Modificadores
 
+    /** @brief Operación de lectura de jugadores dada su posición en el ranking global
+        \pre P >= 0 que representa el número inicial de jugadores. Estan preparados en el canal de entrada una secuencia de P enteros con las posiciones del ranking global que identifican a los jugadores (sin repeticiones).
+        \post El parámetro implícito contiene el conjunto de jugadores y un ranking de los jugadores según el orden que han sido leídos en la entrada con sus estadísticas a cero.
+    */  
+    void leer_jugadores_inscritos(const vector<string>& ranking, int P);
+
     /** @brief Inicia el torneo
-        \pre El torneo no está iniciado. n representa el número de jugadores que se inscribirán al torneo. Estan preparados en el canal de entrada n enteros que representan las posiciones de los jugadores inscritos al torneo en el ranking actual/global ordenados crecientemente.
+        \pre El torneo no está iniciado. n representa el número de jugadores que se inscribirán al torneo. Estan preparados en el canal de entrada n enteros que representan las posiciones de los jugadores inscritos al torneo en el ranking global ordenados crecientemente.
         \post El resultado es un torneo inicializado que contiene los jugadores inscritos iniciales y el ranking inicial del torneo. Se ha creado y se ha imprimido el cuadro de emparejamientos.
     */
-    void iniciar(const vector<string>& ranking, int n);
+    void iniciar(const vector<string>& ranking_global, int n);
 
     /** @brief Finaliza el torneo
         \pre Estan preparados en el canal de entrada los resultados del torneo. El torneo está inicializado.
-        \post El resultado es un torneo finalizado. Se han leído los resultados del torneo. Se ha creado y se ha imprimido el cuadro de resultados. Se ha imprimido el nombre y los puntos de cada jugador por orden de ranking de los jugadores en el momento de iniciar el torneo. Se han actualizado los puntos en el ranking global. Se han guardado los puntos obtenidos de los jugadores en la edición anterior.
+        \post El resultado es un torneo finalizado. Se han leído los resultados del torneo. Se ha creado y se ha imprimido el cuadro de resultados. Se ha imprimido el nombre y los puntos de cada jugador por orden de ranking de los jugadores en el momento de iniciar el torneo. Se han actualizado los puntos y las estadísticas de los jugadores en el conjunto de jugadores global. Se han guardado los puntos obtenidos de los jugadores en la edición anterior.
     */
-    void finalizar(Cjt_jugadores& jugadores_global);
+    void finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global);  // mientras se lee cada resultado, se actualizan las stats de los jugadores en el global.
 
 
     // Consultores
@@ -115,5 +122,11 @@ public:
         \post Retorna el conjunto de jugadores del torneo.
     */    
     Cjt_jugadores consultar_jugadores() const;
+
+    /** @brief Imprime el nombre y los puntos de los jugadores según el orden del ranking del torneo
+        \pre Cierto.
+        \post Imprime el nombre y los puntos de los jugadores según el orden del ranking del parámetro implícito.
+    */   
+    void imprimir_ranking() const;
 };
 #endif
