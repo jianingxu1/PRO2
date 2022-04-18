@@ -105,7 +105,9 @@ int main() {
             }
             else cout << "ERROR: El jugador " << p << " no existe." << endl;
         }
-        else if (comando == "listar_torneos") {}
+        else if (comando == "listar_torneos") {
+            
+        }
         else if (comando == "listar_categorías") {}
         cin >> comando;
     }

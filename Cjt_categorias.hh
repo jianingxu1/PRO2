@@ -39,7 +39,6 @@ public:
 
     // Consultores
 
-
     /** @brief Consulta los puntos de la categoría dependiendo del nivel
         \pre c >= 0 representa la categoría del torneo y k >= 1 representa el nivel.
         \post Retorna los puntos por el nivel de la categoría.

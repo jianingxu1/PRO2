@@ -75,10 +75,10 @@ public:
     */
     int consultar_atributo(int atributo) const;
 
-    /** @brief 
-        \pre 
+    /** @brief Escribe los atributos del jugador
+        \pre Cierto.
         \post Se escribe la posición en el ranking, los puntos y el resto de las estadísticas del parámetro implícito.
     */
-    void escribir();
+    void escribir() const;
 };
 #endif

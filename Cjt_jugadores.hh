@@ -76,6 +76,7 @@ public:
     */
     void modificar_jugador(string p, const Jugador& jugador);
 
+
     // Consultores
     
     /** @brief Consulta si existe un jugador en el conjunto jugadores
@@ -100,18 +101,18 @@ public:
         \pre Cierto.
         \post Se lista el ranking por orden creciente de ranking actual, la posición, el nombre y los puntos de cada jugador del circuito.
     */
-    void listar_ranking();
+    void listar_ranking() const;
 
     /** @brief Lista los jugadores del circuito
         \pre Cierto.
         \post Se listan, por orden creciente de identificador (nombre), el nombre, la posición en el ranking, los puntos y el resto de las estadísticas de cada jugador del circuito.
     */
-    void listar_jugadores();
+    void listar_jugadores() const;
 
     /** @brief Consulta un jugador dado su nombre
         \pre p existe en el parámetro implícito.
         \post Retorna el jugador con nombre p.
     */
-    Jugador consultar_jugador(string p);
+    Jugador consultar_jugador(string p) const;
 };
 #endif

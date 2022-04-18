@@ -55,7 +55,7 @@ public:
         \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.
     */
     void modificar_torneo(string t, Torneo aux);
-    
+
 
     // Consultores
 
@@ -76,5 +76,11 @@ public:
         \post Retorna el torneo con nombre t.
     */    
     Torneo consultar_torneo(string t) const;
+
+    /** @brief Lista los torneos del circuito
+        \pre Cierto.
+        \post Se listan, por orden creciente de identificador (nombre), el nombre y la categoría de cada torneo del circuito.
+    */  
+    void listar_torneos();
 };
 #endif

@@ -128,5 +128,11 @@ public:
         \post Imprime el nombre y los puntos de los jugadores según el orden del ranking del parámetro implícito.
     */   
     void imprimir_ranking() const;
+
+    /** @brief Escribe el nombre y la categoría del torneo 
+        \pre Cierto.
+        \post Escribe el nombre y la categoría del parámetro implícito.
+    */  
+    void escribir() const;
 };
 #endif
