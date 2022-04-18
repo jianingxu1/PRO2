@@ -54,11 +54,11 @@ public:
     */
     void actualizar_estadistica(string estadistica, int cantidad);
 
-    /** @brief 
-        \pre 
-        \post 
+    /** @brief Actualiza la posicion del jugador
+        \pre 1 <= posicion <= P (número de jugadores del circuito).
+        \post Se ha actualizado la posicion del parámetro implícito.
     */    
-    void modificar_posicion(int posicion);
+    void actualizar_posicion(int posicion);
 
 
     // Consultores

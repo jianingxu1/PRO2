@@ -19,7 +19,7 @@ private:
 
     int P;  // número de jugadores
     vector<string> ranking; // ranking de jugadores con su nombre. accesos fáciles. modificaciones difíciles (altas, bajas, etc.)
-    map<string, Jugador> estadisticas_jugadores; // string <- identificador del jugador
+    map<string, Jugador> estadisticas_jugadores;
     
 public:
 
@@ -96,13 +96,16 @@ public:
     */ 
     string consultar_jugador_ranking(int posicion) const;
 
-    /** @brief Lista el ranking
+    /** @brief Lista el ranking del circuito
         \pre Cierto.
-        \post Imprime el ranking por orden creciente de ranking actual, la posición, el nombre y los puntos de cada jugador del circuito.
+        \post Se lista el ranking por orden creciente de ranking actual, la posición, el nombre y los puntos de cada jugador del circuito.
     */
     void listar_ranking();
 
-
+    /** @brief Lista los jugadores del circuito
+        \pre Cierto.
+        \post Se listan, por orden creciente de identificador (nombre), el nombre, la posición en el ranking, los puntos y el resto de las estadísticas de cada jugador del circuito.
+    */
     void listar_jugadores();
 
     /** @brief Consulta un jugador dado su nombre
