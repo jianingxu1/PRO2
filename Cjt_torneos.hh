@@ -1,11 +1,14 @@
 #ifndef CJT_TORNEOS_HH
 #define CJT_TORNEOS_HH
 
-#include "torneo.hh"
-#include "cjt_jugadores.hh"
+#include "Torneo.hh"
+#include "Cjt_jugadores.hh"
+
+#ifndef NO_DIAGRAM
 #include <vector>
 #include <iostream>
 using namespace std;
+#endif
 
 /** @class Cjt_torneos
     @brief Representa un conjunto de torneos
@@ -59,18 +62,18 @@ public:
         \pre t representa el nombre de un torneo.
         \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
     */  
-    bool existe_torneo(string t);
+    bool existe_torneo(string t) const;
 
     /** @brief Consulta el número de torneos del conjunto de torneos
         \pre Cierto.
         \post Retorna el número de torneos del parámetro implícito.
     */ 
-    int consultar_numero_torneos();
+    int consultar_numero_torneos() const;
 
     /** @brief Consulta un torneo del conjunto de torneos
         \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
         \post Retorna el torneo con nombre t.
     */    
-    Torneo consultar_torneo(string t);  
+    Torneo consultar_torneo(string t) const;  
 };
 #endif

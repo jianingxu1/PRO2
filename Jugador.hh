@@ -1,8 +1,10 @@
 #ifndef JUGADOR_HH
 #define JUGADOR_HH
 
+#ifndef NO_DIAGRAM
 #include <iostream>
 using namespace std;
+#endif
 
 /** @class Jugador
     @brief Representa un jugador
@@ -11,7 +13,6 @@ class Jugador {
 
 private:
 
-    string p;       // identificador del jugador
     int puntos;
     int torneos_disputados;
     int partidos_ganados;
@@ -27,15 +28,9 @@ public:
 
     /** @brief Constructora por defecto
         \pre Cierto.
-        \post El resultado es un jugador sin identificador p y con todos sus atributos a cero.
-    */ 
+        \post El resultado es un jugador con todos sus atributos a cero.
+    */
     Jugador();
-
-    /** @brief Constructora
-        \pre Cierto.
-        \post El resultado es un jugador con identificador p y todos sus atributos a cero.
-    */ 
-    Jugador(int p);
 
 
     // Modificadores
@@ -45,5 +40,14 @@ public:
         \post Se le han sumado o restado los puntos al parámetro implícito.
     */ 
     void actualizar_puntos(int puntos, bool suma_resta);
+
+
+    // Consultores
+
+    /** @brief Consulta los puntos del jugador
+        \pre Cierto.
+        \post Retorna los puntos del parámetro implícito.
+    */ 
+    int consultar_puntos() const;
 };
 #endif

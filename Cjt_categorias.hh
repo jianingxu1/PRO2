@@ -1,20 +1,22 @@
 #ifndef CJT_CATEGORIAS_HH
 #define CJT_CATEGORIAS_HH
 
+#ifndef NO_DIAGRAM
 #include <vector>
 #include <iostream>
 using namespace std;
+#endif
 
+typedef vector< vector<int> > Matriz;
 /** @class Cjt_categorias
     @brief Representa un conjunto de categorías
 */
 class Cjt_categorias {
-    
+
 private:
 
     vector<string> nombre_categorias;     // tamaño C
-    vector<int> puntos_categorias;        // tamaño C
-    vector< vector<int> > puntos_por_nivel; // tamaño C x K
+    Matriz puntos_por_nivel; // tamaño C x K
 
 public:
     
@@ -37,5 +39,12 @@ public:
     
 
     // Consultores
+
+
+    /** @brief Consulta los puntos de la categoría dependiendo del nivel
+        \pre c >= 0 representa la categoría del torneo y k >= 1 representa el nivel.
+        \post Retorna los puntos por el nivel de la categoría.
+    */
+    int consultar_puntos_por_nivel(int c, int k) const;
 };
 #endif

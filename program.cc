@@ -1,8 +1,11 @@
-#include "cjt_jugadores.hh"
-#include "cjt_torneos.hh"
-#include "cjt_categorias.hh"
+#include "Cjt_jugadores.hh"
+#include "Cjt_torneos.hh"
+#include "Cjt_categorias.hh"
+
+#ifndef NO_DIAGRAM
 #include <iostream>
 using namespace std;
+#endif
 
 int main() {
     // 1. lectura del conjunto de categorías;
@@ -18,10 +21,10 @@ int main() {
     torneos.leer(T);
     
     // 3. lectura del conjunto inicial de jugadores;
-    Cjt_jugadores jugadores;    // contiene el conjunto de jugadores y ranking global del circuito
+    Cjt_jugadores jugadores_global;    // contiene el conjunto de jugadores y ranking global del circuito
     int P;
     cin >> P;
-    jugadores.leer(P);
+    jugadores_global.leer(P);
     
     // 4. lee comando;
     string comando;
@@ -30,9 +33,9 @@ int main() {
         if (comando == "nuevo_jugador") {
             string p;
             cin >> p;
-            if (not jugadores.existe_jugador(p)) {
-                jugadores.anadir_jugador(p);
-                cout << "El número de jugadores es " << jugadores.consultar_numero_jugadores() << '.' << endl;
+            if (not jugadores_global.existe_jugador(p)) {
+                jugadores_global.anadir_jugador(p);
+                cout << "El número de jugadores es " << jugadores_global.consultar_numero_jugadores() << '.' << endl;
             }
             else cout << "ERROR1: Ya existe el jugador " << p << '.' << endl;
         }
@@ -55,9 +58,9 @@ int main() {
         else if (comando == "baja_jugador") {
             string p;
             cin >> p;
-            if (jugadores.existe_jugador(p)) {
-                jugadores.eliminar_jugador(p);
-                cout << "El número de jugadores del circuito es " << jugadores.consultar_numero_jugadores() << '.' << endl;
+            if (jugadores_global.existe_jugador(p)) {
+                jugadores_global.eliminar_jugador(p);
+                cout << "El número de jugadores del circuito es " << jugadores_global.consultar_numero_jugadores() << '.' << endl;
             }
             else cout << "ERROR3: El jugador " << p << " no existe." << endl;
         }
@@ -65,7 +68,7 @@ int main() {
             string t;
             cin >> t;
             if (torneos.existe_torneo(t)) {
-                torneos.eliminar_torneo(jugadores, t);
+                torneos.eliminar_torneo(jugadores_global, t);
                 cout << "El número de torneos del circuito es " << torneos.consultar_numero_torneos() << '.' << endl;
             }
             else cout << "ERROR4: El torneo " << t << " no existe." << endl;
@@ -75,17 +78,17 @@ int main() {
             int n;
             cin >> t >> n;
             Torneo aux = torneos.consultar_torneo(t);
-            aux.iniciar_torneo(jugadores.consultar_ranking(), n);   // solo necesito el ranking ya que los jugadores estaran inicializados a cero en el torneo
-            aux.imprimir_emparejamientos();
+            aux.iniciar(jugadores_global.consultar_ranking(), n);   // solo necesito el ranking ya que los jugadores estaran inicializados a cero en el torneo
             torneos.modificar_torneo(t, aux);
         }
         else if (comando == "finalizar_torneo") {
             string t;
             cin >> t;
             Torneo aux = torneos.consultar_torneo(t);
-            aux.finalizar_torneo(jugadores);
+            aux.finalizar(jugadores_global);
             torneos.modificar_torneo(t, aux);
-            jugadores.actualizar_ranking();
+            // actualizar ranking general
+            jugadores_global.actualizar_ranking();
         }
         else if (comando == "listar_ranking") {}
         else if (comando == "listar_jugadores") {}

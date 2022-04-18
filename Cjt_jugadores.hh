@@ -1,10 +1,14 @@
 #ifndef CJT_JUGADORES_HH
 #define CJT_JUGADORES_HH
 
-#include "jugador.hh"
+#include "Jugador.hh"
+
+#ifndef NO_DIAGRAM
 #include <iostream>
 #include <vector>
+#include <map>
 using namespace std;
+#endif
 
 /** @class Cjt_jugadores
     @brief Representa un conjunto de jugadores
@@ -15,7 +19,7 @@ private:
 
     int P;  // número de jugadores
     vector<string> ranking; // ranking de jugadores con su nombre. accesos fáciles. modificaciones difíciles (altas, bajas, etc.)
-    // MAP/SET CON LA INFO DE LOS JUGADORES, key siendo su nombre
+    map<string, Jugador> estadisticas; // string <- identificador del jugador
     
 public:
 
@@ -67,18 +71,18 @@ public:
         \pre p representa un identificador de un jugador.
         \post Si p está dentro del conjunto de jugadores, retorna true. Altramente, false.
     */  
-    bool existe_jugador(string p);
+    bool existe_jugador(string p) const;
 
     /** @brief Consulta el número de jugadores del conjunto de jugadores
         \pre Cierto.
         \post Retorna el número de jugadores del parámetro implícito.
     */ 
-    int consultar_numero_jugadores();
+    int consultar_numero_jugadores() const;
 
     /** @brief Consulta el ranking
         \pre Cierto.
         \post Retorna el ranking del parámetro implícito.
     */ 
-    vector<string> consultar_ranking();
+    vector<string> consultar_ranking() const;
 };
 #endif
