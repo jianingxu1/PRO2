@@ -78,7 +78,7 @@ int main() {
             int n;
             cin >> t >> n;
             Torneo aux = torneos.consultar_torneo(t);
-            aux.iniciar(jugadores_global.consultar_ranking(), n);
+            aux.iniciar(jugadores_global, n);   // pasamos jugadores_global y no el ranking ya que posee la funcion consultar_jugador_ranking()
             torneos.modificar_torneo(t, aux);
         }
         else if (comando == "finalizar_torneo") {
@@ -90,7 +90,9 @@ int main() {
             // actualizar ranking general
             jugadores_global.actualizar_ranking();
         }
-        else if (comando == "listar_ranking") {}
+        else if (comando == "listar_ranking") {
+            jugadores_global.listar_ranking();
+        }
         else if (comando == "listar_jugadores") {}
         else if (comando == "consultar_jugador") {}
         else if (comando == "listar_torneos") {}

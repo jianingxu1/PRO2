@@ -106,7 +106,7 @@ public:
         \pre El torneo no está iniciado. n representa el número de jugadores que se inscribirán al torneo. Estan preparados en el canal de entrada n enteros que representan las posiciones de los jugadores inscritos al torneo en el ranking global ordenados crecientemente.
         \post El resultado es un torneo inicializado que contiene los jugadores inscritos iniciales y el ranking inicial del torneo. Se ha creado y se ha imprimido el cuadro de emparejamientos.
     */
-    void iniciar(const vector<string>& ranking_global, int n);
+    void iniciar(const Cjt_jugadores& jugadores_global, int n);
 
     /** @brief Finaliza el torneo
         \pre Estan preparados en el canal de entrada los resultados del torneo. El torneo está inicializado.

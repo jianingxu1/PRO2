@@ -90,17 +90,17 @@ public:
     */ 
     int consultar_numero_jugadores() const;
 
-    /** @brief Consulta el ranking
-        \pre Cierto.
-        \post Retorna el ranking.
-    */
-    vector<string> consultar_ranking() const;
-
     /** @brief Consulta el nombre del jugador que está en una cierta posición en el ranking
         \pre 1 <= posicion <= P.
         \post Retorna el nombre del jugador que está en la posición (parámetro de entrada) del ranking.
     */ 
     string consultar_jugador_ranking(int posicion) const;
+
+    /** @brief Lista el ranking
+        \pre Cierto.
+        \post Imprime el ranking por orden creciente de ranking actual, la posición, el nombre y los puntos de cada jugador del circuito.
+    */
+    void listar_ranking();
 
     /** @brief Consulta un jugador dado su nombre
         \pre p existe en el parámetro implícito.
