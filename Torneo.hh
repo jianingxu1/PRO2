@@ -1,7 +1,8 @@
 #ifndef TORNEO_HH
 #define TORNEO_HH
 
-#include "Cjt_jugadores.hh"
+#include "Cjt_jugadores.hh"     // analizar si es necesario
+#include "Cjt_categorias.hh"    // analizar si es necesario
 
 #ifndef NO_DIAGRAM
 #include "BinTree.hh"
