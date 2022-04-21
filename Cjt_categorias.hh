@@ -14,36 +14,47 @@ class Cjt_categorias {
 
 private:
 
-    map<string, int> categorias;    // nombre de la categoría y 0 <= posición en el vector < C
+    int C;  // número de categorías
+    int K;  // número máximo de niveles por categoría
+    vector<string> categorias;    // nombre de las categorías
     vector< vector<int> > puntos_por_nivel; // tamaño C x K
 
 public:
     
     // Constructores
 
-    /** @brief Constructora por defecto
-        \pre Cierto.
+    /** @brief Constructora
+        \pre C >= 1 representa el número de categorías y K >= 4 representa el número máximo de niveles.
         \post El resultado es un conjunto de categorías vacío.
     */
-    Cjt_categorias();
+    Cjt_categorias(int C, int K);
+
+
+    // Destructora
+
+    /** @brief Destructora por defecto
+        \pre Cierto.
+        \post Se ha eliminado el parámetro implícito.
+    */
+    ~Cjt_categorias();
 
 
     // Modificadores
     
     /** @brief Operación de lectura
-        \pre C >= 0 representa el número de categorías y K >= 0 representa el número máximo de niveles. Estan preparados en el canal de entrada C strings con el nombre de cada categoría, y C × K enteros que representan los puntos por categoría y nivel.
+        \pre Estan preparados en el canal de entrada C strings con el nombre de cada categoría, y C × K enteros que representan los puntos por categoría y nivel.
         \post El parámetro implícito contiene el conjunto de categorías leídos en la entrada.
     */
-    void leer(int C, int K);
+    void leer();
     
 
     // Consultores
 
     /** @brief Consulta los puntos de la categoría dependiendo del nivel
-        \pre c >= 0 representa la categoría del torneo y k >= 1 representa el nivel.
+        \pre 1 <= categoria <= C y 1 <= nivel <= K.
         \post Retorna los puntos por el nivel de la categoría.
     */
-    int consultar_puntos_por_nivel(int c, int k) const;
+    int consultar_puntos_por_nivel(int categoria, int nivel) const;
 
     /** @brief Escribe los torneos del circuito
         \pre Cierto.

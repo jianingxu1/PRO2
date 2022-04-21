@@ -9,10 +9,10 @@ using namespace std;
 
 int main() {
     // 1. lectura del conjunto de categorías;
-    Cjt_categorias categorias;
     int C, K;
     cin >> C >> K;
-    categorias.leer(C, K);
+    Cjt_categorias categorias(C, K);
+    categorias.leer();
     
     // 2. lectura del conjunto inicial de torneos;
     Cjt_torneos torneos;
@@ -30,7 +30,7 @@ int main() {
     string comando;
     cin >> comando;
     while (comando != "fin") {
-        if (comando == "nuevo_jugador") {
+        if (comando == "nuevo_jugador" or comando == "nj") {
             string p;
             cin >> p;
             if (not jugadores_global.existe_jugador(p)) {
@@ -39,7 +39,7 @@ int main() {
             }
             else cout << "ERROR1: Ya existe el jugador " << p << '.' << endl;
         }
-        else if (comando == "nuevo_torneo") {
+        else if (comando == "nuevo_torneo" or comando == "nt") {
             string t;
             int c;
             cin >> t >> c;
@@ -55,7 +55,7 @@ int main() {
                 cout << "ERROR2: la categoria " << c << " no es válida." << endl;
             }
         }
-        else if (comando == "baja_jugador") {
+        else if (comando == "baja_jugador" or comando == "bj") {
             string p;
             cin >> p;
             if (jugadores_global.existe_jugador(p)) {
@@ -64,7 +64,7 @@ int main() {
             }
             else cout << "ERROR3: El jugador " << p << " no existe." << endl;
         }
-        else if (comando == "baja_torneo") {
+        else if (comando == "baja_torneo" or comando == "bt") {
             string t;
             cin >> t;
             if (torneos.existe_torneo(t)) {
@@ -73,7 +73,7 @@ int main() {
             }
             else cout << "ERROR4: El torneo " << t << " no existe." << endl;
         }
-        else if (comando == "iniciar_torneo") {
+        else if (comando == "iniciar_torneo" or comando == "it") {
             string t;
             int n;
             cin >> t >> n;
@@ -81,7 +81,7 @@ int main() {
             aux.iniciar(jugadores_global, n);   // pasamos jugadores_global y no el ranking ya que posee la funcion consultar_jugador_ranking()
             torneos.modificar_torneo(t, aux);
         }
-        else if (comando == "finalizar_torneo") {
+        else if (comando == "finalizar_torneo" or comando == "ft") {
             string t;
             cin >> t;
             Torneo aux = torneos.consultar_torneo(t);
@@ -90,13 +90,13 @@ int main() {
             // actualizar ranking general
             jugadores_global.actualizar_ranking();
         }
-        else if (comando == "listar_ranking") {
+        else if (comando == "listar_ranking" or comando == "lr") {
             jugadores_global.listar_ranking();
         }
-        else if (comando == "listar_jugadores") {
+        else if (comando == "listar_jugadores" or comando == "lj") {
             jugadores_global.listar_jugadores();
         }
-        else if (comando == "consultar_jugador") {
+        else if (comando == "consultar_jugador" or comando == "cj") {
             string p;
             cin >> p;
             if (jugadores_global.existe_jugador(p)) {
@@ -105,10 +105,10 @@ int main() {
             }
             else cout << "ERROR: El jugador " << p << " no existe." << endl;
         }
-        else if (comando == "listar_torneos") {
+        else if (comando == "listar_torneos" or comando == "lt") {
             torneos.listar_torneos();
         }
-        else if (comando == "listar_categorías") {
+        else if (comando == "listar_categorías" or comando == "lc") {
             categorias.escribir();
         }
         cin >> comando;
