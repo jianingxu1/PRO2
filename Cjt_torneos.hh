@@ -48,11 +48,11 @@ public:
     */
     void leer(int T);
 
-    // /** @brief Añade el torneo al conjunto de torneos
-    //     \pre torneo no está dentro del parámetro implícito.
-    //     \post Se le ha añadido un torneo al parámetro implícito.
-    // */  
-    // void anadir_torneo(Torneo torneo);
+    /** @brief Añade el torneo al conjunto de torneos
+        \pre torneo no está dentro del parámetro implícito.
+        \post Se le ha añadido un torneo al parámetro implícito.
+    */  
+    void anadir_torneo(string t, const Torneo& torneo);
 
     // /** @brief Elimina el torneo del conjunto de torneos
     //     \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.

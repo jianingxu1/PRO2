@@ -15,6 +15,11 @@ void Cjt_torneos::leer(int T) {
     }
 }
 
+void Cjt_torneos::anadir_torneo(string t, const Torneo& torneo) {
+    ++T;
+    torneos.insert(make_pair(t, torneo));
+}
+
 bool Cjt_torneos::existe_torneo(string t) const {
     map<string, Torneo>::const_iterator it = torneos.find(t);
     return it != torneos.end();
