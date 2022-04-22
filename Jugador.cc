@@ -11,6 +11,10 @@ Jugador::Jugador() {
     juegos_perdidos = 0;
 }
 
+int Jugador::consultar_posicion() const {
+    return posicion;
+}
+
 void Jugador::actualizar_posicion(int posicion) {
     this->posicion = posicion;
 }

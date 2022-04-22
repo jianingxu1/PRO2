@@ -57,15 +57,15 @@ int main() {
     //             cout << "ERROR2: la categoria " << c << " no es válida." << endl;
     //         }
     //     }
-    //     else if (comando == "baja_jugador" or comando == "bj") {
-    //         string p;
-    //         cin >> p;
-    //         if (jugadores_global.existe_jugador(p)) {
-    //             jugadores_global.eliminar_jugador(p);
-    //             cout << "El número de jugadores del circuito es " << jugadores_global.consultar_numero_jugadores() << '.' << endl;
-    //         }
-    //         else cout << "ERROR3: El jugador " << p << " no existe." << endl;
-    //     }
+        else if (comando == "baja_jugador" or comando == "bj") {
+            string p;
+            cin >> p;
+            if (jugadores_global.existe_jugador(p)) {
+                jugadores_global.eliminar_jugador(p);
+                cout << jugadores_global.consultar_numero_jugadores() << endl;
+            }
+            else cout << "error: el jugador no existe" << endl;
+        }
     //     else if (comando == "baja_torneo" or comando == "bt") {
     //         string t;
     //         cin >> t;

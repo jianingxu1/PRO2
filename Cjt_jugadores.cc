@@ -21,6 +21,18 @@ void Cjt_jugadores::anadir_jugador(string p) {
     estadisticas.insert(make_pair(p, j));
 }
 
+void Cjt_jugadores::eliminar_jugador(string p) {
+    --P;
+    map<string, Jugador>::iterator it = estadisticas.find(p);
+    int posicion = it->second.consultar_posicion();
+    estadisticas.erase(it);
+    for (int i = posicion; i <= P; ++i) {
+        ranking[i - 1] = ranking[i];
+        map<string, Jugador>::iterator it2 = estadisticas.find(ranking[i - 1]);
+        it2->second.actualizar_posicion(i);
+    }
+}
+
 bool Cjt_jugadores::existe_jugador(string p) const {
     map<string, Jugador>::const_iterator it = estadisticas.find(p);
     return it != estadisticas.end();

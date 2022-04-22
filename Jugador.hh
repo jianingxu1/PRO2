@@ -56,11 +56,11 @@ public:
 
     // // Consultores
 
-    // /** @brief Consulta la posición en el ranking del jugador
-    //     \pre Cierto.
-    //     \post Retorna la posición en el ranking del parámetro implícito.
-    // */
-    // int consultar_posicion() const;
+    /** @brief Consulta la posición en el ranking del jugador
+        \pre Cierto.
+        \post Retorna la posición en el ranking del parámetro implícito.
+    */
+    int consultar_posicion() const;
 
     /** @brief Consulta los puntos del jugador
         \pre Cierto.

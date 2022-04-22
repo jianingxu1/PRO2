@@ -37,11 +37,11 @@ public:
     */  
     void anadir_jugador(string p);
 
-    // /** @brief Da de baja a un jugador del conjunto de jugadores
-    //     \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
-    //     \post El parámetro implícito no contiene el jugador p y éste ha sido eliminado del ranking. Se ha actualizado el ranking.
-    // */
-    // void eliminar_jugador(string p);
+    /** @brief Da de baja a un jugador del conjunto de jugadores
+        \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
+        \post El parámetro implícito no contiene el jugador p y éste ha sido eliminado del ranking. Se ha actualizado el ranking. Se ha actualizado las posiciones en el ranking de los jugadores.
+    */
+    void eliminar_jugador(string p);
 
     // /** @brief Suma o resta los puntos de los jugadores del conjunto de jugadores al parámetro implícito
     //     \pre Si el booleano suma_resta es true, se le suma los puntos a los jugadores. Altramente, se le restan los puntos.
