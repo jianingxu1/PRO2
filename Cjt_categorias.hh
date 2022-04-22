@@ -56,10 +56,16 @@ public:
     */
     int consultar_puntos_por_nivel(int categoria, int nivel) const;
 
-    /** @brief Escribe los torneos del circuito
+    /** @brief Escribe las categorías del circuito
         \pre Cierto.
         \post Escribe, por orden creciente de identificador, el nombre y la tabla de puntos por niveles (en orden creciente de nivel) de cada categoría del circuito.
     */
     void escribir() const;
+
+    /** @brief Consulta el nombre de la categoría
+        \pre c representa el identificador de la categoría.
+        \post Retorna el nombre de la categoría con identificador c.
+    */
+    string consultar_nombre(int c) const;
 };
 #endif

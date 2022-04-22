@@ -17,6 +17,7 @@ class Cjt_torneos {
 
 private:
 
+    int T;  // número de torneos
     map<string, Torneo> torneos; // MAP/SET DE TORNEOS (necesario para encontrar mediante nombre un torneo)
 
 public:
@@ -30,6 +31,15 @@ public:
     Cjt_torneos();
     
 
+    // Destructora
+
+    /** @brief Destructora por defecto
+        \pre Cierto.
+        \post Se ha eliminado el parámetro implícito.
+    */
+    ~Cjt_torneos();
+
+
     // Modificadores
     
     /** @brief Operación de lectura
@@ -38,49 +48,49 @@ public:
     */
     void leer(int T);
 
-    /** @brief Añade el torneo al conjunto de torneos
-        \pre torneo no está dentro del parámetro implícito.
-        \post Se le ha añadido un torneo al parámetro implícito.
-    */  
-    void anadir_torneo(Torneo torneo);
+    // /** @brief Añade el torneo al conjunto de torneos
+    //     \pre torneo no está dentro del parámetro implícito.
+    //     \post Se le ha añadido un torneo al parámetro implícito.
+    // */  
+    // void anadir_torneo(Torneo torneo);
 
-    /** @brief Elimina el torneo del conjunto de torneos
-        \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
-        \post Se ha eliminado el torneo del parámetro implícito. Se ha actualizado el ranking y los puntos del conjunto de jugadores.
-    */  
-    void eliminar_torneo(Cjt_jugadores jugadores, string t);
+    // /** @brief Elimina el torneo del conjunto de torneos
+    //     \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
+    //     \post Se ha eliminado el torneo del parámetro implícito. Se ha actualizado el ranking y los puntos del conjunto de jugadores.
+    // */  
+    // void eliminar_torneo(Cjt_jugadores& jugadores, string t);
 
-    /** @brief Modifica el torneo
-        \pre Existe un torneo con nombre t en el parámetro implícito.
-        \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.
-    */
-    void modificar_torneo(string t, Torneo aux);
+    // /** @brief Modifica el torneo
+    //     \pre Existe un torneo con nombre t en el parámetro implícito.
+    //     \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.
+    // */
+    // void modificar_torneo(string t, Torneo aux);
 
 
-    // Consultores
+    // // Consultores
 
-    /** @brief Consulta si existe un torneo en el conjunto de torneos
-        \pre t representa el nombre de un torneo.
-        \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
-    */  
-    bool existe_torneo(string t) const;
+    // /** @brief Consulta si existe un torneo en el conjunto de torneos
+    //     \pre t representa el nombre de un torneo.
+    //     \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
+    // */  
+    // bool existe_torneo(string t) const;
 
-    /** @brief Consulta el número de torneos del conjunto de torneos
-        \pre Cierto.
-        \post Retorna el número de torneos del parámetro implícito.
-    */ 
-    int consultar_numero_torneos() const;
+    // /** @brief Consulta el número de torneos del conjunto de torneos
+    //     \pre Cierto.
+    //     \post Retorna el número de torneos del parámetro implícito.
+    // */ 
+    // int consultar_numero_torneos() const;
 
-    /** @brief Consulta un torneo del conjunto de torneos
-        \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
-        \post Retorna el torneo con nombre t.
-    */    
-    Torneo consultar_torneo(string t) const;
+    // /** @brief Consulta un torneo del conjunto de torneos
+    //     \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
+    //     \post Retorna el torneo con nombre t.
+    // */    
+    // Torneo consultar_torneo(string t) const;
 
     /** @brief Lista los torneos del circuito
         \pre Cierto.
         \post Se listan, por orden creciente de identificador (nombre), el nombre y la categoría de cada torneo del circuito.
     */  
-    void listar_torneos() const;
+    void listar_torneos(const Cjt_categorias& categorias) const;
 };
 #endif

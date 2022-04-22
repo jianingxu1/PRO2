@@ -39,3 +39,7 @@ void Cjt_categorias::escribir() const {
         cout << endl;
     }
 }
+
+string Cjt_categorias::consultar_nombre(int c) const {
+    return categorias[c - 1];
+}
