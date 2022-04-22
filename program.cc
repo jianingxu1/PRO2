@@ -22,16 +22,16 @@ int main() {
     torneos.leer(T);
     torneos.listar_torneos(categorias);
     
-    // // 3. lectura del conjunto inicial de jugadores;
-    // Cjt_jugadores jugadores_global;    // contiene el conjunto de jugadores y ranking global del circuito
-    // int P;
-    // cin >> P;
-    // jugadores_global.leer(P);
+    // 3. lectura del conjunto inicial de jugadores;
+    Cjt_jugadores jugadores_global;    // contiene el conjunto de jugadores y ranking global del circuito
+    int P;
+    cin >> P;
+    jugadores_global.leer(P);
     
-    // // 4. lee comando;
-    // string comando;
-    // cin >> comando;
-    // while (comando != "fin") {
+    // 4. lee comando;
+    string comando;
+    cin >> comando;
+    while (comando != "fin") {
     //     if (comando == "nuevo_jugador" or comando == "nj") {
     //         string p;
     //         cin >> p;
@@ -93,27 +93,26 @@ int main() {
     //         // actualizar ranking general
     //         jugadores_global.actualizar_ranking();
     //     }
-    //     else if (comando == "listar_ranking" or comando == "lr") {
-    //         jugadores_global.listar_ranking();
-    //     }
-    //     else if (comando == "listar_jugadores" or comando == "lj") {
-    //         jugadores_global.listar_jugadores();
-    //     }
-    //     else if (comando == "consultar_jugador" or comando == "cj") {
-    //         string p;
-    //         cin >> p;
-    //         if (jugadores_global.existe_jugador(p)) {
-    //             Jugador j = jugadores_global.consultar_jugador(p);
-    //             j.escribir();
-    //         }
-    //         else cout << "ERROR: El jugador " << p << " no existe." << endl;
-    //     }
-    //     else if (comando == "listar_torneos" or comando == "lt") {
-    //         torneos.listar_torneos();
-    //     }
-    //     else if (comando == "listar_categorías" or comando == "lc") {
-    //         categorias.escribir();
-    //     }
-    //     cin >> comando;
-    // }
+        if (comando == "listar_ranking" or comando == "lr") {
+            jugadores_global.listar_ranking();
+        }
+        else if (comando == "listar_jugadores" or comando == "lj") {
+            jugadores_global.listar_jugadores();
+        }
+        else if (comando == "consultar_jugador" or comando == "cj") {
+            string p;
+            cin >> p;
+            if (jugadores_global.existe_jugador(p)) {
+                jugadores_global.consultar_jugador(p);
+            }
+            else cout << "ERROR: El jugador " << p << " no existe." << endl;
+        }
+        else if (comando == "listar_torneos" or comando == "lt") {
+            torneos.listar_torneos(categorias);
+        }
+        else if (comando == "listar_categorías" or comando == "lc") {
+            categorias.escribir();
+        }
+        cin >> comando;
+    }
 }

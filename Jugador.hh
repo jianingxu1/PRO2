@@ -28,30 +28,24 @@ public:
 
     /** @brief Constructora por defecto
         \pre Cierto.
-        \post El resultado es un jugador sin nombre y con todos sus atributos a cero.
+        \post El resultado es un jugador con todos sus atributos a cero.
     */
     Jugador();
 
-    /** @brief Constructora
-        \pre Cierto.
-        \post El resultado es un jugador con nombre y todos sus atributos a cero.
-    */
-    Jugador(string p);
 
-
-    // Modificadores
+    // // Modificadores
     
-    /** @brief Suma o elimina puntos al jugador
-        \pre Si el booleano suma_resta es true, se le suma los puntos al jugador. Altramente, se le restan los puntos.
-        \post Se le han sumado o restado los puntos al parámetro implícito.
-    */ 
-    void actualizar_puntos(int puntos, bool suma_resta);
+    // /** @brief Suma o elimina puntos al jugador
+    //     \pre Si el booleano suma_resta es true, se le suma los puntos al jugador. Altramente, se le restan los puntos.
+    //     \post Se le han sumado o restado los puntos al parámetro implícito.
+    // */ 
+    // void actualizar_puntos(int puntos, bool suma_resta);
 
-    /** @brief 
-        \pre 2 <= estadistica <= 8.
-        \post Si estadistica == 2, le suma cantidad a torneos disputados. Si == 3, le suma cantidad a partidos ganados. Si == 4, le suma cantidad a partidos perdidos. Si == 5, le suma cantidad a sets ganados. Si == 6, le suma cantidad a sets perdidos. Si == 7, le suma cantidad a juegos ganados. Si == 8, le suma cantidad a juegos perdidos.
-    */
-    void actualizar_estadistica(string estadistica, int cantidad);
+    // /** @brief 
+    //     \pre 2 <= estadistica <= 8.
+    //     \post Si estadistica == 2, le suma cantidad a torneos disputados. Si == 3, le suma cantidad a partidos ganados. Si == 4, le suma cantidad a partidos perdidos. Si == 5, le suma cantidad a sets ganados. Si == 6, le suma cantidad a sets perdidos. Si == 7, le suma cantidad a juegos ganados. Si == 8, le suma cantidad a juegos perdidos.
+    // */
+    // void actualizar_estadistica(string estadistica, int cantidad);
 
     /** @brief Actualiza la posicion del jugador
         \pre 1 <= posicion <= P (número de jugadores del circuito).
@@ -60,19 +54,25 @@ public:
     void actualizar_posicion(int posicion);
 
 
-    // Consultores
+    // // Consultores
+
+    // /** @brief Consulta la posición en el ranking del jugador
+    //     \pre Cierto.
+    //     \post Retorna la posición en el ranking del parámetro implícito.
+    // */
+    // int consultar_posicion() const;
 
     /** @brief Consulta los puntos del jugador
         \pre Cierto.
         \post Retorna los puntos del parámetro implícito.
-    */ 
+    */
     int consultar_puntos() const;
 
-    /** @brief Consulta un atributo del jugador
-        \pre 1 <= atributo <= 8.
-        \post Si atributo == 1, devuelve los puntos. Si == 2, devuelve los torneos disputados. Si == 3, devuelve los partidos ganados. Si == 4, devuelve los partidos perdidos. Si == 5, devuelve los sets ganados. Si == 6, devuelve los sets perdidos. Si == 7, devuelve juegos ganados. Si == 8, devuelve los juegos perdidos.
-    */
-    int consultar_atributo(int atributo) const;
+    // /** @brief Consulta un atributo del jugador
+    //     \pre 1 <= atributo <= 7.
+    //     \post Si atributo == 1, devuelve los torneos disputados. Si == 2, devuelve los partidos ganados. Si == 3, devuelve los partidos perdidos. Si == 4, devuelve los sets ganados. Si == 5, devuelve los sets perdidos. Si == 6, devuelve los juegos ganados. Si == 7, devuelve juegos perdidos.
+    // */
+    // int consultar_atributo(int atributo) const;
 
     /** @brief Escribe los atributos del jugador
         \pre Cierto.
