@@ -31,11 +31,11 @@ public:
     */    
     void leer(int P);
 
-    // /** @brief Añade un jugador al conjunto de jugadores
-    //     \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
-    //     \post El parámetro implícito contiene el jugador p, con todas sus estadísticas a cero y posicionado último en el ranking.
-    // */  
-    // void anadir_jugador(string p);
+    /** @brief Añade un jugador al conjunto de jugadores
+        \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
+        \post El parámetro implícito contiene el jugador p, con todas sus estadísticas a cero y posicionado último en el ranking.
+    */  
+    void anadir_jugador(string p);
 
     // /** @brief Da de baja a un jugador del conjunto de jugadores
     //     \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
@@ -76,11 +76,11 @@ public:
     */  
     bool existe_jugador(string p) const;
 
-    // /** @brief Consulta el número de jugadores del conjunto de jugadores
-    //     \pre Cierto.
-    //     \post Retorna el número de jugadores del parámetro implícito.
-    // */ 
-    // int consultar_numero_jugadores() const;
+    /** @brief Consulta el número de jugadores del conjunto de jugadores
+        \pre Cierto.
+        \post Retorna el número de jugadores del parámetro implícito.
+    */ 
+    int consultar_numero_jugadores() const;
 
     // /** @brief Consulta el nombre del jugador que está en una cierta posición en el ranking
     //     \pre 1 <= posicion <= P.

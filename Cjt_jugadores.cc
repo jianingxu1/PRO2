@@ -13,9 +13,21 @@ void Cjt_jugadores::leer(int P) {
     }
 }
 
+void Cjt_jugadores::anadir_jugador(string p) {
+    ++P;
+    ranking.push_back(p);
+    Jugador j;
+    j.actualizar_posicion(P);
+    estadisticas.insert(make_pair(p, j));
+}
+
 bool Cjt_jugadores::existe_jugador(string p) const {
     map<string, Jugador>::const_iterator it = estadisticas.find(p);
     return it != estadisticas.end();
+}
+
+int Cjt_jugadores::consultar_numero_jugadores() const {
+    return P;
 }
 
 void Cjt_jugadores::listar_ranking() const {
