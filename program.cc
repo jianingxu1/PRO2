@@ -30,9 +30,11 @@ int main() {
     string comando;
     cin >> comando;
     while (comando != "fin") {
+        cout << "#" << comando;
         if (comando == "nuevo_jugador" or comando == "nj") {
             string p;
             cin >> p;
+            cout << ' ' << p << endl;
             if (not jugadores_global.existe_jugador(p)) {
                 jugadores_global.anadir_jugador(p);
                 cout << jugadores_global.consultar_numero_jugadores() << endl;
@@ -43,6 +45,7 @@ int main() {
             string t;
             int c;
             cin >> t >> c;
+            cout << ' ' << t << ' ' << c << endl;
             if (1 <= c and c <= C) {
                 if (not torneos.existe_torneo(t)) {
                     Torneo aux_torneo(c);
@@ -58,6 +61,7 @@ int main() {
         else if (comando == "baja_jugador" or comando == "bj") {
             string p;
             cin >> p;
+            cout << ' ' << p << endl;
             if (jugadores_global.existe_jugador(p)) {
                 jugadores_global.eliminar_jugador(p);
                 cout << jugadores_global.consultar_numero_jugadores() << endl;
@@ -67,6 +71,7 @@ int main() {
     //     else if (comando == "baja_torneo" or comando == "bt") {
     //         string t;
     //         cin >> t;
+    //         cout << ' ' << t << endl;
     //         if (torneos.existe_torneo(t)) {
     //             torneos.eliminar_torneo(jugadores_global, t);
     //             jugadores_global.actualizar_ranking();
@@ -78,6 +83,7 @@ int main() {
     //         string t;
     //         int n;
     //         cin >> t >> n;
+    //         cout << ' ' << t << ' ' << n << endl;
     //         Torneo aux = torneos.consultar_torneo(t);
     //         aux.iniciar(jugadores_global, n);   // pasamos jugadores_global y no el ranking ya que posee la funcion consultar_jugador_ranking()
     //         torneos.modificar_torneo(t, aux);
@@ -85,6 +91,7 @@ int main() {
     //     else if (comando == "finalizar_torneo" or comando == "ft") {
     //         string t;
     //         cin >> t;
+    //         cout << ' ' << t << endl;
     //         Torneo aux = torneos.consultar_torneo(t);
     //         aux.finalizar(categorias, jugadores_global);
     //         torneos.modificar_torneo(t, aux);
@@ -92,23 +99,28 @@ int main() {
     //         jugadores_global.actualizar_ranking();
     //     }
         else if (comando == "listar_ranking" or comando == "lr") {
+            cout << endl;
             jugadores_global.listar_ranking();
         }
         else if (comando == "listar_jugadores" or comando == "lj") {
+            cout << endl;
             jugadores_global.listar_jugadores();
         }
         else if (comando == "consultar_jugador" or comando == "cj") {
             string p;
             cin >> p;
+            cout << ' ' << p << endl;
             if (jugadores_global.existe_jugador(p)) {
                 jugadores_global.consultar_jugador(p);
             }
             else cout << "error: el jugador no existe" << endl;
         }
         else if (comando == "listar_torneos" or comando == "lt") {
+            cout << endl;
             torneos.listar_torneos(categorias);
         }
-        else if (comando == "listar_categorías" or comando == "lc") {
+        else if (comando == "listar_categorias" or comando == "lc") {
+            cout << endl;
             categorias.escribir();
         }
         cin >> comando;
