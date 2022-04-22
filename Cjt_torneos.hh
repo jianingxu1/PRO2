@@ -75,11 +75,11 @@ public:
     */  
     bool existe_torneo(string t) const;
 
-    // /** @brief Consulta el número de torneos del conjunto de torneos
-    //     \pre Cierto.
-    //     \post Retorna el número de torneos del parámetro implícito.
-    // */ 
-    // int consultar_numero_torneos() const;
+    /** @brief Consulta el número de torneos del conjunto de torneos
+        \pre Cierto.
+        \post Retorna el número de torneos del parámetro implícito.
+    */ 
+    int consultar_numero_torneos() const;
 
     // /** @brief Consulta un torneo del conjunto de torneos
     //     \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.

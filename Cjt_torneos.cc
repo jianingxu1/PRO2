@@ -25,6 +25,10 @@ bool Cjt_torneos::existe_torneo(string t) const {
     return it != torneos.end();
 }
 
+int Cjt_torneos::consultar_numero_torneos() const {
+    return T;
+}
+
 void Cjt_torneos::listar_torneos(const Cjt_categorias& categorias) const {
     cout << T << endl;
     for (map<string, Torneo>::const_iterator it = torneos.begin(); it != torneos.end(); ++it) {
