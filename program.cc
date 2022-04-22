@@ -13,14 +13,12 @@ int main() {
     cin >> C >> K;
     Cjt_categorias categorias(C, K);
     categorias.leer();
-    categorias.escribir();
 
     // 2. lectura del conjunto inicial de torneos;
     Cjt_torneos torneos;
     int T;
     cin >> T;
     torneos.leer(T);
-    torneos.listar_torneos(categorias);
     
     // 3. lectura del conjunto inicial de jugadores;
     Cjt_jugadores jugadores_global;    // contiene el conjunto de jugadores y ranking global del circuito
