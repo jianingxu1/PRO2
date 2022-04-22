@@ -37,9 +37,9 @@ int main() {
             cin >> p;
             if (not jugadores_global.existe_jugador(p)) {
                 jugadores_global.anadir_jugador(p);
-                cout << "El número de jugadores es " << jugadores_global.consultar_numero_jugadores() << '.' << endl;
+                cout << jugadores_global.consultar_numero_jugadores() << endl;
             }
-            else cout << "ERROR1: Ya existe el jugador " << p << '.' << endl;
+            else cout << "error: ya existe un jugador con ese nombre" << endl;
         }
     //     else if (comando == "nuevo_torneo" or comando == "nt") {
     //         string t;
@@ -105,7 +105,7 @@ int main() {
             if (jugadores_global.existe_jugador(p)) {
                 jugadores_global.consultar_jugador(p);
             }
-            else cout << "ERROR: El jugador " << p << " no existe." << endl;
+            else cout << "error: el jugador no existe" << endl;
         }
         else if (comando == "listar_torneos" or comando == "lt") {
             torneos.listar_torneos(categorias);
