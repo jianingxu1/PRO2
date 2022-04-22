@@ -15,6 +15,11 @@ void Cjt_torneos::leer(int T) {
     }
 }
 
+bool Cjt_torneos::existe_torneo(string t) const {
+    map<string, Torneo>::const_iterator it = torneos.find(t);
+    return it != torneos.end();
+}
+
 void Cjt_torneos::listar_torneos(const Cjt_categorias& categorias) const {
     cout << T << endl;
     for (map<string, Torneo>::const_iterator it = torneos.begin(); it != torneos.end(); ++it) {

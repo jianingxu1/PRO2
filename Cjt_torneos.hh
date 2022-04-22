@@ -67,13 +67,13 @@ public:
     // void modificar_torneo(string t, Torneo aux);
 
 
-    // // Consultores
+    // Consultores
 
-    // /** @brief Consulta si existe un torneo en el conjunto de torneos
-    //     \pre t representa el nombre de un torneo.
-    //     \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
-    // */  
-    // bool existe_torneo(string t) const;
+    /** @brief Consulta si existe un torneo en el conjunto de torneos
+        \pre t representa el nombre de un torneo.
+        \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
+    */  
+    bool existe_torneo(string t) const;
 
     // /** @brief Consulta el número de torneos del conjunto de torneos
     //     \pre Cierto.
