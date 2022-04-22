@@ -41,14 +41,14 @@ int main() {
             }
             else cout << "error: ya existe un jugador con ese nombre" << endl;
         }
-        else if (comando == "nuevo_torneo" or comando == "nt") {    // Implement nuevo_torneo command
+        else if (comando == "nuevo_torneo" or comando == "nt") {
             string t;
             int c;
             cin >> t >> c;
             if (1 <= c and c <= C) {
                 if (not torneos.existe_torneo(t)) {
-                    Torneo aux_torneo(t, c);
-                    torneos.anadir_torneo(aux_torneo);
+                    Torneo aux_torneo(c);
+                    torneos.anadir_torneo(t, aux_torneo);
                     cout << torneos.consultar_numero_torneos() << endl;
                 }
                 else cout << "error: ya existe un torneo con ese nombre" << endl;
