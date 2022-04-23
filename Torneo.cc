@@ -1,6 +1,7 @@
 #include "Torneo.hh"
 
 Torneo::Torneo(int c) {
+    n = 0;
     this->c = c;
     iniciado = false;
     primera_edicion = true;
