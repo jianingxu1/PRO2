@@ -30,5 +30,5 @@ int Jugador::consultar_puntos() const {
 void Jugador::escribir() const {
     cout << "Rk:" << posicion << " Ps:" << puntos << " Ts:" << torneos_disputados <<
     " WM:" << partidos_ganados << " LM:" << partidos_perdidos << " WS:" << sets_ganados <<
-    " LS:" << " WG:" << juegos_ganados << " LG:" << juegos_perdidos << endl;
+    " LS:" << sets_perdidos << " WG:" << juegos_ganados << " LG:" << juegos_perdidos << endl;
 }
