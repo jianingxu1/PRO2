@@ -43,11 +43,11 @@ public:
     */
     void eliminar_jugador(string p);
 
-    // /** @brief Suma o resta los puntos de los jugadores del conjunto de jugadores al parámetro implícito
-    //     \pre Si el booleano suma_resta es true, se le suma los puntos a los jugadores. Altramente, se le restan los puntos.
-    //     \post Se le han sumado o restado los puntos de los jugadores del conjunto de jugadores a los jugadores del parámetro implícito.
-    // */
-    // void actualizar_puntos(Cjt_jugadores jugadores, bool suma_resta);
+    /** @brief Suma puntos a un jugador
+        \pre p representa el nombre de un jugador. p existe en el parámetro implícito.
+        \post Se le han sumado puntos al jugador p del parámetro implícito.
+    */
+    void sumar_puntos_jugador(string p, int puntos);
 
     // /** @brief Actualiza el ranking de jugadores
     //     \pre Cierto.

@@ -89,11 +89,11 @@ public:
 
     // Modificadores
 
-    // /** @brief Elimina de las estadísticas globales de los jugadores los puntos que han obtenido en este torneo
-    //     \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.
-    //     \post Se han eliminado de las estadísticas globales de los jugadores los puntos que han obtenido en el parámetro implícito.
-    // */   
-    // void eliminar_puntos(Cjt_jugadores& jugadores_global);  // llamado por eliminar_torneo en Cjt_torneos
+    /** @brief Elimina de las estadisticas globales de los jugadores los puntos que han obtenido en este torneo
+        \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.
+        \post Se han eliminado de las estadísticas globales de los jugadores los puntos que han obtenido en el parámetro implícito.
+    */   
+    void eliminar_puntos(Cjt_jugadores& jugadores_global);
 
     // /** @brief Operación de lectura de jugadores dada su posición en el ranking global
     //     \pre P >= 0 que representa el número inicial de jugadores. Estan preparados en el canal de entrada una secuencia de P enteros con las posiciones del ranking global que identifican a los jugadores (sin repeticiones).

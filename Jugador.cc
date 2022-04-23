@@ -11,6 +11,10 @@ Jugador::Jugador() {
     juegos_perdidos = 0;
 }
 
+void Jugador::sumar_puntos(int puntos) {
+    this->puntos += puntos;
+}
+
 int Jugador::consultar_posicion() const {
     return posicion;
 }

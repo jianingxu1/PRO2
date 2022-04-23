@@ -33,6 +33,11 @@ void Cjt_jugadores::eliminar_jugador(string p) {
     }
 }
 
+void Cjt_jugadores::sumar_puntos_jugador(string p, int puntos) {
+    map<string, Jugador>::iterator it = estadisticas.find(p);
+    it->second.sumar_puntos(puntos);
+}
+
 bool Cjt_jugadores::existe_jugador(string p) const {
     map<string, Jugador>::const_iterator it = estadisticas.find(p);
     return it != estadisticas.end();
