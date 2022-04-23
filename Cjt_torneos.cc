@@ -28,6 +28,11 @@ void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, string t) {
     --T;
 }
 
+void Cjt_torneos::iniciar_torneo(const Cjt_jugadores& jugadores_global, string t) {
+    map<string, Torneo>::iterator it = torneos.find(t);
+    it->second.iniciar(jugadores_global);
+}
+
 bool Cjt_torneos::existe_torneo(string t) const {
     map<string, Torneo>::const_iterator it = torneos.find(t);
     return it != torneos.end();

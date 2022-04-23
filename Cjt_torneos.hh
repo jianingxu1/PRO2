@@ -60,6 +60,12 @@ public:
     */  
     void baja_torneo(Cjt_jugadores& jugadores_global, string t);
 
+    /** @brief Inicia un torneo
+        \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t no iniciado. Está preparado en la entrada un entero n y n enteros que representan las posiciones en el ranking actual, ordenadas crecientemente, de los jugadores inscritos al torneo.
+        \post Se ha iniciado el torneo t.
+    */
+    void iniciar_torneo(const Cjt_jugadores& jugadores_global, string t);
+
     // /** @brief Modifica el torneo
     //     \pre Existe un torneo con nombre t en el parámetro implícito.
     //     \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.

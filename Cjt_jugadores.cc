@@ -47,6 +47,10 @@ int Cjt_jugadores::consultar_numero_jugadores() const {
     return P;
 }
 
+string Cjt_jugadores::consultar_jugador_ranking(int posicion) const {
+    return ranking[posicion - 1];
+}
+
 void Cjt_jugadores::listar_ranking() const {
     for (int posicion = 1; posicion <= P; ++posicion) {
         map<string, Jugador>::const_iterator it = estadisticas.find(ranking[posicion - 1]);

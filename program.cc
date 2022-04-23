@@ -78,15 +78,12 @@ int main() {
             }
             else cout << "error: el torneo no existe" << endl;
         }
-    //     else if (comando == "iniciar_torneo" or comando == "it") {
-    //         string t;
-    //         int n;
-    //         cin >> t >> n;
-    //         cout << ' ' << t << ' ' << n << endl;
-    //         Torneo aux = torneos.consultar_torneo(t);
-    //         aux.iniciar(jugadores_global, n);   // pasamos jugadores_global y no el ranking ya que posee la funcion consultar_jugador_ranking()
-    //         torneos.modificar_torneo(t, aux);
-    //     }
+        else if (comando == "iniciar_torneo" or comando == "it") {
+            string t;
+            cin >> t;
+            cout << ' ' << t << endl;
+            torneos.iniciar_torneo(jugadores_global, t); // pasamos jugadores_global y no el ranking ya que posee la funcion consultar_jugador_ranking()
+        }
     //     else if (comando == "finalizar_torneo" or comando == "ft") {
     //         string t;
     //         cin >> t;

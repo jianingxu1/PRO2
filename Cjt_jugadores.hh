@@ -82,11 +82,11 @@ public:
     */ 
     int consultar_numero_jugadores() const;
 
-    // /** @brief Consulta el nombre del jugador que está en una cierta posición en el ranking
-    //     \pre 1 <= posicion <= P.
-    //     \post Retorna el nombre del jugador que está en la posición (parámetro de entrada) del ranking.
-    // */ 
-    // string consultar_jugador_ranking(int posicion) const;
+    /** @brief Consulta el nombre del jugador que está en una cierta posición en el ranking
+        \pre 1 <= posicion <= P.
+        \post Retorna el nombre del jugador que está en la posición (parámetro de entrada) del ranking.
+    */ 
+    string consultar_jugador_ranking(int posicion) const;
 
     /** @brief Lista el ranking del circuito
         \pre Cierto.
