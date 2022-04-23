@@ -31,10 +31,9 @@ int Cjt_categorias::consultar_puntos_por_nivel(int categoria, int nivel) const {
 void Cjt_categorias::escribir() const {
     cout << C << ' ' << K << endl;
     for (int categoria = 1; categoria <= C; ++categoria) {
-        cout << categorias[categoria-1] << ' ';
+        cout << categorias[categoria - 1];
         for (int nivel = 1; nivel <= K; ++nivel) {
-            if (nivel != 0) cout << ' ';
-            cout << consultar_puntos_por_nivel(categoria, nivel);
+            cout << ' ' << consultar_puntos_por_nivel(categoria, nivel);
         }
         cout << endl;
     }
