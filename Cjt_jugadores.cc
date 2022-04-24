@@ -4,12 +4,10 @@ void Cjt_jugadores::leer(int P) {
     this->P = P;
     ranking = vector<string>(P);
     for (int p = 1; p <= P; ++p) {
-        string nombre_jugador;
-        cin >> nombre_jugador;
-        ranking[p - 1] = nombre_jugador;
+        cin >> ranking[p - 1];
         Jugador j;
         j.actualizar_posicion(p);
-        estadisticas.insert(make_pair(nombre_jugador, j));
+        estadisticas.insert(make_pair(ranking[p - 1], j));
     }
 }
 
