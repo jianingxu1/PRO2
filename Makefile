@@ -31,7 +31,7 @@
 # La siguiente instruccion define una variable de entorno local, para compilar
 # con las opciones habituales: 
 #
-# OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-sign-compare -std=c++11
+OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-sign-compare -std=c++11
 #
 # G++ = g++-10  #en casa esto no hace falta, se puede usar el g++ normal
 #
@@ -53,7 +53,7 @@ program.exe: program.o Cjt_jugadores.o Jugador.o Cjt_categorias.o Cjt_torneos.o 
 # se obtiene con el g++ -c ... 
 #
 program.o: program.cc
-	g++ -c program.cc
+	g++ -c program.cc $(OPCIONS)
 #
 # Realizad las modificaciones necesarias para gestionar las clases de la
 # sesión cuando os toque implementarlas a vosotros.
@@ -62,19 +62,19 @@ program.o: program.cc
 # 	g++ -c BinTree.cc
 #
 Cjt_jugadores.o: Cjt_jugadores.cc Cjt_jugadores.hh
-	g++ -c Cjt_jugadores.cc
+	g++ -c Cjt_jugadores.cc $(OPCIONS)
 #
 Jugador.o: Jugador.cc Jugador.hh
-	g++ -c Jugador.cc
+	g++ -c Jugador.cc $(OPCIONS)
 #
 Cjt_categorias.o: Cjt_categorias.cc Cjt_categorias.hh
-	g++ -c Cjt_categorias.cc
+	g++ -c Cjt_categorias.cc $(OPCIONS)
 #
 Cjt_torneos.o: Cjt_torneos.cc Cjt_torneos.hh
-	g++ -c Cjt_torneos.cc
+	g++ -c Cjt_torneos.cc $(OPCIONS)
 #
 Torneo.o: Torneo.cc Torneo.hh
-	g++ -c Torneo.cc
+	g++ -c Torneo.cc $(OPCIONS)
 #
 # Cubeta.o: Cubeta.cc Cubeta.hh
 # 	g++ -c Cubeta.cc $(OPCIONS) -I$(INCLUSIONS)
