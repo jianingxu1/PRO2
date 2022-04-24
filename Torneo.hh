@@ -8,6 +8,7 @@
 #include "BinTree.hh"
 #include <vector>
 #include <map>
+#include <cmath>
 #include <iostream>
 using namespace std;
 #endif
@@ -28,17 +29,38 @@ private:
     BinTree<int> cuadro_emparejamientos;
     BinTree< pair<int, string> > cuadro_resultados;  // quizás no es necesario
 
-    // /** @brief Crea el cuadro de emparejamientos del torneo
-    //     \pre Cierto.
-    //     \post Se ha creado el cuadro de emparejamientos del torneo.
-    // */
-    // void crear_cuadro_emparejamientos();
+    /** @brief Retorna el número máximo de niveles del torneo
+        \pre n representa el número de jugadores inscritos al torneo.
+        \post Retorna el número máximo de niveles del torneo.
+    */
+    // calcula la h
+    int numero_max_niveles(int n) const;
 
-    // /** @brief Imprime el cuadro de emparejamientos del torneo
-    //     \pre Cierto.
-    //     \post Imprime el cuadro de emparejamientos del torneo.
-    // */  
-    // void imprimir_cuadro_emparejamientos();
+    /** @brief Retorna el número máximo de nodos posibles en un nivel
+        \pre nivel representa un nivel del cuadro de emparejamientos.
+        \post Retorna el número máximo de nodos posibles en un nivel.
+    */
+    // calcula la z o m
+    int nodos_por_nivel(int nivel) const;
+
+    /** @brief Retorna el contrincante de a en el nivel l
+        \pre a representa uno de los jugadores. l representa el nivel en el cuadro de emparejamientos.
+        \post Retorna el contrincante de a en el nivel l
+    */
+    // calcula la b
+    int contrincante(int a, int l) const;
+
+    /** @brief Crea el cuadro de emparejamientos del torneo
+        \pre h representa el número máximo de niveles, m el número máximo de jugadores en el nivel h, l el nivel actual y a la posición en el torneo de un jugador.
+        \post Retorna el cuadro de emparejamientos del torneo.
+    */
+    BinTree<int> crear_cuadro_emparejamientos(int h, int m, int l, int a) const;
+
+    /** @brief Imprime el cuadro de emparejamientos del torneo
+        \pre t representa el cuadro de emparejamientos, h el número máximo de niveles, m el número máximo de jugadores en el nivel h, l el nivel actual y a la posición en el torneo de un jugador.
+        \post Imprime el cuadro de emparejamientos del torneo.
+    */  
+    void imprimir_cuadro_emparejamientos(const BinTree<int>& t, int h, int m, int l) const;
 
     // /** @brief Lee los resultados y crea el cuadro de resultados del torneo
     //     \pre Cierto.
