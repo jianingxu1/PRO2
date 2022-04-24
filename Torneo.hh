@@ -117,11 +117,11 @@ public:
     */   
     void eliminar_puntos(Cjt_jugadores& jugadores_global);
 
-    // /** @brief Operación de lectura de jugadores dada su posición en el ranking global
-    //     \pre P >= 0 que representa el número inicial de jugadores. Estan preparados en el canal de entrada una secuencia de P enteros con las posiciones del ranking global que identifican a los jugadores (sin repeticiones).
-    //     \post El parámetro implícito contiene el conjunto de jugadores y un ranking de los jugadores según el orden que han sido leídos en la entrada con sus estadísticas a cero.
-    // */  
-    // void leer_jugadores_inscritos(const vector<string>& ranking, int P);
+    /** @brief Operación de lectura de jugadores dada su posición en el ranking global
+        \pre n contiene el número de jugadores inscritos al torneo. Estan preparados en el canal de entrada una secuencia de n enteros con las posiciones del ranking global que identifican a los jugadores (sin repeticiones).
+        \post El parámetro implícito contiene los jugadores inscritos y un ranking de los jugadores según el orden que han sido leídos en la entrada con sus estadísticas a cero.
+    */  
+    void leer_jugadores_inscritos(const Cjt_jugadores& jugadores_global);
 
     /** @brief Inicia el torneo
         \pre El torneo no está iniciado. Estan preparados en el canal de entrada un entero n que representa el número de jugadores que se inscribirán al torneo y n enteros que representan las posiciones en el ranking actual, ordenadas crecientemente, de los jugadores inscritos al torneo.

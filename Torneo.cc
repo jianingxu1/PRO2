@@ -55,9 +55,7 @@ void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
     }
 }
 
-void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
-    iniciado = true;
-    cin >> this->n;
+void Torneo::leer_jugadores_inscritos(const Cjt_jugadores& jugadores_global) {
     jugadores_edicion_actual = vector< pair<string, int> >(n);
     for (int r = 0; r < n; ++r) {
         int posicion;
@@ -65,6 +63,12 @@ void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
         string nombre_jugador = jugadores_global.consultar_jugador_ranking(posicion);
         jugadores_edicion_actual[r] = make_pair(nombre_jugador, 0);
     }
+}
+
+void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
+    iniciado = true;
+    cin >> this->n;
+    leer_jugadores_inscritos(jugadores_global);
     int h = numero_max_niveles(n);
     int m = nodos_por_nivel(h);
     cuadro_emparejamientos = crear_cuadro_emparejamientos(h, m, 1, 1);
