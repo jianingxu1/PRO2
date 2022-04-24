@@ -12,12 +12,12 @@ void Cjt_jugadores::leer(int P) {
 }
 
 void Cjt_jugadores::anadir_jugador(string p) {
-    ++P;
-    if (ranking.size() == P - 1) ranking.push_back(p);
+    if (ranking.size() == P) ranking.push_back(p);
     else ranking[P] = p;
     Jugador j;
-    j.actualizar_posicion(P);
+    j.actualizar_posicion(P + 1);
     estadisticas.insert(make_pair(p, j));
+    ++P;
 }
 
 void Cjt_jugadores::eliminar_jugador(string p) {
