@@ -31,21 +31,21 @@
 # La siguiente instruccion define una variable de entorno local, para compilar
 # con las opciones habituales: 
 #
-OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-sign-compare -std=c++11
+# OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Werror -Wno-sign-compare -std=c++11
 #
-G++ = g++-10  #en casa esto no hace falta, se puede usar el g++ normal
+# G++ = g++-10  #en casa esto no hace falta, se puede usar el g++ normal
 #
 # Si no teneis definidas las variables INCLUSIONS y OBJECTES, se pueden definir aqui:
-INCLUSIONS = $(HOME)/assig/pro2/inclusions
-OBJECTES = $(HOME)/assig/pro2/objectes
+# INCLUSIONS = $(HOME)/assig/pro2/inclusions
+# OBJECTES = $(HOME)/assig/pro2/objectes
 #
 # La siguiente instruccion significa:
 # para obtener pro2_especif.exe es necesario que exista pro2_especif.o;
 # si pro2_especif.exe no existe o es mas antiguo que pro2_especif.o,
 # se obtiene con el g++ -o ... (el tabulador antes de g++ es necesario)
 #
-program.exe: program.o BinTree.o Cjt_jugadores.o Jugador.o Cjt_categorias.o Cjt_torneos.o Torneo.o
-	$(G++) -o program.exe program.o BinTree.o Cjt_jugadores.o Jugador.o Cjt_categorias.o Cjt_torneos.o Torneo.o
+program.exe: program.o Cjt_jugadores.o Jugador.o Cjt_categorias.o Cjt_torneos.o Torneo.o
+	g++ -o program.exe program.o Cjt_jugadores.o Jugador.o Cjt_categorias.o Cjt_torneos.o Torneo.o
 #
 # La siguiente instruccion significa:
 # para obtener pro2_especif.o es necesario que exista pro2_especif.cc;
@@ -53,31 +53,31 @@ program.exe: program.o BinTree.o Cjt_jugadores.o Jugador.o Cjt_categorias.o Cjt_
 # se obtiene con el g++ -c ... 
 #
 program.o: program.cc
-	$(G++) -c program.cc
+	g++ -c program.cc
 #
 # Realizad las modificaciones necesarias para gestionar las clases de la
 # sesión cuando os toque implementarlas a vosotros.
 #
-BinTree.o: BinTree.cc BinTree.hh
-	$(G++) -c BinTree.cc
+# BinTree.o: BinTree.cc BinTree.hh
+# 	g++ -c BinTree.cc
 #
 Cjt_jugadores.o: Cjt_jugadores.cc Cjt_jugadores.hh
-	$(G++) -c Cjt_jugadores.cc
+	g++ -c Cjt_jugadores.cc
 #
 Jugador.o: Jugador.cc Jugador.hh
-	$(G++) -c Jugador.cc
+	g++ -c Jugador.cc
 #
 Cjt_categorias.o: Cjt_categorias.cc Cjt_categorias.hh
-	$(G++) -c Cjt_categorias.cc
+	g++ -c Cjt_categorias.cc
 #
 Cjt_torneos.o: Cjt_torneos.cc Cjt_torneos.hh
-	$(G++) -c Cjt_torneos.cc
+	g++ -c Cjt_torneos.cc
 #
 Torneo.o: Torneo.cc Torneo.hh
-	$(G++) -c Torneo.cc
+	g++ -c Torneo.cc
 #
 # Cubeta.o: Cubeta.cc Cubeta.hh
-# 	$(G++) -c Cubeta.cc $(OPCIONS) -I$(INCLUSIONS)
+# 	g++ -c Cubeta.cc $(OPCIONS) -I$(INCLUSIONS)
 #
 # Esta última opción sirve para limpiar el directorio de ficheros 
 # innecesarios; se ejecuta mediante el comando "make clean"
