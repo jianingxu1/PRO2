@@ -52,19 +52,19 @@ public:
         \pre torneo no está dentro del parámetro implícito.
         \post Se le ha añadido un torneo al parámetro implícito.
     */  
-    void anadir_torneo(string t, const Torneo& torneo);
+    void anadir_torneo(const string& t, const Torneo& torneo);
 
     /** @brief Da de baja un torneo del conjunto de torneos
         \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
         \post Se ha eliminado el torneo del parámetro implícito. Se han restado los puntos obtenidos por los jugadores en el torneo. Se ha actualizado el ranking.
     */  
-    void baja_torneo(Cjt_jugadores& jugadores_global, string t);
+    void baja_torneo(Cjt_jugadores& jugadores_global, const string& t);
 
     /** @brief Inicia un torneo
         \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t no iniciado. Está preparado en la entrada un entero n y n enteros que representan las posiciones en el ranking actual, ordenadas crecientemente, de los jugadores inscritos al torneo.
         \post Se ha iniciado el torneo t.
     */
-    void iniciar_torneo(const Cjt_jugadores& jugadores_global, string t);
+    void iniciar_torneo(const Cjt_jugadores& jugadores_global, const string& t);
 
     // /** @brief Modifica el torneo
     //     \pre Existe un torneo con nombre t en el parámetro implícito.
@@ -79,7 +79,7 @@ public:
         \pre t representa el nombre de un torneo.
         \post Si existe un torneo con nombre t en el parámetro implícito, retorna true. Altramente, false.
     */  
-    bool existe_torneo(string t) const;
+    bool existe_torneo(const string& t) const;
 
     /** @brief Consulta el número de torneos del conjunto de torneos
         \pre Cierto.

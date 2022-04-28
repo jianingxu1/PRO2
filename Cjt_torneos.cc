@@ -15,12 +15,12 @@ void Cjt_torneos::leer(int T) {
     }
 }
 
-void Cjt_torneos::anadir_torneo(string t, const Torneo& torneo) {
+void Cjt_torneos::anadir_torneo(const string& t, const Torneo& torneo) {
     ++T;
     torneos.insert(make_pair(t, torneo));
 }
 
-void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, string t) {
+void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, const string& t) {
     map<string, Torneo>::iterator it = torneos.find(t);
     it->second.eliminar_puntos(jugadores_global);
     torneos.erase(it);
@@ -28,12 +28,12 @@ void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, string t) {
     --T;
 }
 
-void Cjt_torneos::iniciar_torneo(const Cjt_jugadores& jugadores_global, string t) {
+void Cjt_torneos::iniciar_torneo(const Cjt_jugadores& jugadores_global, const string& t) {
     map<string, Torneo>::iterator it = torneos.find(t);
     it->second.iniciar(jugadores_global);
 }
 
-bool Cjt_torneos::existe_torneo(string t) const {
+bool Cjt_torneos::existe_torneo(const string& t) const {
     map<string, Torneo>::const_iterator it = torneos.find(t);
     return it != torneos.end();
 }
