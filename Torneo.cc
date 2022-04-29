@@ -48,11 +48,9 @@ Torneo::Torneo(int c) {
 }
 
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
-    if (not es_primera_edicion and not esta_iniciado) {
+    if (not es_primera_edicion) {
         for (int i = 0; i < n; ++i) {
-            if (jugadores_edicion_anterior[i].second != 0) {
-                jugadores_global.sumar_puntos_jugador(jugadores_edicion_actual[i].first, -jugadores_edicion_actual[i].second);
-            }
+            jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
         }
     }
 }

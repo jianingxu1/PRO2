@@ -113,7 +113,7 @@ public:
 
     /** @brief Elimina de las estadisticas globales de los jugadores los puntos que han obtenido en este torneo
         \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.
-        \post Se han eliminado de las estadísticas globales de los jugadores los puntos que han obtenido en el parámetro implícito.
+        \post Si el parámetro implícito no es la primera edición, no hace nada. Altramente, se han eliminado de las estadísticas globales de los jugadores los puntos que han obtenido en la edición anterior del parámetro implícito.
     */   
     void eliminar_puntos(Cjt_jugadores& jugadores_global);
 
