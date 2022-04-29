@@ -35,19 +35,19 @@ public:
         \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
         \post El parámetro implícito contiene el jugador p, con todas sus estadísticas a cero y posicionado último en el ranking.
     */  
-    void anadir_jugador(const string& nombre_jugador);
+    void anadir_jugador(const string& p);
 
     /** @brief Da de baja a un jugador del conjunto de jugadores
         \pre p representa un identificador de un jugador. p existe en el parámetro implícito.
         \post El parámetro implícito no contiene el jugador p y éste ha sido eliminado del ranking. Se ha actualizado el ranking. Se ha actualizado las posiciones en el ranking de los jugadores.
     */
-    void eliminar_jugador(const string& nombre_jugador);
+    void eliminar_jugador(const string& p);
 
     /** @brief Suma puntos a un jugador
         \pre p representa el nombre de un jugador. p existe en el parámetro implícito.
         \post Se le han sumado puntos al jugador p del parámetro implícito.
     */
-    void sumar_puntos_jugador(const string& nombre_jugador, int puntos);
+    void sumar_puntos_jugador(const string& p, int puntos);
 
     // /** @brief Actualiza el ranking de jugadores
     //     \pre Cierto.
@@ -65,7 +65,7 @@ public:
     //     \pre p representa el nombre de un jugador. p existe en el parámetro implícito.
     //     \post El jugador con nombre p ha sido sustituido por jugador (parámetro de entrada).
     // */
-    // void modificar_jugador(string p, const Jugador& jugador);
+    // void modificar_jugador(const string& p, const Jugador& jugador);
 
 
     // // Consultores
@@ -74,7 +74,7 @@ public:
         \pre p representa un identificador de un jugador.
         \post Si p está dentro del conjunto de jugadores, retorna true. Altramente, false.
     */  
-    bool existe_jugador(const string& nombre_jugador) const;
+    bool existe_jugador(const string& p) const;
 
     /** @brief Consulta el número de jugadores del conjunto de jugadores
         \pre Cierto.
@@ -104,6 +104,6 @@ public:
         \pre p existe en el parámetro implícito.
         \post Retorna el jugador con nombre p.
     */
-    void consultar_jugador(const string& nombre_jugador) const;
+    void consultar_jugador(const string& p) const;
 };
 #endif

@@ -43,7 +43,7 @@ public:
     // Modificadores
     
     /** @brief Operación de lectura
-        \pre T >= 0 representa el número de torneos. Estan preparados en el canal de entrada una secuencia de T pares de string t y entero c, donde t representa el nombre que identifica al torneo (sin repeticiones) y c la categoría entre 1 y C a la que pertenece el torneo.
+        \pre T >= 0 representa el número de torneos. Estan preparados en el canal de entrada una secuencia de T pares de const string& t y entero c, donde t representa el nombre que identifica al torneo (sin repeticiones) y c la categoría entre 1 y C a la que pertenece el torneo.
         \post El parámetro implícito contiene el conjunto de torneos leídos en la entrada.
     */
     void leer(int T);
@@ -70,7 +70,7 @@ public:
     //     \pre Existe un torneo con nombre t en el parámetro implícito.
     //     \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.
     // */
-    // void modificar_torneo(string t, Torneo aux);
+    // void modificar_torneo(const string& t, Torneo aux);
 
 
     // Consultores
@@ -91,7 +91,7 @@ public:
     //     \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
     //     \post Retorna el torneo con nombre t.
     // */    
-    // Torneo consultar_torneo(string t) const;
+    // Torneo consultar_torneo(const string& t) const;
 
     /** @brief Lista los torneos del circuito
         \pre Cierto.

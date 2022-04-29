@@ -11,18 +11,18 @@ void Cjt_jugadores::leer(int P) {
     }
 }
 
-void Cjt_jugadores::anadir_jugador(const string& nombre_jugador) {
-    if (ranking.size() == P) ranking.push_back(nombre_jugador);
-    else ranking[P] = nombre_jugador;
-    Jugador jug;
-    jug.actualizar_posicion(P + 1);
-    estadisticas.insert(make_pair(nombre_jugador, jug));
+void Cjt_jugadores::anadir_jugador(const string& p) {
+    if (ranking.size() == P) ranking.push_back(p);
+    else ranking[P] = p;
+    Jugador j;
+    j.actualizar_posicion(P + 1);
+    estadisticas.insert(make_pair(p, j));
     ++P;
 }
 
-void Cjt_jugadores::eliminar_jugador(const string& nombre_jugador) {
+void Cjt_jugadores::eliminar_jugador(const string& p) {
     --P;
-    map<string, Jugador>::iterator it = estadisticas.find(nombre_jugador);
+    map<string, Jugador>::iterator it = estadisticas.find(p);
     int posicion = it->second.consultar_posicion();
     estadisticas.erase(it);
     for (int i = posicion; i <= P; ++i) {
@@ -32,13 +32,13 @@ void Cjt_jugadores::eliminar_jugador(const string& nombre_jugador) {
     }
 }
 
-void Cjt_jugadores::sumar_puntos_jugador(const string& nombre_jugador, int puntos) {
-    map<string, Jugador>::iterator it = estadisticas.find(nombre_jugador);
+void Cjt_jugadores::sumar_puntos_jugador(const string& p, int puntos) {
+    map<string, Jugador>::iterator it = estadisticas.find(p);
     it->second.sumar_puntos(puntos);
 }
 
-bool Cjt_jugadores::existe_jugador(const string& nombre_jugador) const {
-    map<string, Jugador>::const_iterator it = estadisticas.find(nombre_jugador);
+bool Cjt_jugadores::existe_jugador(const string& p) const {
+    map<string, Jugador>::const_iterator it = estadisticas.find(p);
     return it != estadisticas.end();
 }
 
@@ -65,8 +65,8 @@ void Cjt_jugadores::listar_jugadores() const {
     }
 }
 
-void Cjt_jugadores::consultar_jugador(const string& nombre_jugador) const {
-    map<string, Jugador>::const_iterator it = estadisticas.find(nombre_jugador);
+void Cjt_jugadores::consultar_jugador(const string& p) const {
+    map<string, Jugador>::const_iterator it = estadisticas.find(p);
     cout << it->first << ' ';
     it->second.escribir();
 }
