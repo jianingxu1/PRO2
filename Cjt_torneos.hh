@@ -18,7 +18,7 @@ class Cjt_torneos {
 private:
 
     int T;  // número de torneos
-    map<string, Torneo> torneos; // MAP/SET DE TORNEOS (necesario para encontrar mediante nombre un torneo)
+    map<string, Torneo> torneos;
 
 public:
     
@@ -50,7 +50,7 @@ public:
 
     /** @brief Añade el torneo al conjunto de torneos
         \pre torneo no está dentro del parámetro implícito.
-        \post Se le ha añadido un torneo al parámetro implícito.
+        \post Se ha añadido un torneo al parámetro implícito.
     */  
     void anadir_torneo(const string& t, const Torneo& torneo);
 
@@ -66,12 +66,6 @@ public:
     */
     void iniciar_torneo(const Cjt_jugadores& jugadores_global, const string& t);
 
-    // /** @brief Modifica el torneo
-    //     \pre Existe un torneo con nombre t en el parámetro implícito.
-    //     \post El torneo con nombre t del parámetro implícito se ha sustituido por aux.
-    // */
-    // void modificar_torneo(const string& t, Torneo aux);
-
 
     // Consultores
 
@@ -86,12 +80,6 @@ public:
         \post Retorna el número de torneos del parámetro implícito.
     */ 
     int consultar_numero_torneos() const;
-
-    // /** @brief Consulta un torneo del conjunto de torneos
-    //     \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
-    //     \post Retorna el torneo con nombre t.
-    // */    
-    // Torneo consultar_torneo(const string& t) const;
 
     /** @brief Lista los torneos del circuito
         \pre Cierto.

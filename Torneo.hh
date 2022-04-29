@@ -138,12 +138,6 @@ public:
 
     // // Consultores
 
-    // /** @brief Consulta los jugadores del torneo
-    //     \pre Cierto.
-    //     \post Retorna el conjunto de jugadores del torneo.
-    // */    
-    // Cjt_jugadores consultar_jugadores() const;
-
     // /** @brief Imprime el nombre y los puntos de los jugadores según el orden del ranking del torneo
     //     \pre Cierto.
     //     \post Imprime el nombre y los puntos de los jugadores según el orden del ranking del parámetro implícito.

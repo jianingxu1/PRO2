@@ -18,14 +18,14 @@ class Cjt_jugadores {
 private:
 
     int P;  // número de jugadores
-    vector<string> ranking; // ranking de jugadores con su nombre. accesos fáciles. modificaciones difíciles (altas, bajas, etc.)
+    vector<string> ranking; // ranking con el nombre de los jugadores ordenado según sus puntos
     map<string, Jugador> estadisticas;
     
 public:
     
     // Modificadores
     
-    /** @brief Operación de lectura de jugadores dado su nombre
+    /** @brief Operación de lectura de jugadores iniciales
         \pre P >= 0 que representa el número inicial de jugadores. Estan preparados en el canal de entrada una secuencia de P strings con los nombres que identifican a los jugadores (sin repeticiones).
         \post El parámetro implícito contiene el conjunto de jugadores y un ranking de los jugadores según el orden que han sido leídos en la entrada con sus estadísticas a cero.
     */    
@@ -54,12 +54,6 @@ public:
     //     \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar. Al mismo tiempo, se ha actualizado el atributo posición de los jugadores según este nuevo ranking.
     // */
     // void actualizar_ranking();
-
-    // // /** @brief Añade los jugadores inscritos inicialmente
-    // //     \pre n representa el número de jugadores inscritos inicialmente.
-    // //     \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar.
-    // // */
-    // // void anadir_jugadores_iniciales(int n);
 
     // /** @brief Modifica el jugador con nombre p
     //     \pre p representa el nombre de un jugador. p existe en el parámetro implícito.

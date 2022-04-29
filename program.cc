@@ -82,7 +82,7 @@ int main() {
             string t;
             cin >> t;
             cout << ' ' << t << endl;
-            torneos.iniciar_torneo(jugadores_global, t); // pasamos jugadores_global y no el ranking ya que posee la funcion consultar_jugador_ranking()
+            torneos.iniciar_torneo(jugadores_global, t);
         }
     //     else if (comando == "finalizar_torneo" or comando == "ft") {
     //         string t;

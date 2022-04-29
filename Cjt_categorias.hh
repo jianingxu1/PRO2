@@ -16,7 +16,7 @@ private:
 
     int C;  // número de categorías
     int K;  // número máximo de niveles por categoría
-    vector<string> categorias;    // nombre de las categorías
+    vector<string> categorias;    // nombre de las categorías según su identificador
     vector< vector<int> > puntos_por_nivel; // tamaño C x K
 
 public:
