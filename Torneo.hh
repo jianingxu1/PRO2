@@ -24,8 +24,8 @@ private:
     int n;          // número de inscritos (una vez finalizado el período de inscripción). 8 <= n <= 2^(K-1)
     vector< pair<string, int> > jugadores_edicion_anterior;
     vector< pair<string, int> > jugadores_edicion_actual;
-    bool iniciado;
-    bool primera_edicion;   // True si no hay edición anterior. Altramente, false.
+    bool esta_iniciado;
+    bool es_primera_edicion;   // True si no hay edición anterior. Altramente, false.
     BinTree<int> cuadro_emparejamientos;
     BinTree< pair<int, string> > cuadro_resultados;  // quizás no es necesario
 

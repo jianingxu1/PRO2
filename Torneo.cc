@@ -43,12 +43,12 @@ void Torneo::imprimir_cuadro_emparejamientos(const BinTree<int>& t, int h, int m
 Torneo::Torneo(int c) {
     n = 0;
     this->c = c;
-    iniciado = false;
-    primera_edicion = true;
+    esta_iniciado = false;
+    es_primera_edicion = true;
 }
 
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
-    if (not primera_edicion and not iniciado) {
+    if (not es_primera_edicion and not esta_iniciado) {
         for (int i = 0; i < n; ++i) {
             if (jugadores_edicion_anterior[i].second != 0) {
                 jugadores_global.sumar_puntos_jugador(jugadores_edicion_actual[i].first, -jugadores_edicion_actual[i].second);
@@ -68,7 +68,7 @@ void Torneo::leer_jugadores_inscritos(const Cjt_jugadores& jugadores_global) {
 }
 
 void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
-    iniciado = true;
+    esta_iniciado = true;
     cin >> this->n;
     leer_jugadores_inscritos(jugadores_global);
     int h = numero_max_niveles(n);
