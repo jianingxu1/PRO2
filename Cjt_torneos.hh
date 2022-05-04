@@ -66,6 +66,11 @@ public:
     */
     void iniciar_torneo(const Cjt_jugadores& jugadores_global, const string& t);
 
+    /** @brief Finaliza un torneo
+        \pre 
+        \post
+    */
+    void finalizar_torneo(const Cjt_categorias& categorias, const string& t, Cjt_jugadores& jugadores_global);
 
     // Consultores
 

@@ -40,6 +40,25 @@ void Torneo::imprimir_cuadro_emparejamientos(const BinTree<int>& t, int h, int m
     }
 }
 
+void Torneo::actualizar_estadisticas(Cjt_jugadores& jugadores_global) {}
+
+void Torneo::leer_resultados(Cjt_jugadores& jugadores_global) {}
+
+void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
+    for (int i = 0; i < n; ++i) {
+        jugadores_global.sumar_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
+    }
+    int n2 = jugadores_edicion_anterior.size();
+    for (int i = 0; i < n2; ++i) {
+        jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
+    }
+}
+
+void Torneo::sustituir_edicion_anterior() {
+    jugadores_edicion_anterior = jugadores_edicion_actual;
+    jugadores_edicion_actual = vector< pair<string, int> >(0);
+}
+
 Torneo::Torneo(int c) {
     n = 0;
     this->c = c;
@@ -74,6 +93,21 @@ void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
     cuadro_emparejamientos = crear_cuadro_emparejamientos(h, m, 1, 1);
     imprimir_cuadro_emparejamientos(cuadro_emparejamientos, h, m, 1);
     cout << endl;
+}
+
+void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global) {
+    leer_resultados(jugadores_global);  // actualizar_estadisticas(jugadores_global) mientras se leen los resultados
+    // crear cuadro de resultados
+    // imprimir cuadro de resultados
+    imprimir_ranking();
+    trasladar_puntos(jugadores_global);
+    sustituir_edicion_anterior();
+}
+
+void Torneo::imprimir_ranking() const {
+    for (int i = 0; i < n; ++i) {
+        cout << i + 1 << '.' << jugadores_edicion_actual[i].first << ' ' << jugadores_edicion_actual[i].second << endl;
+    }
 }
 
 int Torneo::consultar_categoria() const {

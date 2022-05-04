@@ -84,16 +84,12 @@ int main() {
             cout << ' ' << t << endl;
             torneos.iniciar_torneo(jugadores_global, t);
         }
-    //     else if (comando == "finalizar_torneo" or comando == "ft") {
-    //         string t;
-    //         cin >> t;
-    //         cout << ' ' << t << endl;
-    //         Torneo aux = torneos.consultar_torneo(t);
-    //         aux.finalizar(categorias, jugadores_global);
-    //         torneos.modificar_torneo(t, aux);
-    //         // actualizar ranking general
-    //         jugadores_global.actualizar_ranking();
-    //     }
+        else if (comando == "finalizar_torneo" or comando == "ft") {
+            string t;
+            cin >> t;
+            cout << ' ' << t << endl;
+            torneos.finalizar_torneo(categorias, t, jugadores_global);
+        }
         else if (comando == "listar_ranking" or comando == "lr") {
             cout << endl;
             jugadores_global.listar_ranking();

@@ -62,11 +62,17 @@ private:
     */  
     void imprimir_cuadro_emparejamientos(const BinTree<int>& t, int h, int m, int l) const;
 
-    // /** @brief Lee los resultados y crea el cuadro de resultados del torneo
-    //     \pre Cierto.
-    //     \post Se han leído los resultados del torneo. Se ha creado el cuadro de resultados del torneo.
-    // */
-    // void leer_resultados();     // actualiza las estadísticas de los jugadores
+    /** @brief Actualiza las estadísticas obtenidas por los jugadores en el torneo a las estadísticas globales
+        \pre jugadores_global contiene los jugadores a actualizar.
+        \post Se ha actualizado jugadores_global con las estadísticas obtenidas en el torneo.
+    */ 
+    void actualizar_estadisticas(Cjt_jugadores& jugadores_global);
+    
+    /** @brief Lee los resultados y crea el cuadro de resultados del torneo
+        \pre Cierto.
+        \post Se han leído los resultados del torneo y se han actualizado las estadísticas globales de los jugadores. Se ha creado el cuadro de resultados del torneo.
+    */
+    void leer_resultados(Cjt_jugadores& jugadores_global);
 
     // // /** @brief Crea el cuadro de resultados del torneo
     // //     \pre Cierto.
@@ -80,23 +86,17 @@ private:
     // */  
     // void imprimir_cuadro_resultados();
 
-    // /** @brief Traslada los puntos obtenidos por los jugadores en el torneo a las estadísticas y ranking globales
-    //     \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.
-    //     \post Se han trasladado a jugadores_global los puntos obtenidos por los jugadores. Se han sumado los de la edición actual y se han restado los de la edición anterior del torneo.
-    // */ 
-    // void trasladar_puntos(Cjt_jugadores& jugadores_global);
+    /** @brief Traslada los puntos obtenidos por los jugadores en el torneo a las estadísticas y ranking globales
+        \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.
+        \post Se han trasladado a jugadores_global los puntos obtenidos por los jugadores. Se han sumado los de la edición actual y se han restado, si existieran, los de la edición anterior del torneo.
+    */ 
+    void trasladar_puntos(Cjt_jugadores& jugadores_global);
 
-    // // /** @brief Actualiza las estadísticas obtenidas por los jugadores en el torneo a las estadísticas globales
-    // //     \pre jugadores_global contiene los jugadores a actualizar.
-    // //     \post Se ha actualizado jugadores_global con los puntos obtenidos en el torneo.
-    // // */ 
-    // // void actualizar_estadisticas(Cjt_jugadores& jugadores_global);
-
-    // /** @brief Sustituye los jugadores y sus puntos obtenidos de las edición actual a la edición anterior
-    //     \pre Cierto.
-    //     \post Se han sustituido los jugadores y sus puntos obtenidos de las edición actual a la edición anterior.
-    // */ 
-    // void sustituir_edicion_anterior();
+    /** @brief Sustituye los jugadores y sus puntos obtenidos de la edición actual a la edición anterior
+        \pre Cierto.
+        \post Se han sustituido los jugadores y sus puntos obtenidos de las edición actual a la edición anterior. Edición actual está vacío.
+    */ 
+    void sustituir_edicion_anterior();
 
 public:
 
@@ -129,20 +129,20 @@ public:
     */
     void iniciar(const Cjt_jugadores& jugadores_global);
 
-    // /** @brief Finaliza el torneo
-    //     \pre Estan preparados en el canal de entrada los resultados del torneo. El torneo está inicializado.
-    //     \post El resultado es un torneo finalizado. Se han leído los resultados del torneo. Se ha creado y se ha imprimido el cuadro de resultados. Se ha imprimido el nombre y los puntos de cada jugador por orden de ranking de los jugadores en el momento de iniciar el torneo. Se han actualizado los puntos y las estadísticas de los jugadores en el conjunto de jugadores global. Se han guardado los puntos obtenidos de los jugadores en la edición anterior.
-    // */
-    // void finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global);  // mientras se lee cada resultado, se actualizan las stats de los jugadores en el global.
+    /** @brief Finaliza el torneo
+        \pre Estan preparados en el canal de entrada los resultados del torneo. El torneo está inicializado.
+        \post El resultado es un torneo finalizado. Se han leído los resultados del torneo. Se ha creado y se ha imprimido el cuadro de resultados. Se ha imprimido el nombre y los puntos de cada jugador por orden de ranking de los jugadores en el momento de iniciar el torneo. Se han actualizado los puntos y las estadísticas de los jugadores en el conjunto de jugadores global. Se han guardado los puntos obtenidos de los jugadores en la edición anterior.
+    */
+    void finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global);  // mientras se lee cada resultado, se actualizan las stats de los jugadores en el global.
 
 
-    // // Consultores
+    // Consultores
 
-    // /** @brief Imprime el nombre y los puntos de los jugadores según el orden del ranking del torneo
-    //     \pre Cierto.
-    //     \post Imprime el nombre y los puntos de los jugadores según el orden del ranking del parámetro implícito.
-    // */   
-    // void imprimir_ranking() const;
+    /** @brief Imprime el nombre y los puntos de los jugadores según el orden del ranking del torneo
+        \pre Cierto.
+        \post Imprime el nombre y los puntos de los jugadores según el orden del ranking del parámetro implícito.
+    */   
+    void imprimir_ranking() const;
 
     /** @brief Consulta la categoría del torneo 
         \pre Cierto.
