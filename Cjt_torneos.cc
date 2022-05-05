@@ -24,7 +24,7 @@ void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, const string& t) 
     map<string, Torneo>::iterator it = torneos.find(t);
     it->second.eliminar_puntos(jugadores_global);
     torneos.erase(it);
-    // jugadores_global.actualizar_ranking();
+    jugadores_global.actualizar_ranking();
     --T;
 }
 

@@ -4,9 +4,10 @@
 #include "Jugador.hh"
 
 #ifndef NO_DIAGRAM
+#include <algorithm>
 #include <iostream>
-#include <vector>
 #include <map>
+#include <vector>
 using namespace std;
 #endif
 
@@ -20,7 +21,13 @@ private:
     int P;  // número de jugadores
     vector<string> ranking; // ranking con el nombre de los jugadores ordenado según sus puntos
     map<string, Jugador> estadisticas;
-    
+
+    /** @brief Compara dos jugadores según sus puntos y su posición en el ranking
+        \pre Cierto.
+        \post Si el jugador apuntado por it1 tiene más puntos que it2, retorna true. Si tienen los mismos puntos, si el jugador apuntado por it1 tiene posición menor que it2 en el ranking, retorna true. Altramente, false.
+    */
+    static bool comp(map<string, Jugador>::iterator it1, map<string, Jugador>::iterator it2);
+
 public:
     
     // Modificadores
@@ -49,11 +56,11 @@ public:
     */
     void sumar_puntos_jugador(const string& p, int puntos);
 
-    // /** @brief Actualiza el ranking de jugadores
-    //     \pre Cierto.
-    //     \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar. Al mismo tiempo, se ha actualizado el atributo posición de los jugadores según este nuevo ranking.
-    // */
-    // void actualizar_ranking();
+    /** @brief Actualiza el ranking de jugadores decrecientemente por puntos
+        \pre Cierto.
+        \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar. Al mismo tiempo, se ha actualizado el atributo posición de los jugadores según este nuevo ranking.
+    */
+    void actualizar_ranking();
 
     // /** @brief Modifica el jugador con nombre p
     //     \pre p representa el nombre de un jugador. p existe en el parámetro implícito.
