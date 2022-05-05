@@ -149,5 +149,11 @@ public:
         \post Retorna la categoría del parámetro implícito.
     */  
     int consultar_categoria() const;
+
+    /** @brief Consulta si el torneo está en su primera edición
+        \pre Cierto.
+        \post Retorna true si el torneo está en su primera edición (no se ha jugado ninguna edición del torneo). False, altramente.
+    */  
+    bool consulta_es_primera_edicion() const;
 };
 #endif

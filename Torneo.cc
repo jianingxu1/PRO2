@@ -40,18 +40,17 @@ void Torneo::imprimir_cuadro_emparejamientos(const BinTree<int>& t, int h, int m
     }
 }
 
-void Torneo::actualizar_estadisticas(Cjt_jugadores& jugadores_global) {}
+// void Torneo::actualizar_estadisticas(Cjt_jugadores& jugadores_global) {}
 
-void Torneo::leer_resultados(Cjt_jugadores& jugadores_global) {}
+// void Torneo::leer_resultados(Cjt_jugadores& jugadores_global) {}
+
+// void actualizar_puntos_resultados(const Cjt_categorias& categorias) {}
 
 void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < n; ++i) {
         jugadores_global.sumar_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
     }
-    int n2 = jugadores_edicion_anterior.size();
-    for (int i = 0; i < n2; ++i) {
-        jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
-    }
+    eliminar_puntos(jugadores_global);
 }
 
 void Torneo::sustituir_edicion_anterior() {
@@ -67,10 +66,9 @@ Torneo::Torneo(int c) {
 }
 
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
-    if (not es_primera_edicion) {
-        for (int i = 0; i < n; ++i) {
-            jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
-        }
+    int n = jugadores_edicion_anterior.size();
+    for (int i = 0; i < n; ++i) {
+        jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
     }
 }
 
@@ -96,9 +94,11 @@ void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
 }
 
 void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global) {
-    leer_resultados(jugadores_global);  // actualizar_estadisticas(jugadores_global) mientras se leen los resultados
+    // leer_resultados(jugadores_global);  // actualizar_estadisticas(jugadores_global) mientras se leen los resultados
     // crear cuadro de resultados
     // imprimir cuadro de resultados
+    // actualizar_puntos_resultados(categorias);
+    string s = categorias.consultar_nombre(0); // quitar esta línea
     imprimir_ranking();
     trasladar_puntos(jugadores_global);
     sustituir_edicion_anterior();
@@ -112,4 +112,8 @@ void Torneo::imprimir_ranking() const {
 
 int Torneo::consultar_categoria() const {
     return c;
+}
+
+bool Torneo::consulta_es_primera_edicion() const {
+    return es_primera_edicion;
 }

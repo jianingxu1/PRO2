@@ -22,9 +22,12 @@ void Cjt_torneos::anadir_torneo(const string& t, const Torneo& torneo) {
 
 void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, const string& t) {
     map<string, Torneo>::iterator it = torneos.find(t);
-    it->second.eliminar_puntos(jugadores_global);
+    bool contiene_puntos = not it->second.consulta_es_primera_edicion();    // si es la primera edición, los jugadores no contienen puntos
+    if (contiene_puntos) {
+        it->second.eliminar_puntos(jugadores_global);
+        jugadores_global.actualizar_ranking();
+    }
     torneos.erase(it);
-    jugadores_global.actualizar_ranking();
     --T;
 }
 
