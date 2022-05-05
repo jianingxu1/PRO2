@@ -72,6 +72,7 @@ public:
     */
     void finalizar_torneo(const Cjt_categorias& categorias, const string& t, Cjt_jugadores& jugadores_global);
 
+
     // Consultores
 
     /** @brief Consulta si existe un torneo en el conjunto de torneos

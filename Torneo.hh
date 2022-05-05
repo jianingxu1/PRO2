@@ -1,8 +1,8 @@
 #ifndef TORNEO_HH
 #define TORNEO_HH
 
-#include "Cjt_jugadores.hh"     // analizar si es necesario
-#include "Cjt_categorias.hh"    // analizar si es necesario
+#include "Cjt_jugadores.hh"
+#include "Cjt_categorias.hh"
 
 #ifndef NO_DIAGRAM
 #include "BinTree.hh"
@@ -21,11 +21,11 @@ class Torneo {
 private:
 
 	int c;          // categoría del torneo
-    int n;          // número de inscritos (una vez finalizado el período de inscripción). 8 <= n <= 2^(K-1)
+    int n;          // número de inscritos, 8 <= n <= 2^(K-1)
     vector< pair<string, int> > jugadores_edicion_anterior;
     vector< pair<string, int> > jugadores_edicion_actual;
     bool esta_iniciado;
-    bool es_primera_edicion;   // True si no hay edición anterior. Altramente, false.
+    bool es_primera_edicion;    // True si no se ha jugado ninguna edición
     BinTree<int> cuadro_emparejamientos;
     BinTree< pair<int, string> > cuadro_resultados;  // quizás no es necesario
 
@@ -74,17 +74,17 @@ private:
     */
     void leer_resultados(Cjt_jugadores& jugadores_global);
 
-    // // /** @brief Crea el cuadro de resultados del torneo
-    // //     \pre Cierto.
-    // //     \post Se ha creado el cuadro de resultados del torneo.
-    // // */
-    // // void crear_cuadro_resultados();     // quizás no es necesario guardarlo, solo imprimirlo
+    /** @brief Crea el cuadro de resultados del torneo
+        \pre Cierto.
+        \post Se ha creado el cuadro de resultados del torneo.
+    */
+    void crear_cuadro_resultados(); // NO IMPLEMENTADO
 
-    // /** @brief Imprime el cuadro de resultados del torneo
-    //     \pre Cierto.
-    //     \post Imprime el cuadro de resultados del torneo.
-    // */  
-    // void imprimir_cuadro_resultados();
+    /** @brief Imprime el cuadro de resultados del torneo
+        \pre Cierto.
+        \post Imprime el cuadro de resultados del torneo.
+    */  
+    void imprimir_cuadro_resultados();  // NO IMPLEMENTADO
 
     /** @brief Traslada los puntos obtenidos por los jugadores en el torneo a las estadísticas y ranking globales
         \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.

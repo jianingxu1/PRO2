@@ -21,7 +21,7 @@ int main() {
     torneos.leer(T);
     
     // 3. lectura del conjunto inicial de jugadores;
-    Cjt_jugadores jugadores_global;    // contiene el conjunto de jugadores y ranking global del circuito
+    Cjt_jugadores jugadores_global;
     int P;
     cin >> P;
     jugadores_global.leer(P);

@@ -41,11 +41,11 @@ public:
     */ 
     void sumar_puntos(int puntos);
 
-    // /** @brief 
-    //     \pre 2 <= estadistica <= 8.
-    //     \post Si estadistica == 2, le suma cantidad a torneos disputados. Si == 3, le suma cantidad a partidos ganados. Si == 4, le suma cantidad a partidos perdidos. Si == 5, le suma cantidad a sets ganados. Si == 6, le suma cantidad a sets perdidos. Si == 7, le suma cantidad a juegos ganados. Si == 8, le suma cantidad a juegos perdidos.
-    // */
-    // void actualizar_estadistica(string estadistica, int cantidad);
+    /** @brief Suma una cantidad a una de las estadisticas del jugador
+        \pre 2 <= estadistica <= 8.
+        \post Si estadistica == 2, le suma cantidad a torneos disputados. Si == 3, le suma cantidad a partidos ganados. Si == 4, le suma cantidad a partidos perdidos. Si == 5, le suma cantidad a sets ganados. Si == 6, le suma cantidad a sets perdidos. Si == 7, le suma cantidad a juegos ganados. Si == 8, le suma cantidad a juegos perdidos.
+    */
+    void actualizar_estadistica(string estadistica, int cantidad);  // NO IMPLEMENTADO
 
     /** @brief Actualiza la posicion del jugador
         \pre 1 <= posicion <= P (número de jugadores del circuito).
@@ -54,7 +54,7 @@ public:
     void actualizar_posicion(int posicion);
 
 
-    // // Consultores
+    // Consultores
 
     /** @brief Consulta la posición en el ranking del jugador
         \pre Cierto.
@@ -68,11 +68,11 @@ public:
     */
     int consultar_puntos() const;
 
-    // /** @brief Consulta un atributo del jugador
-    //     \pre 1 <= atributo <= 7.
-    //     \post Si atributo == 1, devuelve los torneos disputados. Si == 2, devuelve los partidos ganados. Si == 3, devuelve los partidos perdidos. Si == 4, devuelve los sets ganados. Si == 5, devuelve los sets perdidos. Si == 6, devuelve los juegos ganados. Si == 7, devuelve juegos perdidos.
-    // */
-    // int consultar_atributo(int atributo) const;
+    /** @brief Consulta un atributo del jugador
+        \pre 1 <= atributo <= 7.
+        \post Si atributo == 1, devuelve los torneos disputados. Si == 2, devuelve los partidos ganados. Si == 3, devuelve los partidos perdidos. Si == 4, devuelve los sets ganados. Si == 5, devuelve los sets perdidos. Si == 6, devuelve los juegos ganados. Si == 7, devuelve juegos perdidos.
+    */
+    int consultar_atributo(int atributo) const; // NO IMPLEMENTADO
 
     /** @brief Escribe los atributos del jugador
         \pre Cierto.

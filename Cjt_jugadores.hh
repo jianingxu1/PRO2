@@ -62,14 +62,8 @@ public:
     */
     void actualizar_ranking();
 
-    // /** @brief Modifica el jugador con nombre p
-    //     \pre p representa el nombre de un jugador. p existe en el parámetro implícito.
-    //     \post El jugador con nombre p ha sido sustituido por jugador (parámetro de entrada).
-    // */
-    // void modificar_jugador(const string& p, const Jugador& jugador);
 
-
-    // // Consultores
+    // Consultores
     
     /** @brief Consulta si existe un jugador en el conjunto jugadores
         \pre p representa un identificador de un jugador.
