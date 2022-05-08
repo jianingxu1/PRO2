@@ -56,7 +56,7 @@ public:
 
     /** @brief Da de baja un torneo del conjunto de torneos
         \pre t representa el nombre de un torneo. El parámetro implícito contiene un torneo con nombre t.
-        \post Se ha eliminado el torneo del parámetro implícito. Se han restado los puntos obtenidos por los jugadores en el torneo. Se ha actualizado el ranking.
+        \post Se ha eliminado el torneo del parámetro implícito. Se han restado los puntos obtenidos por los jugadores en la última edición del torneo.
     */  
     void baja_torneo(Cjt_jugadores& jugadores_global, const string& t);
 

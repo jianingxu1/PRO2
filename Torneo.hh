@@ -27,58 +27,100 @@ private:
     bool esta_iniciado;
     bool es_primera_edicion;    // True si no se ha jugado ninguna edición
     BinTree<int> cuadro_emparejamientos;
-    BinTree< pair<int, string> > cuadro_resultados;  // quizás no es necesario
+    BinTree<string> cuadro_resultado_matches;
+    BinTree<int> cuadro_ganadores;
 
     /** @brief Retorna el número máximo de niveles del torneo
-        \pre n representa el número de jugadores inscritos al torneo.
+        \pre Cierto.
         \post Retorna el número máximo de niveles del torneo.
     */
     // calcula la h
-    int numero_max_niveles(int n) const;
+    int numero_max_niveles() const;
 
     /** @brief Retorna el número máximo de nodos posibles en un nivel
-        \pre nivel representa un nivel del cuadro de emparejamientos.
+        \pre 1 <= nivel <= numero_max_niveles().
         \post Retorna el número máximo de nodos posibles en un nivel.
     */
     // calcula la z o m
     int nodos_por_nivel(int nivel) const;
 
-    /** @brief Retorna el contrincante de a en el nivel l
-        \pre a representa uno de los jugadores. l representa el nivel en el cuadro de emparejamientos.
-        \post Retorna el contrincante de a en el nivel l
+    /** @brief Retorna el contrincante de a en un cierto nivel
+        \pre 1 <= id_jugador <= n, 1 <= nivel <= numero_max_niveles().
+        \post Retorna el contrincante que le tocaria a id_jugador en un cierto nivel.
     */
     // calcula la b
-    int contrincante(int a, int l) const;
+    int contrincante(int id_jugador, int nivel) const;
 
     /** @brief Crea el cuadro de emparejamientos del torneo
-        \pre h representa el número máximo de niveles, m el número máximo de jugadores en el nivel h, l el nivel actual y a la posición en el torneo de un jugador.
+        \pre 4 <= num_max_niveles, 8 <= num_max_nodos, l el nivel actual y a la posición en el torneo de un jugador.
         \post Retorna el cuadro de emparejamientos del torneo.
     */
-    BinTree<int> crear_cuadro_emparejamientos(int h, int m, int l, int a) const;
+    BinTree<int> i_crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const;
+
+    /** @brief Crea el cuadro de emparejamientos del torneo
+        \pre El parámetro implícito contiene el número de jugadores inscritos n.
+        \post Se ha creado el cuadro de emparejamientos del torneo.
+    */
+    void crear_cuadro_emparejamientos() const;
 
     /** @brief Imprime el cuadro de emparejamientos del torneo
-        \pre t representa el cuadro de emparejamientos, h el número máximo de niveles, m el número máximo de jugadores en el nivel h, l el nivel actual y a la posición en el torneo de un jugador.
-        \post Imprime el cuadro de emparejamientos del torneo.
+        \pre 4 <= num_max_niveles, 8 <= num_max_nodos, 1 <= nivel <= numero_max_niveles().
+        \post Se ha imprimido el cuadro de emparejamientos.
     */  
-    void imprimir_cuadro_emparejamientos(const BinTree<int>& t, int h, int m, int l) const;
+    void i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const;
+
+    /** @brief Imprime el cuadro de emparejamientos del torneo
+        \pre Cierto.
+        \post Se ha imprimido el cuadro de emparejamientos.
+    */ 
+    void imprimir_cuadro_emparejamientos() const;
+
+
+
+
+
+
+    /** @brief Retorna el ganador de un match
+        \pre match contiene el resultado de un match de tenis.
+        \post Retorna 'a' si el jugador cuya puntuación en el match está situado en la izquierda, ha ganado. Altramente, retorna 'b'.
+    */ 
+    char ganador_del_match(const string& match);    // GOOD
 
     /** @brief Actualiza las estadísticas obtenidas por los jugadores en el torneo a las estadísticas globales
         \pre jugadores_global contiene los jugadores a actualizar.
         \post Se ha actualizado jugadores_global con las estadísticas obtenidas en el torneo.
     */ 
-    void actualizar_estadisticas(Cjt_jugadores& jugadores_global);
+    void actualizar_estadisticas(const string& match, int a, int b, Cjt_jugadores& jugadores_global);   // PROVISIONAL
     
-    /** @brief Lee los resultados y crea el cuadro de resultados del torneo
-        \pre Cierto.
-        \post Se han leído los resultados del torneo y se han actualizado las estadísticas globales de los jugadores. Se ha creado el cuadro de resultados del torneo.
+    /** @brief Retorna el cuadro de resultados de los matches del torneo
+        \pre Estan preparados en el canal de entrada una secuencia de X strings en PREORDEN que representan los resultados de un match.
+        \post Retorna el cuadro de resultados de los matches del torneo.
     */
-    void leer_resultados(Cjt_jugadores& jugadores_global);
+    BinTree<string> i_leer_cuadro_resultado_matches();  // GOOD
 
-    /** @brief Crea el cuadro de resultados del torneo
-        \pre Cierto.
-        \post Se ha creado el cuadro de resultados del torneo.
+    /** @brief Lee el cuadro de resultados de los matches del torneo
+        \pre Estan preparados en el canal de entrada una secuencia de X strings en PREORDEN que representan los resultados de un match.
+        \post Se ha leído el cuadro de resultados de los matches del torneo.
     */
-    void crear_cuadro_resultados(); // NO IMPLEMENTADO
+    void leer_cuadro_resultado_matches();  // GOOD
+
+    /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
+        \pre 1 <= nivel <= numero_max_niveles(), esta_sumado.size() == n.
+        \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
+    */
+    void i_actualizar_puntos_resultados(const Cjt_categorias& categorias, const BinTree<int>& cuadro_ganadores, int nivel, vector<bool>& esta_sumado);
+
+    /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
+        \pre Cierto.
+        \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
+    */
+    void actualizar_puntos_resultados(const Cjt_categorias& categorias);
+
+    /** @brief Crea el cuadro de los resultados de los matches del torneo
+        \pre Cierto.
+        \post Se ha creado el cuadro de los resultados de los matches del torneo.
+    */
+    BinTree< pair<int, string> > cuadro_resultados(); // NO IMPLEMENTADO
 
     /** @brief Imprime el cuadro de resultados del torneo
         \pre Cierto.
@@ -94,7 +136,7 @@ private:
 
     /** @brief Sustituye los jugadores y sus puntos obtenidos de la edición actual a la edición anterior
         \pre Cierto.
-        \post Se han sustituido los jugadores y sus puntos obtenidos de las edición actual a la edición anterior. Edición actual está vacío.
+        \post Se han sustituido los jugadores y sus puntos obtenidos de las edición actual a la edición anterior. Se ha limpiado el contenido de la edición actual.
     */ 
     void sustituir_edicion_anterior();
 

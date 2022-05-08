@@ -56,6 +56,10 @@ public:
     */
     void sumar_puntos_jugador(const string& p, int puntos);
 
+
+
+    void actualizar_estadistica_jugador(const string& p, int estadistica, int cantidad);
+
     /** @brief Actualiza el ranking de jugadores decrecientemente por puntos
         \pre Cierto.
         \post Se ha actualizado el ranking de jugadores decrecientemente por puntos. En caso de empate, se ordena según la posición del jugador en el ranking sin actualizar. Al mismo tiempo, se ha actualizado el atributo posición de los jugadores según este nuevo ranking.
