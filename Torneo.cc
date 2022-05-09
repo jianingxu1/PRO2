@@ -111,7 +111,7 @@ void Torneo::actualizar_puntos_resultados(const Cjt_categorias& categorias) {
 }
 
 void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; ++i) {   // es posible que se pueda dar de baja a un jugador sin que haya terminado la edición de un torneo? si es que sí, revisar si existe en cjt_jugadores antes de intentar sumarle
         jugadores_global.sumar_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
     }
     eliminar_puntos(jugadores_global);
@@ -133,7 +133,9 @@ Torneo::Torneo(int c) {
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
     int n = jugadores_edicion_anterior.size();
     for (int i = 0; i < n; ++i) {
-        jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
+        if (jugadores_global.existe_jugador(jugadores_edicion_anterior[i].first)) {   // si se ha dado de baja el jugador, no hay hacer nada
+            jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
+        }
     }
 }
 
