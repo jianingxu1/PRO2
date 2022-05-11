@@ -72,6 +72,12 @@ public:
     */
     void finalizar_torneo(const Cjt_categorias& categorias, const string& t, Cjt_jugadores& jugadores_global);
 
+    /** @brief Elimina los puntos obtenidos por un jugador en todos los torneos en los que haya participado en su última edición
+        \pre p es un nombre de un jugador.
+        \post Se han eliminado los puntos obtenidos por p en todos los torneos en los que haya participado en su última edición.
+    */
+    void eliminar_puntos_jugador(const string& p);
+
 
     // Consultores
 

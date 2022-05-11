@@ -21,6 +21,7 @@ class Torneo {
 private:
 
 	int c;          // categoría del torneo
+    int n_jugadores_edicion_anterior;
     int n;          // número de inscritos, 8 <= n <= 2^(K-1)
     vector< pair<string, int> > jugadores_edicion_anterior;
     vector< pair<string, int> > jugadores_edicion_actual;
@@ -54,53 +55,36 @@ private:
         \pre 4 <= num_max_niveles, 8 <= num_max_nodos, l el nivel actual y a la posición en el torneo de un jugador.
         \post Retorna el cuadro de emparejamientos del torneo.
     */
-    BinTree<int> i_crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const;
-
-    /** @brief Crea el cuadro de emparejamientos del torneo
-        \pre El parámetro implícito contiene el número de jugadores inscritos n.
-        \post Se ha creado el cuadro de emparejamientos del torneo.
-    */
-    void crear_cuadro_emparejamientos();
+    BinTree<int> crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const;
 
     /** @brief Imprime el cuadro de emparejamientos del torneo
         \pre 4 <= num_max_niveles, 8 <= num_max_nodos, 1 <= nivel <= numero_max_niveles().
         \post Se ha imprimido el cuadro de emparejamientos.
     */  
-    void i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const;
-
-    /** @brief Imprime el cuadro de emparejamientos del torneo
-        \pre Cierto.
-        \post Se ha imprimido el cuadro de emparejamientos.
-    */ 
-    void imprimir_cuadro_emparejamientos() const;
+    void imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const;
 
     /** @brief Retorna el cuadro de resultados de los matches del torneo
-        \pre Estan preparados en el canal de entrada una secuencia de X strings en PREORDEN que representan los resultados de un match.
+        \pre Estan preparados en el canal de entrada una secuencia de X strings en preorden que representan los resultados de un match.
         \post Retorna el cuadro de resultados de los matches del torneo.
     */
-    BinTree<string> i_leer_cuadro_resultado_matches();  // GOOD
-
-    /** @brief Lee el cuadro de resultados de los matches del torneo
-        \pre Estan preparados en el canal de entrada una secuencia de X strings en PREORDEN que representan los resultados de un match.
-        \post Se ha leído el cuadro de resultados de los matches del torneo.
-    */
-    void leer_cuadro_resultado_matches();  // GOOD
+    BinTree<string> leer_cuadro_resultado_matches();  // REVISAR ESPEC.
 
     /** @brief Retorna el ganador de un match
         \pre match contiene el resultado de un match de tenis.
         \post Retorna 'a' si el jugador cuya puntuación en el match está situado en la izquierda, ha ganado. Altramente, retorna 'b'.
     */ 
-    char ganador_del_match(const string& match) const;    // GOOD
+    char ganador_del_match(const string& match) const;
 
-    // int i_crear_cuadro_resultado_final(BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos);
-    void i_crear_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos);
-    
-    /** @brief Crea el cuadro de  del torneo
+    /** @brief Crea el cuadro de emparejamientos con sus respectivos ganadores
         \pre Cierto.
-        \post Se ha creado el cuadro de los resultados de los matches 
+        \post Se ha creado el cuadro de emparejamientos con sus respectivos ganadore
     */
-    void crear_cuadro_resultado_final();
-
+    void crear_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos);
+    
+    /** @brief Imprime los matches de cada ronda del torneo con sus respectivos jugadores y resultados
+        \pre Cierto.
+        \post Se ha imprimido los matches de cada ronda del torneo con sus respectivos jugadores y resultados
+    */
     void imprimir_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, const BinTree<int>& cuadro_emparejamientos) const;
 
     /** @brief Actualiza las estadísticas obtenidas por los jugadores en el torneo a las estadísticas globales
@@ -120,12 +104,6 @@ private:
         \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
     */
     void actualizar_puntos_resultados(const Cjt_categorias& categorias);
-
-    /** @brief Imprime el cuadro de resultados del torneo
-        \pre Cierto.
-        \post Imprime el cuadro de resultados del torneo.
-    */  
-    void imprimir_cuadro_resultados();  // NO IMPLEMENTADO
 
     /** @brief Traslada los puntos obtenidos por los jugadores en el torneo a las estadísticas y ranking globales
         \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.
@@ -176,6 +154,11 @@ public:
     */
     void finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global);  // mientras se lee cada resultado, se actualizan las stats de los jugadores en el global.
 
+    /** @brief Elimina los puntos obtenidos por un jugador en la última edición
+        \pre p es un nombre de un jugador.
+        \post Si p ha participado en la última edición del torneo, se le han eliminado los puntos que obtuvo en esta última edición.
+    */
+    void eliminar_puntos_jugador(const string& p);
 
     // Consultores
 

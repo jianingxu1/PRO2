@@ -26,6 +26,7 @@ void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, const string& t) 
     if (contiene_puntos) it->second.eliminar_puntos(jugadores_global);
     torneos.erase(it);
     --T;
+    jugadores_global.actualizar_ranking();
 }
 
 void Cjt_torneos::iniciar_torneo(const Cjt_jugadores& jugadores_global, const string& t) {
@@ -36,6 +37,12 @@ void Cjt_torneos::iniciar_torneo(const Cjt_jugadores& jugadores_global, const st
 void Cjt_torneos::finalizar_torneo(const Cjt_categorias& categorias, const string& t, Cjt_jugadores& jugadores_global) {
     map<string, Torneo>::iterator it = torneos.find(t);
     it->second.finalizar(categorias, jugadores_global);
+}
+
+void Cjt_torneos::eliminar_puntos_jugador(const string& p) {
+    for (map<string, Torneo>::iterator it = torneos.begin(); it != torneos.end(); ++it) {
+        if (not it->second.consulta_es_primera_edicion()) it->second.eliminar_puntos_jugador(p);
+    }
 }
 
 bool Cjt_torneos::existe_torneo(const string& t) const {

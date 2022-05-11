@@ -63,6 +63,7 @@ int main() {
             cin >> p;
             cout << ' ' << p << endl;
             if (jugadores_global.existe_jugador(p)) {
+                torneos.eliminar_puntos_jugador(p);
                 jugadores_global.eliminar_jugador(p);
                 cout << jugadores_global.consultar_numero_jugadores() << endl;
             }
