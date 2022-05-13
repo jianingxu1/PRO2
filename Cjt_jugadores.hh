@@ -54,9 +54,9 @@ public:
         \pre p representa el nombre de un jugador. p existe en el parámetro implícito.
         \post Se le han sumado puntos al jugador p del parámetro implícito.
     */
-    void sumar_puntos_jugador(const string& p, int puntos);
+    void anadir_puntos_jugador(const string& p, int puntos);
 
-    void actualizar_estadisticas_jugador(const string& p, const Estadisticas& estadisticas);
+    void anadir_estadisticas_jugador(const string& p, const Estadisticas& estadisticas);
 
     /** @brief Actualiza el ranking de jugadores decrecientemente por puntos
         \pre Cierto.

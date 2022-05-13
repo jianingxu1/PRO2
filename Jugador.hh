@@ -1,3 +1,7 @@
+/** @file Jugador.hh
+    @brief Especificación de la clase Jugador
+*/
+
 #ifndef JUGADOR_HH
 #define JUGADOR_HH
 
@@ -6,24 +10,10 @@
 using namespace std;
 #endif
 
-struct Estadisticas {
-    int partidos_ganados;
-    int partidos_perdidos;
-    int sets_ganados;
-    int sets_perdidos;
-    int juegos_ganados;
-    int juegos_perdidos;
-};
-
-/** @class Jugador
-    @brief Representa un jugador
+/** @struct Estadisticas
+    @brief Representa las estadísticas de un jugador de tenis.
 */
-class Jugador {
-
-private:
-
-    int posicion;
-    int puntos;
+struct Estadisticas {
     int torneos_disputados;
     int partidos_ganados;
     int partidos_perdidos;
@@ -31,61 +21,75 @@ private:
     int sets_perdidos;
     int juegos_ganados;
     int juegos_perdidos;
+
+    Estadisticas() {
+        torneos_disputados = 0;
+        partidos_ganados = 0;
+        partidos_perdidos = 0;
+        sets_ganados = 0;
+        sets_perdidos = 0;
+        juegos_ganados = 0;
+        juegos_perdidos = 0;
+    }
+};
+
+/** @class Jugador
+    @brief Representa un jugador de tenis.
+*/
+class Jugador {
+private:
+    int posicion;
+    int puntos;
+    Estadisticas estadisticas;
     
 public:
-    // Constructores
+    // Constructoras
 
-    /** @brief Constructora por defecto
-        \pre Cierto.
-        \post El resultado es un jugador con todos sus atributos a cero.
+    /** @brief Creadora por defecto.
+        \pre Cierto
+        \post El resultado es un jugador con todos sus atributos a cero
     */
     Jugador();
 
-
-    // Modificadores
+    // Modificadoras
     
-    /** @brief Suma puntos al jugador
-        \pre 
-        \post Se le han sumado puntos al parámetro implícito.
+    /** @brief Añade puntos al jugador.
+        \pre Cierto
+        \post Se le han añadido puntos al parámetro implícito
     */ 
-    void sumar_puntos(int puntos);
+    void anadir_puntos(int puntos);
 
-    /** @brief Suma una cantidad a una de las estadisticas del jugador
-        \pre 2 <= estadistica <= 8.
-        \post Si estadistica == 2, le suma cantidad a torneos disputados. Si == 3, le suma cantidad a partidos ganados. Si == 4, le suma cantidad a partidos perdidos. Si == 5, le suma cantidad a sets ganados. Si == 6, le suma cantidad a sets perdidos. Si == 7, le suma cantidad a juegos ganados. Si == 8, le suma cantidad a juegos perdidos.
+    /** @brief Añade las estadísticas al jugador.
+        \pre Cierto
+        \post Se le han añadido las estadísticas al parámetro implícito
     */
-    void actualizar_estadisticas(const Estadisticas& estadisticas);
+    void anadir_estadisticas(const Estadisticas& estadisticas);
 
-    /** @brief Actualiza la posicion del jugador
-        \pre 1 <= posicion <= P (número de jugadores del circuito).
-        \post Se ha actualizado la posicion del parámetro implícito.
+    /** @brief Modificadora de la posición del jugador.
+        \pre 1 <= posición <= P (número de jugadores del circuito)
+        \post Se ha modificado la posición del parámetro implícito
     */    
-    void actualizar_posicion(int posicion);
+    void modificar_posicion(int posicion);
 
+    // Consultoras
 
-    // Consultores
-
-    /** @brief Consulta la posición en el ranking del jugador
-        \pre Cierto.
-        \post Retorna la posición en el ranking del parámetro implícito.
+    /** @brief Consultora de la posición en el ranking del jugador.
+        \pre Cierto
+        \post Retorna la posición en el ranking del parámetro implícito
     */
     int consultar_posicion() const;
 
-    /** @brief Consulta los puntos del jugador
-        \pre Cierto.
-        \post Retorna los puntos del parámetro implícito.
+    /** @brief Consultora de los puntos del jugador.
+        \pre Cierto
+        \post Retorna los puntos del parámetro implícito
     */
     int consultar_puntos() const;
 
-    /** @brief Consulta un atributo del jugador
-        \pre 1 <= atributo <= 7.
-        \post Si atributo == 1, devuelve los torneos disputados. Si == 2, devuelve los partidos ganados. Si == 3, devuelve los partidos perdidos. Si == 4, devuelve los sets ganados. Si == 5, devuelve los sets perdidos. Si == 6, devuelve los juegos ganados. Si == 7, devuelve juegos perdidos.
-    */
-    int consultar_atributo(int atributo) const; // NO IMPLEMENTADO
+    // Escritura de jugador
 
-    /** @brief Escribe los atributos del jugador
-        \pre Cierto.
-        \post Se escribe la posición en el ranking, los puntos y el resto de las estadísticas del parámetro implícito.
+    /** @brief Operación de escritura
+        \pre Cierto
+        \post Se han escrito los atributos del parámetro implícito en el canal standard de salida
     */
     void escribir() const;
 };

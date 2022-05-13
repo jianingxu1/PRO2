@@ -121,10 +121,19 @@ void Torneo::i_crear_cuadro_resultado_final(const Cjt_categorias& categorias, co
         ganador = ganador_del_match(cuadro_resultado_matches.value(), left.value(), right.value(), estadisticas);
     }
     cuadro_emparejamientos = BinTree<int>(ganador, left, right);
-    // actualizar puntos
-    if (ganador == left.value()) jugadores_edicion_actual[right.value() - 1].second += categorias.consultar_puntos_por_nivel(c, nivel + 1);
-    else jugadores_edicion_actual[left.value() - 1].second += categorias.consultar_puntos_por_nivel(c, nivel + 1);
-    if (nivel == 1) jugadores_edicion_actual[ganador - 1].second += categorias.consultar_puntos_por_nivel(c, nivel);
+
+    if (ganador == left.value()) {
+        jugadores_edicion_actual[right.value() - 1].second += categorias.consultar_puntos_por_nivel(c, nivel + 1);
+        estadisticas[right.value() - 1].torneos_disputados = 1;
+    }
+    else {
+        jugadores_edicion_actual[left.value() - 1].second += categorias.consultar_puntos_por_nivel(c, nivel + 1);
+        estadisticas[left.value() - 1].torneos_disputados = 1;
+    }
+    if (nivel == 1) {
+        jugadores_edicion_actual[ganador - 1].second += categorias.consultar_puntos_por_nivel(c, nivel);
+        estadisticas[ganador - 1].torneos_disputados = 1;
+    }
 }
 
 void Torneo::crear_cuadro_resultado_final(const Cjt_categorias& categorias, vector<Estadisticas>& estadisticas) {
@@ -147,9 +156,9 @@ void Torneo::imprimir_cuadro_resultado_final() const {
     cout << endl;
 }
 
-void Torneo::actualizar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const {
+void Torneo::trasladar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const {
     for (int r = 0; r < n; ++r) {
-        jugadores_global.actualizar_estadisticas_jugador(jugadores_edicion_actual[r].first, estadisticas[r]);
+        jugadores_global.anadir_estadisticas_jugador(jugadores_edicion_actual[r].first, estadisticas[r]);
     }
 }
 
@@ -172,7 +181,7 @@ void Torneo::actualizar_estadisticas(const vector<Estadisticas>& estadisticas, C
 
 void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < n; ++i) {
-        jugadores_global.sumar_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
+        jugadores_global.anadir_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
     }
 }
 
@@ -199,7 +208,7 @@ Torneo::Torneo(int c) {
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < n_jugadores_edicion_anterior; ++i) {
         if (jugadores_global.existe_jugador(jugadores_edicion_anterior[i].first) and jugadores_edicion_anterior[i].second != 0) {   // no hay que hacer nada si se ha dado de baja al jugador o si tiene 0 puntos
-            jugadores_global.sumar_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
+            jugadores_global.anadir_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
         }
     }
 }
@@ -228,7 +237,7 @@ void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadore
     vector<Estadisticas> estadisticas(n);
     crear_cuadro_resultado_final(categorias, estadisticas);
     imprimir_cuadro_resultado_final();
-    actualizar_estadisticas(estadisticas, jugadores_global);
+    trasladar_estadisticas(estadisticas, jugadores_global);
     imprimir_ranking();
     eliminar_puntos(jugadores_global);
     trasladar_puntos(jugadores_global);

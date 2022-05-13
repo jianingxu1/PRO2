@@ -99,7 +99,7 @@ private:
         \pre jugadores_global contiene los jugadores a actualizar.
         \post Se ha actualizado jugadores_global con las estadísticas obtenidas en el torneo.
     */ 
-    void actualizar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const;
+    void trasladar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const;
 
     // /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
     //     \pre 1 <= nivel <= numero_max_niveles(), esta_sumado.size() == n.
