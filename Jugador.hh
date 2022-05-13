@@ -6,6 +6,15 @@
 using namespace std;
 #endif
 
+struct Estadisticas {
+    int partidos_ganados;
+    int partidos_perdidos;
+    int sets_ganados;
+    int sets_perdidos;
+    int juegos_ganados;
+    int juegos_perdidos;
+};
+
 /** @class Jugador
     @brief Representa un jugador
 */
@@ -45,7 +54,7 @@ public:
         \pre 2 <= estadistica <= 8.
         \post Si estadistica == 2, le suma cantidad a torneos disputados. Si == 3, le suma cantidad a partidos ganados. Si == 4, le suma cantidad a partidos perdidos. Si == 5, le suma cantidad a sets ganados. Si == 6, le suma cantidad a sets perdidos. Si == 7, le suma cantidad a juegos ganados. Si == 8, le suma cantidad a juegos perdidos.
     */
-    void actualizar_estadistica(string estadistica, int cantidad);  // NO IMPLEMENTADO
+    void actualizar_estadisticas(const Estadisticas& estadisticas);
 
     /** @brief Actualiza la posicion del jugador
         \pre 1 <= posicion <= P (número de jugadores del circuito).

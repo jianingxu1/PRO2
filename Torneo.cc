@@ -18,31 +18,44 @@ int Torneo::contrincante(int id_jugador, int nivel) const {
     return nodos_por_nivel(nivel) + 1 - id_jugador;
 }
 
-BinTree<int> Torneo::crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const {
+BinTree<int> Torneo::i_crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const {
     if (nivel == num_max_niveles or (nivel == num_max_niveles - 1 and id_jugador < num_max_nodos - n + 1)) return BinTree<int>(id_jugador);
     else {
-        BinTree<int> left = crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, nivel + 1, id_jugador);
-        BinTree<int> right = crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, nivel + 1, contrincante(id_jugador, nivel + 1));
+        BinTree<int> left = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, nivel + 1, id_jugador);
+        BinTree<int> right = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, nivel + 1, contrincante(id_jugador, nivel + 1));
         return BinTree<int>(id_jugador, left, right);
     }
 }
 
-void Torneo::imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const {
+void Torneo::crear_cuadro_emparejamientos() {
+    int num_max_niveles = numero_max_niveles();
+    int num_max_nodos = nodos_por_nivel(num_max_niveles);
+    cuadro_emparejamientos = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, 1, 1);
+ }
+
+void Torneo::i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const {
     if (not cuadro_emparejamientos.empty()) {
         if (nivel == num_max_niveles or ((nivel == num_max_niveles - 1) and (cuadro_emparejamientos.value() < num_max_nodos - n + 1))) {
             cout << cuadro_emparejamientos.value() << '.' << jugadores_edicion_actual[cuadro_emparejamientos.value() - 1].first;
         }
         else {
             cout << '(';
-            imprimir_cuadro_emparejamientos(cuadro_emparejamientos.left(), num_max_niveles, num_max_nodos, nivel + 1);
+            i_imprimir_cuadro_emparejamientos(cuadro_emparejamientos.left(), num_max_niveles, num_max_nodos, nivel + 1);
             cout << ' ';
-            imprimir_cuadro_emparejamientos(cuadro_emparejamientos.right(), num_max_niveles, num_max_nodos, nivel + 1);
+            i_imprimir_cuadro_emparejamientos(cuadro_emparejamientos.right(), num_max_niveles, num_max_nodos, nivel + 1);
             cout << ')';
         }
     }
 }
 
-BinTree<string> Torneo::leer_cuadro_resultado_matches() {
+void Torneo::imprimir_cuadro_emparejamientos() const {
+    int num_max_niveles = numero_max_niveles();
+    int num_max_nodos = nodos_por_nivel(num_max_niveles);
+    i_imprimir_cuadro_emparejamientos(cuadro_emparejamientos, num_max_niveles, num_max_nodos, 1);
+    cout << endl;
+}
+
+BinTree<string> Torneo::leer_cuadro_resultado_matches() const {
     string match;
     cin >> match;
     BinTree<string> cuadro_resultado_matches;
@@ -50,64 +63,112 @@ BinTree<string> Torneo::leer_cuadro_resultado_matches() {
     return cuadro_resultado_matches;
 }
 
-char Torneo::ganador_del_match(const string& match) const {
+// BinTree<string> Torneo::leer_cuadro_resultado_matches(int num_max_niveles, int nivel) const {
+//     string match;
+//     cin >> match;
+//     BinTree<string> cuadro_resultado_matches;
+//     if (match == "0") {
+//         if (num_max_niveles == nivel) cin >> match;
+//     }
+//     else cuadro_resultado_matches = BinTree<string> (match, leer_cuadro_resultado_matches(num_max_niveles, nivel + 1), leer_cuadro_resultado_matches(num_max_niveles, nivel + 1));
+//     return cuadro_resultado_matches;
+// }
+
+int Torneo::ganador_del_match(const string& match, int a, int b, vector<Estadisticas>& estadisticas) {
     int length = match.length();
-    int a = 0;
-    int b = 0;
-    for (int i = 0; i < length; i = i + 4) {
-        if (match[i] > match[i+2]) ++a;
-        else ++b;
+    int sets_ganados_a = 0;
+    int sets_ganados_b = 0;
+    if (length == 3) {
+        if (match[0] > match[2]) ++sets_ganados_a;
+        else ++sets_ganados_b;
     }
-    if (a > b) return 'a';
-    else return 'b';
+    else {
+        for (int i = 0; i < length; i = i + 4) {
+            estadisticas[a - 1].juegos_ganados += match[i] - '0';
+            estadisticas[b - 1].juegos_ganados += match[i + 2] - '0';
+            estadisticas[a - 1].juegos_perdidos += match[i + 2] - '0';
+            estadisticas[b - 1].juegos_perdidos += match[i] - '0';
+            if (match[i] > match[i+2]) ++sets_ganados_a;
+            else ++sets_ganados_b;
+        }
+        estadisticas[a - 1].sets_ganados += sets_ganados_a;
+        estadisticas[b - 1].sets_ganados += sets_ganados_b;
+        estadisticas[a - 1].sets_perdidos += sets_ganados_b;
+        estadisticas[b - 1].sets_perdidos += sets_ganados_a;
+    }
+    if (sets_ganados_a > sets_ganados_b) {
+        ++estadisticas[a - 1].partidos_ganados;
+        ++estadisticas[b - 1].partidos_perdidos;
+        return a;
+    }
+    else {
+        ++estadisticas[b - 1].partidos_ganados;
+        ++estadisticas[a - 1].partidos_perdidos;
+        return b;
+    }
 }
 
-void Torneo::crear_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos) {
-    if (not cuadro_resultado_matches.empty()) {
-        BinTree<int> left = cuadro_emparejamientos.left();
-        BinTree<int> right = cuadro_emparejamientos.right();
-        crear_cuadro_resultado_final(cuadro_resultado_matches.left(), left);
-        crear_cuadro_resultado_final(cuadro_resultado_matches.right(), right);
-        int a = left.value();
-        int b = right.value();
-        int ganador;
-        if (ganador_del_match(cuadro_resultado_matches.value()) == 'a') ganador = a;
-        else ganador = b;
-        cuadro_emparejamientos = BinTree<int>(ganador, left, right);
+void Torneo::i_crear_cuadro_resultado_final(const Cjt_categorias& categorias, const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos, vector<Estadisticas>& estadisticas, int nivel) {
+    BinTree<int> left = cuadro_emparejamientos.left();
+    BinTree<int> right = cuadro_emparejamientos.right();
+    int ganador;
+    if (cuadro_resultado_matches.left().empty() and cuadro_resultado_matches.right().empty()) {
+        ganador = ganador_del_match(cuadro_resultado_matches.value(), left.value(), right.value(), estadisticas);
     }
+    else {
+        if (not cuadro_resultado_matches.left().empty()) i_crear_cuadro_resultado_final(categorias, cuadro_resultado_matches.left(), left, estadisticas, nivel + 1);
+        if (not cuadro_resultado_matches.right().empty()) i_crear_cuadro_resultado_final(categorias, cuadro_resultado_matches.right(), right, estadisticas, nivel + 1);
+        ganador = ganador_del_match(cuadro_resultado_matches.value(), left.value(), right.value(), estadisticas);
+    }
+    cuadro_emparejamientos = BinTree<int>(ganador, left, right);
+    // actualizar puntos
+    if (ganador == left.value()) jugadores_edicion_actual[right.value() - 1].second += categorias.consultar_puntos_por_nivel(c, nivel + 1);
+    else jugadores_edicion_actual[left.value() - 1].second += categorias.consultar_puntos_por_nivel(c, nivel + 1);
+    if (nivel == 1) jugadores_edicion_actual[ganador - 1].second += categorias.consultar_puntos_por_nivel(c, nivel);
 }
 
-void Torneo::imprimir_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, const BinTree<int>& cuadro_emparejamientos) const {
+void Torneo::crear_cuadro_resultado_final(const Cjt_categorias& categorias, vector<Estadisticas>& estadisticas) {
+    i_crear_cuadro_resultado_final(categorias, cuadro_resultado_matches, cuadro_emparejamientos, estadisticas, 1);
+}
+
+void Torneo::i_imprimir_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, const BinTree<int>& cuadro_emparejamientos) const {
     if (not cuadro_resultado_matches.empty()) {
         int a = cuadro_emparejamientos.left().value();
-        int b =  cuadro_emparejamientos.right().value();
+        int b = cuadro_emparejamientos.right().value();
         cout << '(' << a << '.' << jugadores_edicion_actual[a-1].first << " vs " << b << '.' << jugadores_edicion_actual[b-1].first << ' ' << cuadro_resultado_matches.value();
-        imprimir_cuadro_resultado_final(cuadro_resultado_matches.left(), cuadro_emparejamientos.left());
-        imprimir_cuadro_resultado_final(cuadro_resultado_matches.right(), cuadro_emparejamientos.right());
+        i_imprimir_cuadro_resultado_final(cuadro_resultado_matches.left(), cuadro_emparejamientos.left());
+        i_imprimir_cuadro_resultado_final(cuadro_resultado_matches.right(), cuadro_emparejamientos.right());
         cout << ')';
     }
 }
 
-// void Torneo::actualizar_estadisticas(const BinTree<string>& cuadro_resultado_matches, const BinTree<int>& cuadro_emparejamientos, Cjt_jugadores& jugadores_global) {
-    
-// }
+void Torneo::imprimir_cuadro_resultado_final() const {
+    i_imprimir_cuadro_resultado_final(cuadro_resultado_matches, cuadro_emparejamientos);
+    cout << endl;
+}
 
-void Torneo::i_actualizar_puntos_resultados(const Cjt_categorias& categorias, const BinTree<int>& cuadro_ganadores, int nivel, vector<bool>& esta_sumado) {
-    if (not cuadro_ganadores.empty()) {
-        if (not esta_sumado[cuadro_ganadores.value()]) {
-            int puntos = categorias.consultar_puntos_por_nivel(c, nivel);
-            jugadores_edicion_actual[cuadro_ganadores.value() - 1].second += puntos;
-            esta_sumado[cuadro_ganadores.value()] = true;
-        }
-        i_actualizar_puntos_resultados(categorias, cuadro_ganadores.left(), nivel + 1, esta_sumado);
-        i_actualizar_puntos_resultados(categorias, cuadro_ganadores.right(), nivel + 1, esta_sumado);
+void Torneo::actualizar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const {
+    for (int r = 0; r < n; ++r) {
+        jugadores_global.actualizar_estadisticas_jugador(jugadores_edicion_actual[r].first, estadisticas[r]);
     }
 }
 
-void Torneo::actualizar_puntos_resultados(const Cjt_categorias& categorias) {
-    vector<bool> esta_sumado(n, false);
-    i_actualizar_puntos_resultados(categorias, cuadro_emparejamientos, 1, esta_sumado);
-}
+// void Torneo::i_actualizar_puntos_resultados(const Cjt_categorias& categorias, const BinTree<int>& cuadro_ganadores, int nivel, vector<bool>& esta_sumado) {
+//     if (not cuadro_ganadores.empty()) {
+//         if (not esta_sumado[cuadro_ganadores.value()]) {
+//             int puntos = categorias.consultar_puntos_por_nivel(c, nivel);
+//             jugadores_edicion_actual[cuadro_ganadores.value() - 1].second += puntos;
+//             esta_sumado[cuadro_ganadores.value()] = true;
+//         }
+//         i_actualizar_puntos_resultados(categorias, cuadro_ganadores.left(), nivel + 1, esta_sumado);
+//         i_actualizar_puntos_resultados(categorias, cuadro_ganadores.right(), nivel + 1, esta_sumado);
+//     }
+// }
+
+// void Torneo::actualizar_puntos_resultados(const Cjt_categorias& categorias) {
+//     vector<bool> esta_sumado(n, false);
+//     i_actualizar_puntos_resultados(categorias, cuadro_emparejamientos, 1, esta_sumado);
+// }
 
 void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < n; ++i) {
@@ -157,24 +218,18 @@ void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
     esta_iniciado = true;
     cin >> this->n;
     leer_jugadores_inscritos(jugadores_global);
-
-    int num_max_niveles = numero_max_niveles();
-    int num_max_nodos = nodos_por_nivel(num_max_niveles);
-    cuadro_emparejamientos = crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, 1, 1);
-    imprimir_cuadro_emparejamientos(cuadro_emparejamientos, num_max_niveles, num_max_nodos, 1);
-    cout << endl;
+    crear_cuadro_emparejamientos();
+    imprimir_cuadro_emparejamientos();
 }
 
 void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global) {
     cuadro_resultado_matches = leer_cuadro_resultado_matches();
-    // actualizar estadísticas global
-    crear_cuadro_resultado_final(cuadro_resultado_matches, cuadro_emparejamientos);
-    imprimir_cuadro_resultado_final(cuadro_resultado_matches, cuadro_emparejamientos);
-    cout << endl;
-    
-    actualizar_puntos_resultados(categorias);
+    // vector que almacena las estadísticas de cada jugador, con su id siendo su posición en el ranking del torneo
+    vector<Estadisticas> estadisticas(n);
+    crear_cuadro_resultado_final(categorias, estadisticas);
+    imprimir_cuadro_resultado_final();
+    actualizar_estadisticas(estadisticas, jugadores_global);
     imprimir_ranking();
-
     eliminar_puntos(jugadores_global);
     trasladar_puntos(jugadores_global);
     sustituir_edicion_anterior();

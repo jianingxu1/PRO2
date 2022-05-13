@@ -15,6 +15,16 @@ void Jugador::sumar_puntos(int puntos) {
     this->puntos += puntos;
 }
 
+void Jugador::actualizar_estadisticas(const Estadisticas& estadisticas) {
+    ++torneos_disputados;
+    partidos_ganados += estadisticas.partidos_ganados;
+    partidos_perdidos += estadisticas.partidos_perdidos;
+    sets_ganados += estadisticas.sets_ganados;
+    sets_perdidos += estadisticas.sets_perdidos;
+    juegos_ganados += estadisticas.juegos_ganados;
+    juegos_perdidos += estadisticas.juegos_perdidos;
+}
+
 int Jugador::consultar_posicion() const {
     return posicion;
 }

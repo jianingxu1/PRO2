@@ -37,6 +37,12 @@ void Cjt_jugadores::sumar_puntos_jugador(const string& p, int puntos) {
     it->second.sumar_puntos(puntos);
 }
 
+void Cjt_jugadores::actualizar_estadisticas_jugador(const string& p, const Estadisticas& estadisticas) {
+    map<string, Jugador>::iterator it = this->estadisticas.find(p);
+    it->second.actualizar_estadisticas(estadisticas);
+}
+
+
 bool Cjt_jugadores::comp(map<string, Jugador>::iterator it1, map<string, Jugador>::iterator it2) {
     if (it1->second.consultar_puntos() != it2->second.consultar_puntos()) return it1->second.consultar_puntos() > it2->second.consultar_puntos();
     return it1->second.consultar_posicion() < it2->second.consultar_posicion();

@@ -58,9 +58,6 @@ program.o: program.cc
 # Realizad las modificaciones necesarias para gestionar las clases de la
 # sesión cuando os toque implementarlas a vosotros.
 #
-# BinTree.o: BinTree.cc BinTree.hh
-# 	g++ -c BinTree.cc
-#
 Cjt_jugadores.o: Cjt_jugadores.cc Cjt_jugadores.hh
 	g++ -c Cjt_jugadores.cc $(OPCIONS)
 #
@@ -76,6 +73,8 @@ Cjt_torneos.o: Cjt_torneos.cc Cjt_torneos.hh
 Torneo.o: Torneo.cc Torneo.hh
 	g++ -c Torneo.cc $(OPCIONS)
 #
+practica.tar:
+	tar -cvf practica.tar *.cc *.hh Makefile
 # Cubeta.o: Cubeta.cc Cubeta.hh
 # 	g++ -c Cubeta.cc $(OPCIONS) -I$(INCLUSIONS)
 #

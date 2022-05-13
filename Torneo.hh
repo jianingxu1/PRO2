@@ -55,55 +55,63 @@ private:
         \pre 4 <= num_max_niveles, 8 <= num_max_nodos, l el nivel actual y a la posición en el torneo de un jugador.
         \post Retorna el cuadro de emparejamientos del torneo.
     */
-    BinTree<int> crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const;
+    BinTree<int> i_crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const;
+    
+    void crear_cuadro_emparejamientos();
 
     /** @brief Imprime el cuadro de emparejamientos del torneo
         \pre 4 <= num_max_niveles, 8 <= num_max_nodos, 1 <= nivel <= numero_max_niveles().
         \post Se ha imprimido el cuadro de emparejamientos.
     */  
-    void imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const;
+    void i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const;
+
+    void imprimir_cuadro_emparejamientos() const;
 
     /** @brief Retorna el cuadro de resultados de los matches del torneo
         \pre Estan preparados en el canal de entrada una secuencia de X strings en preorden que representan los resultados de un match.
         \post Retorna el cuadro de resultados de los matches del torneo.
     */
-    BinTree<string> leer_cuadro_resultado_matches();  // REVISAR ESPEC.
+    BinTree<string> leer_cuadro_resultado_matches() const;
 
     /** @brief Retorna el ganador de un match
         \pre match contiene el resultado de un match de tenis.
         \post Retorna 'a' si el jugador cuya puntuación en el match está situado en la izquierda, ha ganado. Altramente, retorna 'b'.
     */ 
-    char ganador_del_match(const string& match) const;
+    int ganador_del_match(const string& match, int a, int b, vector<Estadisticas>& estadisticas);
 
-    /** @brief Crea el cuadro de emparejamientos con sus respectivos ganadores
+    /** @brief Crea el cuadro de emparejamientos con sus respectivos ganadores y obtiene las estadísticas de cada jugador en el torneo
         \pre Cierto.
-        \post Se ha creado el cuadro de emparejamientos con sus respectivos ganadore
+        \post Se ha creado el cuadro de emparejamientos con sus respectivos ganadores y se han obtenido las estadísticas de cada jugador en el torneo.
     */
-    void crear_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos);
+    void i_crear_cuadro_resultado_final(const Cjt_categorias& categorias, const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos, vector<Estadisticas>& estadisticas, int nivel);
     
+    void crear_cuadro_resultado_final(const Cjt_categorias& categorias, vector<Estadisticas>& estadisticas);
+
     /** @brief Imprime los matches de cada ronda del torneo con sus respectivos jugadores y resultados
         \pre Cierto.
         \post Se ha imprimido los matches de cada ronda del torneo con sus respectivos jugadores y resultados
     */
-    void imprimir_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, const BinTree<int>& cuadro_emparejamientos) const;
+    void i_imprimir_cuadro_resultado_final(const BinTree<string>& cuadro_resultado_matches, const BinTree<int>& cuadro_emparejamientos) const;
+
+    void imprimir_cuadro_resultado_final() const;
 
     /** @brief Actualiza las estadísticas obtenidas por los jugadores en el torneo a las estadísticas globales
         \pre jugadores_global contiene los jugadores a actualizar.
         \post Se ha actualizado jugadores_global con las estadísticas obtenidas en el torneo.
     */ 
-    void actualizar_estadisticas(const string& match, int a, int b, Cjt_jugadores& jugadores_global);   // PROVISIONAL
+    void actualizar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const;
 
-    /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
-        \pre 1 <= nivel <= numero_max_niveles(), esta_sumado.size() == n.
-        \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
-    */
-    void i_actualizar_puntos_resultados(const Cjt_categorias& categorias, const BinTree<int>& cuadro_ganadores, int nivel, vector<bool>& esta_sumado);
+    // /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
+    //     \pre 1 <= nivel <= numero_max_niveles(), esta_sumado.size() == n.
+    //     \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
+    // */
+    // void i_actualizar_puntos_resultados(const Cjt_categorias& categorias, const BinTree<int>& cuadro_ganadores, int nivel, vector<bool>& esta_sumado);
 
-    /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
-        \pre Cierto.
-        \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
-    */
-    void actualizar_puntos_resultados(const Cjt_categorias& categorias);
+    // /** @brief Actualiza los puntos de cada jugador según su posición en el torneo
+    //     \pre Cierto.
+    //     \post Se ha actualizado los puntos de cada jugador según su posición en el torneo.
+    // */
+    // void actualizar_puntos_resultados(const Cjt_categorias& categorias);
 
     /** @brief Traslada los puntos obtenidos por los jugadores en el torneo a las estadísticas y ranking globales
         \pre jugadores_global contiene las estadísticas globales y el ranking global de los jugadores del circuito.

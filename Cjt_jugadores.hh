@@ -56,9 +56,7 @@ public:
     */
     void sumar_puntos_jugador(const string& p, int puntos);
 
-
-
-    void actualizar_estadistica_jugador(const string& p, int estadistica, int cantidad);
+    void actualizar_estadisticas_jugador(const string& p, const Estadisticas& estadisticas);
 
     /** @brief Actualiza el ranking de jugadores decrecientemente por puntos
         \pre Cierto.
