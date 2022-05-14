@@ -50,13 +50,13 @@ public:
 
     /** @brief Consultora de los puntos de la categoría según el nivel.
         \pre 1 <= c <= C y 1 <= nivel <= K
-        \post Retorna los puntos de la categoría en este nivel
+        \post Retorna los puntos de la categoría en el nivel especificado del parámetro implícito
     */
     int consultar_puntos_por_nivel(int c, int nivel) const;
 
     /** @brief Consultora del nombre de una categoría.
         \pre Existe una categoría con identificador c en el parámetro implícito
-        \post Retorna el nombre de la categoría cuyo identificador es c
+        \post Retorna el nombre de la categoría cuyo identificador es c del parámetro implícito
     */
     string consultar_nombre_categoria(int c) const;
 
