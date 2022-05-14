@@ -30,14 +30,6 @@ public:
     */
     Cjt_categorias(int C, int K);
 
-    // Destructora
-
-    /** @brief Destructora por defecto.
-        \pre Cierto
-        \post Se ha eliminado el parámetro implícito
-    */
-    ~Cjt_categorias();
-
     // Modificadoras
     
     /** @brief Operación de lectura.

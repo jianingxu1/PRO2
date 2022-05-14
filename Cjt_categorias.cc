@@ -8,9 +8,6 @@ Cjt_categorias::Cjt_categorias(int C, int K) {
     puntos_por_nivel_categorias = vector< vector<int> >(C, vector<int>(K));
 }
 
-// Destructora
-Cjt_categorias::~Cjt_categorias() {}
-
 // Modificadoras
 void Cjt_categorias::leer() {
     for (int c = 0; c < C; ++c) {
