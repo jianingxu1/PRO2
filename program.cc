@@ -54,9 +54,7 @@ int main() {
                 }
                 else cout << "error: ya existe un torneo con ese nombre" << endl;
             }
-            else {
-                cout << "error: la categoria no existe" << endl;
-            }
+            else cout << "error: la categoria no existe" << endl;
         }
         else if (comando == "baja_jugador" or comando == "bj") {
             string p;

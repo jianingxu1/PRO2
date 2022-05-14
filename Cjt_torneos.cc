@@ -57,6 +57,6 @@ int Cjt_torneos::consultar_numero_torneos() const {
 void Cjt_torneos::listar_torneos(const Cjt_categorias& categorias) const {
     cout << T << endl;
     for (map<string, Torneo>::const_iterator it = torneos.begin(); it != torneos.end(); ++it) {
-        cout << it->first << ' ' << categorias.consultar_nombre(it->second.consultar_categoria()) << endl;
+        cout << it->first << ' ' << categorias.consultar_nombre_categoria(it->second.consultar_categoria()) << endl;
     }
 }

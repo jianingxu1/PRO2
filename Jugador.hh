@@ -87,7 +87,7 @@ public:
 
     // Escritura de jugador
 
-    /** @brief Operación de escritura
+    /** @brief Operación de escritura.
         \pre Cierto
         \post Se han escrito los atributos del parámetro implícito en el canal standard de salida
     */
