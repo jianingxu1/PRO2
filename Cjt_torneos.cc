@@ -1,9 +1,6 @@
 #include "Cjt_torneos.hh"
 
-Cjt_torneos::Cjt_torneos() {}
-
-Cjt_torneos::~Cjt_torneos() {}
-
+// Modificadoras
 void Cjt_torneos::leer(int T) {
     this->T = T;
     for (int i = 0; i < T; ++i) {
@@ -15,12 +12,13 @@ void Cjt_torneos::leer(int T) {
     }
 }
 
-void Cjt_torneos::anadir_torneo(const string& t, const Torneo& torneo) {
+void Cjt_torneos::anadir_torneo(const string& t, int c) {
     ++T;
+    Torneo torneo(c);
     torneos.insert(make_pair(t, torneo));
 }
 
-void Cjt_torneos::baja_torneo(Cjt_jugadores& jugadores_global, const string& t) {
+void Cjt_torneos::baja_torneo(const string& t, Cjt_jugadores& jugadores_global) {
     map<string, Torneo>::iterator it = torneos.find(t);
     bool contiene_puntos = not it->second.consulta_es_primera_edicion();    // si es la primera edición, los jugadores no contienen puntos
     if (contiene_puntos) it->second.eliminar_puntos(jugadores_global);
@@ -45,6 +43,7 @@ void Cjt_torneos::eliminar_puntos_jugador(const string& p) {
     }
 }
 
+// Consultoras
 bool Cjt_torneos::existe_torneo(const string& t) const {
     map<string, Torneo>::const_iterator it = torneos.find(t);
     return it != torneos.end();

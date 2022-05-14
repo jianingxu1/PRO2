@@ -48,8 +48,7 @@ int main() {
             cout << ' ' << t << ' ' << c << endl;
             if (1 <= c and c <= C) {
                 if (not torneos.existe_torneo(t)) {
-                    Torneo aux_torneo(c);
-                    torneos.anadir_torneo(t, aux_torneo);
+                    torneos.anadir_torneo(t, c);
                     cout << torneos.consultar_numero_torneos() << endl;
                 }
                 else cout << "error: ya existe un torneo con ese nombre" << endl;
@@ -72,7 +71,7 @@ int main() {
             cin >> t;
             cout << ' ' << t << endl;
             if (torneos.existe_torneo(t)) {
-                torneos.baja_torneo(jugadores_global, t);
+                torneos.baja_torneo(t, jugadores_global);
                 cout << torneos.consultar_numero_torneos() << endl;
             }
             else cout << "error: el torneo no existe" << endl;

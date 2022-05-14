@@ -72,8 +72,8 @@ public:
     // Consultoras
     
     /** @brief Consultora de la existencia de un jugador en el conjunto jugadores.
-        \pre p representa un identificador de un jugador.
-        \post Si un jugador con identificador p existe en el parámetro implícito, retorna true. Altramente, false.
+        \pre p representa el identificador de un jugador.
+        \post Si existe un jugador con identificador p en el parámetro implícito, retorna true. Altramente, false.
     */  
     bool existe_jugador(const string& p) const;
 
