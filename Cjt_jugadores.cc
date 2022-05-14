@@ -1,5 +1,11 @@
 #include "Cjt_jugadores.hh"
 
+bool Cjt_jugadores::comp(const map<string, Jugador>::iterator& it1, const map<string, Jugador>::iterator& it2) {
+    if (it1->second.consultar_puntos() != it2->second.consultar_puntos()) return it1->second.consultar_puntos() > it2->second.consultar_puntos();
+    return it1->second.consultar_posicion() < it2->second.consultar_posicion();
+}
+
+// Modificadoras
 void Cjt_jugadores::leer(int P) {
     this->P = P;
     ranking = vector<string>(P);
@@ -42,12 +48,6 @@ void Cjt_jugadores::anadir_estadisticas_jugador(const string& p, const Estadisti
     it->second.anadir_estadisticas(estadisticas);
 }
 
-
-bool Cjt_jugadores::comp(map<string, Jugador>::iterator it1, map<string, Jugador>::iterator it2) {
-    if (it1->second.consultar_puntos() != it2->second.consultar_puntos()) return it1->second.consultar_puntos() > it2->second.consultar_puntos();
-    return it1->second.consultar_posicion() < it2->second.consultar_posicion();
-}
-
 void Cjt_jugadores::actualizar_ranking() {
     vector< map<string, Jugador>::iterator > v(P);
     int i = 0;
@@ -62,6 +62,7 @@ void Cjt_jugadores::actualizar_ranking() {
     }
 }
 
+// Consultoras
 bool Cjt_jugadores::existe_jugador(const string& p) const {
     map<string, Jugador>::const_iterator it = estadisticas.find(p);
     return it != estadisticas.end();
@@ -75,11 +76,11 @@ string Cjt_jugadores::consultar_jugador_ranking(int posicion) const {
     return ranking[posicion - 1];
 }
 
-void Cjt_jugadores::listar_ranking() const {
-    for (int posicion = 1; posicion <= P; ++posicion) {
-        map<string, Jugador>::const_iterator it = estadisticas.find(ranking[posicion - 1]);
-        cout << posicion << ' ' << ranking[posicion - 1] << ' ' << it->second.consultar_puntos() << endl;
-    }
+// Operaciones de escritura
+void Cjt_jugadores::consultar_jugador(const string& p) const {
+    map<string, Jugador>::const_iterator it = estadisticas.find(p);
+    cout << it->first << ' ';
+    it->second.escribir();
 }
 
 void Cjt_jugadores::listar_jugadores() const {
@@ -90,8 +91,9 @@ void Cjt_jugadores::listar_jugadores() const {
     }
 }
 
-void Cjt_jugadores::consultar_jugador(const string& p) const {
-    map<string, Jugador>::const_iterator it = estadisticas.find(p);
-    cout << it->first << ' ';
-    it->second.escribir();
+void Cjt_jugadores::listar_ranking() const {
+    for (int posicion = 1; posicion <= P; ++posicion) {
+        map<string, Jugador>::const_iterator it = estadisticas.find(ranking[posicion - 1]);
+        cout << posicion << ' ' << ranking[posicion - 1] << ' ' << it->second.consultar_puntos() << endl;
+    }
 }
