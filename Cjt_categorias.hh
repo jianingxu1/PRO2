@@ -18,13 +18,10 @@ private:
     typedef vector< vector<int> > Matriz;
     /** @brief Entero que representa el número de categorías */
     int C;
-
     /** @brief Entero que representa el número máximo de niveles de las categorías */
     int K;
-
     /** @brief Vector que contiene el nombre de las categorías en orden creciente de su identificador */
     vector<string> nombre_categorias;
-    
     /** @brief Matriz que contiene en cada fila, los puntos por nivel en orden creciente de nivel de una categoría */
     Matriz puntos_por_nivel_categorias;
 

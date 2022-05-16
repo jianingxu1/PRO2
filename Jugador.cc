@@ -39,7 +39,9 @@ int Jugador::consultar_puntos() const {
 
 // Escritura de un jugador
 void Jugador::escribir() const {
-    cout << "Rk:" << posicion << " Ps:" << puntos << " Ts:" << estadisticas.torneos_disputados <<
-    " WM:" << estadisticas.partidos_ganados << " LM:" << estadisticas.partidos_perdidos << " WS:" << estadisticas.sets_ganados <<
-    " LS:" << estadisticas.sets_perdidos << " WG:" << estadisticas.juegos_ganados << " LG:" << estadisticas.juegos_perdidos << endl;
+    cout << "Rk:" << posicion << " Ps:" << puntos << " Ts:" << estadisticas.torneos_disputados 
+         << " WM:" << estadisticas.partidos_ganados << " LM:" << estadisticas.partidos_perdidos
+         << " WS:" << estadisticas.sets_ganados << " LS:" << estadisticas.sets_perdidos
+         << " WG:" << estadisticas.juegos_ganados << " LG:" << estadisticas.juegos_perdidos
+         << endl;
 }
