@@ -25,14 +25,6 @@ void Cjt_categorias::leer() {
     }
 }
 
-int Cjt_categorias::consultar_puntos_por_nivel(int c, int nivel) const {
-    return puntos_por_nivel_categorias[c - 1][nivel - 1];
-}
-
-string Cjt_categorias::consultar_nombre_categoria(int c) const {
-    return nombre_categorias[c - 1];
-}
-
 void Cjt_categorias::escribir() const {
     cout << C << ' ' << K << endl;
     for (int c = 1; c <= C; ++c) {
@@ -42,4 +34,12 @@ void Cjt_categorias::escribir() const {
         }
         cout << endl;
     }
+}
+
+int Cjt_categorias::consultar_puntos_por_nivel(int c, int nivel) const {
+    return puntos_por_nivel_categorias[c - 1][nivel - 1];
+}
+
+string Cjt_categorias::consultar_nombre_categoria(int c) const {
+    return nombre_categorias[c - 1];
 }

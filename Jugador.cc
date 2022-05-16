@@ -3,13 +3,11 @@
 */
 #include "Jugador.hh"
 
-// Constructoras
 Jugador::Jugador() {
     posicion = 0;
     puntos = 0;
 }
 
-// Modificadoras
 void Jugador::anadir_puntos(int puntos) {
     this->puntos += puntos;
 }
@@ -28,20 +26,18 @@ void Jugador::modificar_posicion(int posicion) {
     this->posicion = posicion;
 }
 
-// Consultoras
-int Jugador::consultar_posicion() const {
-    return posicion;
-}
-
-int Jugador::consultar_puntos() const {
-    return puntos;
-}
-
-// Escritura de un jugador
 void Jugador::escribir() const {
     cout << "Rk:" << posicion << " Ps:" << puntos << " Ts:" << estadisticas.torneos_disputados 
          << " WM:" << estadisticas.partidos_ganados << " LM:" << estadisticas.partidos_perdidos
          << " WS:" << estadisticas.sets_ganados << " LS:" << estadisticas.sets_perdidos
          << " WG:" << estadisticas.juegos_ganados << " LG:" << estadisticas.juegos_perdidos
          << endl;
+}
+
+int Jugador::consultar_posicion() const {
+    return posicion;
+}
+
+int Jugador::consultar_puntos() const {
+    return puntos;
 }
