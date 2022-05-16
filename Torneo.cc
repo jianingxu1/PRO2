@@ -55,13 +55,13 @@ void Torneo::imprimir_cuadro_emparejamientos() const {
     cout << endl;
 }
 
-BinTree<string> Torneo::leer_cuadro_resultado_matches() const {
-    string match;
-    cin >> match;
-    BinTree<string> cuadro_resultado_matches;
-    if (match != "0" and match != "0 0") cuadro_resultado_matches = BinTree<string> (match, leer_cuadro_resultado_matches(), leer_cuadro_resultado_matches());
-    return cuadro_resultado_matches;
-}
+// BinTree<string> Torneo::leer_cuadro_resultado_matches() const {
+//     string match;
+//     cin >> match;
+//     BinTree<string> cuadro_resultado_matches;
+//     if (match != "0" and match != "0 0") cuadro_resultado_matches = BinTree<string> (match, leer_cuadro_resultado_matches(), leer_cuadro_resultado_matches());
+//     return cuadro_resultado_matches;
+// }
 
 // BinTree<string> Torneo::leer_cuadro_resultado_matches(int num_max_niveles, int nivel) const {
 //     string match;
@@ -73,6 +73,26 @@ BinTree<string> Torneo::leer_cuadro_resultado_matches() const {
 //     else cuadro_resultado_matches = BinTree<string> (match, leer_cuadro_resultado_matches(num_max_niveles, nivel + 1), leer_cuadro_resultado_matches(num_max_niveles, nivel + 1));
 //     return cuadro_resultado_matches;
 // }
+
+void Torneo::i_crear_cuadro_resultado_matches(BinTree<string>& cuadro_resultado_matches, string match, int& n) {
+    if (n != 0) {
+        BinTree<string> left;
+        BinTree<string> right;
+        string l, r;
+        cin >> l;
+        if (l != "0") i_crear_cuadro_resultado_matches(left, l, --n);
+        cin >> r;
+        if (r != "0") i_crear_cuadro_resultado_matches(right, r, --n);
+        cuadro_resultado_matches = BinTree<string>(match, left, right);
+    }
+}
+
+void Torneo::crear_cuadro_resultado_matches() {
+    int n = this->n;
+    string match;
+    cin >> match;
+    i_crear_cuadro_resultado_matches(cuadro_resultado_matches, match, n);
+}
 
 int Torneo::ganador_del_match(const string& match, int a, int b, vector<Estadisticas>& estadisticas) {
     int length = match.length();
@@ -162,23 +182,6 @@ void Torneo::trasladar_estadisticas(const vector<Estadisticas>& estadisticas, Cj
     }
 }
 
-// void Torneo::i_actualizar_puntos_resultados(const Cjt_categorias& categorias, const BinTree<int>& cuadro_ganadores, int nivel, vector<bool>& esta_sumado) {
-//     if (not cuadro_ganadores.empty()) {
-//         if (not esta_sumado[cuadro_ganadores.value()]) {
-//             int puntos = categorias.consultar_puntos_por_nivel(c, nivel);
-//             jugadores_edicion_actual[cuadro_ganadores.value() - 1].second += puntos;
-//             esta_sumado[cuadro_ganadores.value()] = true;
-//         }
-//         i_actualizar_puntos_resultados(categorias, cuadro_ganadores.left(), nivel + 1, esta_sumado);
-//         i_actualizar_puntos_resultados(categorias, cuadro_ganadores.right(), nivel + 1, esta_sumado);
-//     }
-// }
-
-// void Torneo::actualizar_puntos_resultados(const Cjt_categorias& categorias) {
-//     vector<bool> esta_sumado(n, false);
-//     i_actualizar_puntos_resultados(categorias, cuadro_emparejamientos, 1, esta_sumado);
-// }
-
 void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < n; ++i) {
         jugadores_global.anadir_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
@@ -193,21 +196,18 @@ void Torneo::sustituir_edicion_anterior() {
     jugadores_edicion_actual.clear();
 }
 
-// Constructores
-
+// Constructoras
 Torneo::Torneo(int c) {
+    this->c = c;
     n_jugadores_edicion_anterior = 0;
     n = 0;
-    this->c = c;
-    esta_iniciado = false;
     es_primera_edicion = true;
 }
 
-// Modificadores
-
+// Modificadoras
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < n_jugadores_edicion_anterior; ++i) {
-        if (jugadores_global.existe_jugador(jugadores_edicion_anterior[i].first) and jugadores_edicion_anterior[i].second != 0) {   // no hay que hacer nada si se ha dado de baja al jugador o si tiene 0 puntos
+        if (jugadores_edicion_anterior[i].second != 0) {
             jugadores_global.anadir_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
         }
     }
@@ -224,18 +224,19 @@ void Torneo::leer_jugadores_inscritos(const Cjt_jugadores& jugadores_global) {
 }
 
 void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
-    esta_iniciado = true;
-    cin >> this->n;
+    cin >> n;
     leer_jugadores_inscritos(jugadores_global);
     crear_cuadro_emparejamientos();
     imprimir_cuadro_emparejamientos();
 }
 
 void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global) {
-    cuadro_resultado_matches = leer_cuadro_resultado_matches();
-    // vector que almacena las estadísticas de cada jugador, con su id siendo su posición en el ranking del torneo
-    vector<Estadisticas> estadisticas(n);
+    // cout << "crear_cuadro_resultado_matches" << endl;
+    crear_cuadro_resultado_matches();
+    vector<Estadisticas> estadisticas(n); // vector que almacena las estadísticas de cada jugador, con su id siendo su posición en el ranking del torneo
+    // cout << "crear_cuadro_resultado_final" << endl;
     crear_cuadro_resultado_final(categorias, estadisticas);
+    // cout << "imprimir_cuadro_resultado_final" << endl;
     imprimir_cuadro_resultado_final();
     trasladar_estadisticas(estadisticas, jugadores_global);
     imprimir_ranking();
@@ -244,12 +245,9 @@ void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadore
     sustituir_edicion_anterior();
     jugadores_global.actualizar_ranking();
 
-    esta_iniciado = false;
     es_primera_edicion = false;
-    BinTree<int> t;
-    cuadro_emparejamientos = t;
-    BinTree<string> r;
-    cuadro_resultado_matches = r;
+    cuadro_emparejamientos = BinTree<int>();
+    cuadro_resultado_matches = BinTree<string>();
 }
 
 void Torneo::eliminar_puntos_jugador(const string& p) {
@@ -264,8 +262,7 @@ void Torneo::eliminar_puntos_jugador(const string& p) {
     }
 }
 
-// Consultores
-
+// Consultoras
 void Torneo::imprimir_ranking() const {
     for (int r = 0; r < n; ++r) {
         if (jugadores_edicion_actual[r].second != 0) {

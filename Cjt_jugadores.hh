@@ -52,8 +52,8 @@ public:
     void eliminar_jugador(const string& p);
 
     /** @brief Añade puntos a un jugador del conjunto de jugadores.
-        \pre Existe un jugador con identificador p en el parámetro implícito.
-        \post Se le han añadido puntos al jugador con identificador p del parámetro implícito.
+        \pre Cierto.
+        \post Si existe el jugador con identificador p en el parámetro implícito, se le han añadido puntos. Altramente, nada.
     */
     void anadir_puntos_jugador(const string& p, int puntos);
 
