@@ -1,3 +1,6 @@
+/** @file Cjt_categorias.cc
+    @brief Implementación de la clase Cjt_categorias
+*/
 #include "Cjt_categorias.hh"
 
 Cjt_categorias::Cjt_categorias(int C, int K) {

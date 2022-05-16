@@ -1,7 +1,6 @@
 /** @file Cjt_categorias.hh
     @brief Especificación de la clase Cjt_categorias
 */
-
 #ifndef CJT_CATEGORIAS_HH
 #define CJT_CATEGORIAS_HH
 
@@ -12,15 +11,22 @@ using namespace std;
 #endif
 
 /** @class Cjt_categorias
-    @brief Representa un conjunto de categorías de tenis.
+    @brief Representa las características de un conjunto de categorías de tenis.
 */
 class Cjt_categorias {
 private:
     typedef vector< vector<int> > Matriz;
-    int C; // número de categorías
-    int K; // número máximo de niveles por categoría
-    vector<string> nombre_categorias; // vector que contiene el nombre de cada categoría según su identificador
-    Matriz puntos_por_nivel_categorias; // matriz que contiene en cada fila, los puntos por nivel de una categoría
+    /** @brief Entero que representa el número de categorías */
+    int C;
+
+    /** @brief Entero que representa el número máximo de niveles de las categorías */
+    int K;
+
+    /** @brief Vector que contiene el nombre de las categorías en orden creciente de su identificador */
+    vector<string> nombre_categorias;
+    
+    /** @brief Matriz que contiene en cada fila, los puntos por nivel en orden creciente de nivel de una categoría */
+    Matriz puntos_por_nivel_categorias;
 
 public:
     // Constructoras
@@ -47,7 +53,7 @@ public:
     
     // Consultoras
 
-    /** @brief Consultora de los puntos de la categoría según el nivel.
+    /** @brief Consultora de los puntos de una categoría según el nivel.
         \pre 1 <= c <= C y 1 <= nivel <= K.
         \post Retorna los puntos de la categoría en el nivel especificado del parámetro implícito.
     */

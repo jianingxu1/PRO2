@@ -1,3 +1,6 @@
+/** @file Jugador.cc
+    @brief Implementación de la clase Jugador
+*/
 #include "Jugador.hh"
 
 // Constructoras
