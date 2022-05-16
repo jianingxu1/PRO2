@@ -4,8 +4,8 @@
 # Project related configuration options
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = utf-8
-PROJECT_NAME           = "Práctica de PRO2. Ejercicio 'Circuito de torneos de tenis'."
-PROJECT_NUMBER         = "version 1 19-abr-2022"
+PROJECT_NAME           = "Práctica de PRO2 (Primavera 2022). Ejercicio 'Circuito de torneos de tenis'."
+PROJECT_NUMBER         = "Jianing Xu"
 OUTPUT_DIRECTORY       = "./DOC"
 CREATE_SUBDIRS         = NO
 OUTPUT_LANGUAGE        = Spanish
@@ -51,7 +51,7 @@ TYPEDEF_HIDES_STRUCT   = NO
 # Build related configuration options
 #---------------------------------------------------------------------------
 EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = NO
+EXTRACT_PRIVATE        = YES # para que los elementos privados aparezcan en la documentacion
 EXTRACT_STATIC         = NO
 EXTRACT_LOCAL_CLASSES  = YES
 EXTRACT_LOCAL_METHODS  = NO
@@ -101,7 +101,7 @@ FILE_PATTERNS          = *.hpp \ *.hh \
 			 program.cpp \ program.cc \
                          principal*.cpp \ principal*.cc
 RECURSIVE              = NO
-EXCLUDE                = *~ \ BinTree.hh
+EXCLUDE                = *~ \ BinTree.hh # para excluir classes
 EXCLUDE_SYMLINKS       = NO
 EXCLUDE_PATTERNS       = *~
 EXCLUDE_SYMBOLS        = 
