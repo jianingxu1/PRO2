@@ -30,12 +30,12 @@ void Cjt_jugadores::eliminar_jugador(const string& p) {
     --P;
     map<string, Jugador>::iterator it = estadisticas.find(p);
     int posicion = it->second.consultar_posicion();
+    estadisticas.erase(it);
     for (int i = posicion; i <= P; ++i) {
         ranking[i - 1] = ranking[i];
         map<string, Jugador>::iterator it2 = estadisticas.find(ranking[i - 1]);
         it2->second.modificar_posicion(i);
     }
-    estadisticas.erase(it);
 }
 
 void Cjt_jugadores::anadir_puntos_jugador(const string& p, int puntos) {
@@ -45,7 +45,7 @@ void Cjt_jugadores::anadir_puntos_jugador(const string& p, int puntos) {
 
 void Cjt_jugadores::anadir_estadisticas_jugador(const string& p, const Estadisticas& estadisticas) {
     map<string, Jugador>::iterator it = this->estadisticas.find(p);
-    it->second.anadir_estadisticas(estadisticas);
+    if (it != this->estadisticas.end()) it->second.anadir_estadisticas(estadisticas);
 }
 
 void Cjt_jugadores::actualizar_ranking() {

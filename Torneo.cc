@@ -31,7 +31,7 @@ void Torneo::crear_cuadro_emparejamientos() {
     int num_max_niveles = numero_max_niveles();
     int num_max_nodos = nodos_por_nivel(num_max_niveles);
     cuadro_emparejamientos = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, 1, 1);
- }
+}
 
 void Torneo::i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const {
     if (not cuadro_emparejamientos.empty()) {
@@ -54,25 +54,6 @@ void Torneo::imprimir_cuadro_emparejamientos() const {
     i_imprimir_cuadro_emparejamientos(cuadro_emparejamientos, num_max_niveles, num_max_nodos, 1);
     cout << endl;
 }
-
-// BinTree<string> Torneo::leer_cuadro_resultado_matches() const {
-//     string match;
-//     cin >> match;
-//     BinTree<string> cuadro_resultado_matches;
-//     if (match != "0" and match != "0 0") cuadro_resultado_matches = BinTree<string> (match, leer_cuadro_resultado_matches(), leer_cuadro_resultado_matches());
-//     return cuadro_resultado_matches;
-// }
-
-// BinTree<string> Torneo::leer_cuadro_resultado_matches(int num_max_niveles, int nivel) const {
-//     string match;
-//     cin >> match;
-//     BinTree<string> cuadro_resultado_matches;
-//     if (match == "0") {
-//         if (num_max_niveles == nivel) cin >> match;
-//     }
-//     else cuadro_resultado_matches = BinTree<string> (match, leer_cuadro_resultado_matches(num_max_niveles, nivel + 1), leer_cuadro_resultado_matches(num_max_niveles, nivel + 1));
-//     return cuadro_resultado_matches;
-// }
 
 void Torneo::i_crear_cuadro_resultado_matches(BinTree<string>& cuadro_resultado_matches, string match, int& n) {
     if (n != 0) {
@@ -178,7 +159,7 @@ void Torneo::imprimir_cuadro_resultado_final() const {
 
 void Torneo::trasladar_estadisticas(const vector<Estadisticas>& estadisticas, Cjt_jugadores& jugadores_global) const {
     for (int r = 0; r < n; ++r) {
-        jugadores_global.anadir_estadisticas_jugador(jugadores_edicion_actual[r].first, estadisticas[r]);
+        if (jugadores_global.existe_jugador(jugadores_edicion_actual[r].first)) jugadores_global.anadir_estadisticas_jugador(jugadores_edicion_actual[r].first, estadisticas[r]);
     }
 }
 
@@ -206,7 +187,7 @@ Torneo::Torneo(int c) {
 
 // Modificadoras
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
-    for (int i = 0; i < n_jugadores_edicion_anterior; ++i) {
+    for (int i = 0; i < jugadores_edicion_anterior.size(); ++i) {
         if (jugadores_edicion_anterior[i].second != 0) {
             jugadores_global.anadir_puntos_jugador(jugadores_edicion_anterior[i].first, -jugadores_edicion_anterior[i].second);
         }
@@ -231,12 +212,9 @@ void Torneo::iniciar(const Cjt_jugadores& jugadores_global) {
 }
 
 void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadores_global) {
-    // cout << "crear_cuadro_resultado_matches" << endl;
     crear_cuadro_resultado_matches();
     vector<Estadisticas> estadisticas(n); // vector que almacena las estadísticas de cada jugador, con su id siendo su posición en el ranking del torneo
-    // cout << "crear_cuadro_resultado_final" << endl;
     crear_cuadro_resultado_final(categorias, estadisticas);
-    // cout << "imprimir_cuadro_resultado_final" << endl;
     imprimir_cuadro_resultado_final();
     trasladar_estadisticas(estadisticas, jugadores_global);
     imprimir_ranking();
@@ -253,7 +231,7 @@ void Torneo::finalizar(const Cjt_categorias& categorias, Cjt_jugadores& jugadore
 void Torneo::eliminar_puntos_jugador(const string& p) {
     bool found = false;
     int i = 0;
-    while (not found and i < n_jugadores_edicion_anterior) {
+    while (not found and i < jugadores_edicion_anterior.size()) {
         if (p == jugadores_edicion_anterior[i].first) {
             jugadores_edicion_anterior[i].second = 0;
             found = true;
