@@ -24,9 +24,9 @@ private:
 
     /** @brief Entero que representa el número de jugadores */
     int P;
-    /** @brief Vector que representa un ranking y contiene el nombre y un iterador/apuntador ordenados crecientemente por puntos */
+    /** @brief Vector que representa un ranking de jugadores donde cada jugador esta representado por un iterador/apuntador que apunta al par nombre y Jugador del jugador. Está ordenado crecientemente por los puntos de los jugadores */
     vector<map_it> ranking;
-    /** @brief Map que contiene como elementos un nombre y un objeto Jugador */
+    /** @brief Map que contiene el nombre (como key) y las características de cada jugador */
     map<string, Jugador> estadisticas;
 
     /** @brief Comparadora de dos punteros, que apuntan a un jugador, según sus puntos y su posición en el ranking.

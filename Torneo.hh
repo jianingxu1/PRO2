@@ -85,7 +85,7 @@ private:
     void imprimir_cuadro_emparejamientos() const;
 
     /** @brief Crea el cuadro de resultados de los matches del torneo.
-        \pre Estan preparados en el canal de entrada una secuencia de 2n - 1 strings en preorden que representan los resultados de un match.
+        \pre Estan preparados en el canal de entrada una secuencia de strings en preorden que representan los resultados de un match si es diferente de "0" o una hoja vacía del árbol si es "0".
         \post Se ha creado el cuadro de resultados de los matches del parámetro implícito.
     */
     static BinTree<string> i_crear_cuadro_resultado_matches();
@@ -97,13 +97,13 @@ private:
     void crear_cuadro_resultado_matches();
 
     /** @brief Retorna el ganador de un match y almacena las estadísticas obtenidas por los jugadores enfrentados en el match.
-        \pre match contiene el resultado de un match de tenis válido, que puede tener las formas a1-b1,a2-b2,a3-b3
+        \pre match contiene el resultado de un match de tenis válido.
         \post Retorna a si el jugador cuya puntuación en el match está situado en la izquierda, ha ganado. Altramente, retorna b. Se han almacenado las estadísticas obtenidas por los jugadores enfrentados en el match al vector estadisticas.
     */ 
     static int ganador_del_match(const string& match, int a, int b, vector<Estadisticas>& estadisticas);
 
     /** @brief Crea el cuadro de emparejamientos con sus respectivos ganadores y obtiene los puntos y las estadísticas de cada jugador en el torneo.
-        \pre 1 <= nivel <= numero_max_niveles(), estadisticas.size() == n.
+        \pre estadisticas.size() == n, 1 <= nivel <= numero_max_niveles().
         \post Se ha creado el cuadro de emparejamientos con sus respectivos ganadores y se han obtenido las estadísticas de cada jugador en el torneo. Se ha actualizado los puntos de cada jugador según su posición en el torneo. Se han recopilado las estadísticas de cada jugador.
     */
     void i_crear_cuadro_resultado_final(const Cjt_categorias& categorias, const BinTree<string>& cuadro_resultado_matches, BinTree<int>& cuadro_emparejamientos, vector<Estadisticas>& estadisticas, int nivel);
