@@ -48,11 +48,11 @@ struct Estadisticas {
 */
 class Jugador {
 private:
-    /** @brief Entero que representa su posición en el ranking */
+    /** @brief Entero que representa la posición en el ranking del jugador */
     int posicion;
-    /** @brief Entero que representa los puntos que posee */
+    /** @brief Entero que representa los puntos del jugador. */
     int puntos;
-    /** @brief Estructura de datos que contiene las estadísticas de un jugador de tenis */
+    /** @brief Estructura de datos que contiene las estadísticas del jugador */
     Estadisticas estadisticas;
     
 public:
