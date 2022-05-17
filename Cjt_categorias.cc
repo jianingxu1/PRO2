@@ -12,15 +12,11 @@ Cjt_categorias::Cjt_categorias(int C, int K) {
 
 void Cjt_categorias::leer() {
     for (int c = 0; c < C; ++c) {
-        string nombre_categoria;
-        cin >> nombre_categoria;
-        nombre_categorias[c] = nombre_categoria;
+        cin >> nombre_categorias[c];
     }
     for (int c = 0; c < C; ++c) {
         for (int nivel = 0; nivel < K; ++nivel) {
-            int puntos;
-            cin >> puntos;
-            puntos_por_nivel_categorias[c][nivel] = puntos;
+            cin >> puntos_por_nivel_categorias[c][nivel];
         }
     }
 }

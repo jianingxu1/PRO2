@@ -22,7 +22,7 @@ private:
     int K;
     /** @brief Vector que contiene el nombre de las categorías en orden creciente de su identificador */
     vector<string> nombre_categorias;
-    /** @brief Matriz que contiene en cada fila, los puntos por nivel en orden creciente de nivel de una categoría */
+    /** @brief Matriz que contiene los puntos que se obtenien según el nivel y la categoría */
     Matriz puntos_por_nivel_categorias;
 
 public:
