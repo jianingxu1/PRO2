@@ -3,19 +3,18 @@
 */
 #include "Cjt_jugadores.hh"
 
-bool Cjt_jugadores::comp(const map_it& a, const map_it& b) {
-    int puntos_a = a->second.consultar_puntos();
-    int puntos_b = b->second.consultar_puntos();
+bool Cjt_jugadores::comp(const pair<string, map_it>& a, const pair<string, map_it>& b) {
+    int puntos_a = a.second->second.consultar_puntos();
+    int puntos_b = b.second->second.consultar_puntos();
     if (puntos_a != puntos_b) return puntos_a > puntos_b;
-    return a->second.consultar_posicion() < b->second.consultar_posicion();
+    return a.second->second.consultar_posicion() < b.second->second.consultar_posicion();
 }
 
 void Cjt_jugadores::anadir_jugador(const string& p) {
-    if (ranking.size() == P) ranking.push_back(p);
-    else ranking[P] = p;
     Jugador j;
     j.modificar_posicion(P + 1);
-    estadisticas.insert(make_pair(p, j));
+    pair<map_it, bool> it = estadisticas.insert(make_pair(p, j));
+    ranking.push_back(make_pair(p, it.first));
     ++P;
 }
 
@@ -26,10 +25,11 @@ void Cjt_jugadores::eliminar_jugador(const string& p) {
     estadisticas.erase(it);
     for (int i = posicion; i <= P; ++i) {
         ranking[i - 1] = ranking[i];
-        map_it it2 = estadisticas.find(ranking[i - 1]);
-        it2->second.modificar_posicion(i);
+        ranking[i - 1].second->second.modificar_posicion(i);
     }
+    ranking.pop_back();
 }
+
 
 void Cjt_jugadores::anadir_puntos_jugador(const string& p, int puntos) {
     map_it it = estadisticas.find(p);
@@ -44,27 +44,22 @@ void Cjt_jugadores::anadir_estadisticas_jugador(const string& p, const Estadisti
 }
 
 void Cjt_jugadores::actualizar_ranking() {
-    vector< map_it > v(P);
-    int i = 0;
-    for (map_it it = estadisticas.begin(); it != estadisticas.end(); ++it) {
-        v[i] = it;
-        ++i;
-    }
-    sort(v.begin(), v.end(), comp);
+    sort(ranking.begin(), ranking.end(), comp);
     for (int i = 0; i < P; ++i) {
-        ranking[i] = v[i]->first;
-        v[i]->second.modificar_posicion(i + 1);
+        ranking[i].second->second.modificar_posicion(i + 1);
     }
 }
 
 void Cjt_jugadores::leer(int P) {
     this->P = P;
-    ranking = vector<string>(P);
-    for (int posicion = 1; posicion <= P; ++posicion) {
-        cin >> ranking[posicion - 1];
+    ranking = vector< pair<string, map_it> >(P);
+    for (int i = 0; i < P; ++i) {
+        string nombre_jugador;
+        cin >> nombre_jugador;
         Jugador j;
-        j.modificar_posicion(posicion);
-        estadisticas.insert(make_pair(ranking[posicion - 1], j));
+        j.modificar_posicion(i + 1);
+        pair<map_it, bool> it = estadisticas.insert(make_pair(nombre_jugador, j));
+        ranking[i] = make_pair(nombre_jugador, it.first);
     }
 }
 
@@ -84,10 +79,11 @@ void Cjt_jugadores::listar_jugadores() const {
 
 void Cjt_jugadores::listar_ranking() const {
     for (int posicion = 1; posicion <= P; ++posicion) {
-        const_map_it it = estadisticas.find(ranking[posicion - 1]);
-        cout << posicion << ' ' << ranking[posicion - 1] << ' ' << it->second.consultar_puntos() << endl;
+        cout << posicion << ' ' << ranking[posicion - 1].first << ' ' <<
+        ranking[posicion - 1].second->second.consultar_puntos() << endl;
     }
 }
+
 bool Cjt_jugadores::existe_jugador(const string& p) const {
     const_map_it it = estadisticas.find(p);
     return it != estadisticas.end();
@@ -98,5 +94,5 @@ int Cjt_jugadores::consultar_numero_jugadores() const {
 }
 
 string Cjt_jugadores::consultar_jugador_ranking(int posicion) const {
-    return ranking[posicion - 1];
+    return ranking[posicion - 1].first;
 }

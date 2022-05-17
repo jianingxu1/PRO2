@@ -25,7 +25,7 @@ private:
     /** @brief Entero que representa el número de jugadores */
     int P;
     /** @brief Vector que representa un ranking y contiene el nombre de los jugadores ordenados crecientemente por puntos */
-    vector<string> ranking;
+    vector< pair<string, map_it> > ranking;
     /** @brief Map que contiene como elementos un nombre y un objeto Jugador */
     map<string, Jugador> estadisticas;
 
@@ -33,7 +33,7 @@ private:
         \pre a y b son iteradores que apuntan a un par string, Jugador de un map.
         \post Si el jugador apuntado por a tiene más puntos que b, retorna true. En casp de empate, si la posición en el ranking del jugador apuntado por a és menor que la del jugador apuntado por b, retorna true. Altramente, false.
     */
-    static bool comp(const map_it& a, const map_it& b);
+    static bool comp(const pair<string, map_it>& a, const pair<string, map_it>& b);
 
 public:
     // Modificadoras
