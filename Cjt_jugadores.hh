@@ -30,8 +30,8 @@ private:
     map<string, Jugador> estadisticas;
 
     /** @brief Comparadora de dos punteros, que apuntan a un jugador, según sus puntos y su posición en el ranking.
-        \pre it1 y it2 son iteradores que apuntan a un par string, Jugador de un map.
-        \post Si el jugador apuntado por it1 tiene más puntos que it2, retorna true. Si tienen los mismos puntos, si el jugador apuntado por it1 tiene posición menor que it2 en el ranking, retorna true. Altramente, false.
+        \pre a y b son iteradores que apuntan a un par string, Jugador de un map.
+        \post Si el jugador apuntado por a tiene más puntos que b, retorna true. En casp de empate, si la posición en el ranking del jugador apuntado por a és menor que la del jugador apuntado por b, retorna true. Altramente, false.
     */
     static bool comp(const map_it& a, const map_it& b);
 

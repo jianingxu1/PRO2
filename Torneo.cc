@@ -144,7 +144,7 @@ void Torneo::i_imprimir_cuadro_resultado_final(const BinTree<string>& cuadro_res
     if (not cuadro_resultado_matches.empty()) {
         int a = cuadro_emparejamientos.left().value();
         int b = cuadro_emparejamientos.right().value();
-        cout << '(' << a << '.' << jugadores_edicion_actual[a-1].first << " vs " << b << '.' << jugadores_edicion_actual[b-1].first << ' ' << cuadro_resultado_matches.value();
+        cout << '(' << a << '.' << jugadores_edicion_actual[a - 1].first << " vs " << b << '.' << jugadores_edicion_actual[b - 1].first << ' ' << cuadro_resultado_matches.value();
         i_imprimir_cuadro_resultado_final(cuadro_resultado_matches.left(), cuadro_emparejamientos.left());
         i_imprimir_cuadro_resultado_final(cuadro_resultado_matches.right(), cuadro_emparejamientos.right());
         cout << ')';
@@ -162,7 +162,7 @@ void Torneo::trasladar_estadisticas(const vector<Estadisticas>& estadisticas, Cj
     }
 }
 
-void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) {
+void Torneo::trasladar_puntos(Cjt_jugadores& jugadores_global) const {
     for (int i = 0; i < n; ++i) {
         jugadores_global.anadir_puntos_jugador(jugadores_edicion_actual[i].first, jugadores_edicion_actual[i].second);
     }
@@ -239,7 +239,6 @@ void Torneo::eliminar_puntos_jugador(const string& p) {
     }
 }
 
-// Consultoras
 void Torneo::imprimir_ranking() const {
     for (int r = 0; r < n; ++r) {
         if (jugadores_edicion_actual[r].second != 0) {
