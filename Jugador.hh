@@ -88,7 +88,7 @@ public:
 
     /** @brief Operación de escritura.
         \pre Cierto.
-        \post Se han escrito los atributos del parámetro implícito en el canal standard de salida.
+        \post Se han escrito los atributos del parámetro implícito.
     */
     void escribir() const;
     
