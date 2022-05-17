@@ -176,7 +176,6 @@ void Torneo::sustituir_edicion_anterior() {
     jugadores_edicion_actual.clear();
 }
 
-// Constructoras
 Torneo::Torneo(int c) {
     this->c = c;
     n_jugadores_edicion_anterior = 0;
@@ -184,7 +183,6 @@ Torneo::Torneo(int c) {
     es_primera_edicion = true;
 }
 
-// Modificadoras
 void Torneo::eliminar_puntos(Cjt_jugadores& jugadores_global) {
     for (int i = 0; i < jugadores_edicion_anterior.size(); ++i) {
         if (jugadores_edicion_anterior[i].second != 0) {
