@@ -1,7 +1,6 @@
 /** @file Cjt_jugadores.hh
     @brief Especificación de la clase Cjt_jugadores
 */
-
 #ifndef CJT_JUGADORES_HH
 #define CJT_JUGADORES_HH
 
@@ -16,28 +15,28 @@ using namespace std;
 #endif
 
 /** @class Cjt_jugadores
-    @brief Representa un conjunto de jugadores de tenis.
+    @brief Representa un conjunto de jugadores de tenis y sus operaciones.
 */
 class Cjt_jugadores {
 private:
-    int P;  // número de jugadores
+    typedef map<string, Jugador>::iterator map_it;
+    typedef map<string, Jugador>::const_iterator const_map_it;
+
+    /** @brief Entero que representa el número de jugadores */
+    int P;
+    /** @brief Vector que representa un ranking y contiene el nombre de los jugadores ordenados crecientemente por puntos */
     vector<string> ranking;
+    /** @brief Map que contiene como elementos un nombre y un objeto Jugador */
     map<string, Jugador> estadisticas;
 
-    /** @brief Comparadora de dos iteradores, que apuntan a un jugador, según sus puntos y su posición en el ranking.
+    /** @brief Comparadora de dos punteros, que apuntan a un jugador, según sus puntos y su posición en el ranking.
         \pre it1 y it2 son iteradores que apuntan a un par string, Jugador de un map.
         \post Si el jugador apuntado por it1 tiene más puntos que it2, retorna true. Si tienen los mismos puntos, si el jugador apuntado por it1 tiene posición menor que it2 en el ranking, retorna true. Altramente, false.
     */
-    static bool comp(const map<string, Jugador>::iterator& it1, const map<string, Jugador>::iterator& it2);
+    static bool comp(const map_it& a, const map_it& b);
 
 public:
     // Modificadoras
-    
-    /** @brief Operación de lectura de los jugadores iniciales.
-        \pre P >= 0. Estan preparados en el canal de entrada una secuencia de P strings con los nombres que identifican a los jugadores (sin repeticiones).
-        \post El parámetro implícito contiene el conjunto de jugadores con todos sus atributos a cero y un ranking de estos jugadores según el orden que han sido leídos en la entrada.
-    */    
-    void leer(int P);
 
     /** @brief Añade un jugador al conjunto de jugadores.
         \pre No existe un jugador con identificador p en el parámetro implícito.
@@ -69,6 +68,32 @@ public:
     */
     void actualizar_ranking();
 
+    // Lectura/Escritura
+
+    /** @brief Operación de lectura de los jugadores iniciales.
+        \pre P >= 0. Estan preparados en el canal de entrada una secuencia de P strings con los nombres que identifican a los jugadores (sin repeticiones).
+        \post El parámetro implícito contiene el conjunto de jugadores con todos sus atributos a cero y un ranking de estos jugadores según el orden que han sido leídos en la entrada.
+    */    
+    void leer(int P);
+
+    /** @brief Escribe un jugador dado su nombre.
+        \pre Existe un jugador con identificador p en el parámetro implícito.
+        \post Se ha escrito el nombre y las estadísticas del jugador con identificador p del parámetro implícito.
+    */
+    void consultar_jugador(const string& p) const;
+
+    /** @brief Lista los jugadores del conjunto de jugadores.
+        \pre Cierto.
+        \post Se ha listado, por orden creciente de identificador (nombre), el nombre, la posición en el ranking, los puntos y el resto de las estadísticas de cada jugador del parámetro implícito.
+    */
+    void listar_jugadores() const;
+
+    /** @brief Lista el ranking del conjunto de jugadores.
+        \pre Cierto.
+        \post Se ha listado el ranking de jugadores por orden creciente de posición del parámetro implícito.
+    */
+    void listar_ranking() const;
+
     // Consultoras
     
     /** @brief Consultora de la existencia de un jugador en el conjunto jugadores.
@@ -88,25 +113,5 @@ public:
         \post Retorna el nombre del jugador que está en la posición "posicion" del ranking.
     */ 
     string consultar_jugador_ranking(int posicion) const;
-
-    // Operaciones de escritura
-
-    /** @brief Escribe un jugador dado su nombre.
-        \pre Existe un jugador con identificador p en el parámetro implícito.
-        \post Se ha escrito el nombre y las estadísticas del jugador con identificador p del parámetro implícito.
-    */
-    void consultar_jugador(const string& p) const;
-
-    /** @brief Lista los jugadores del conjunto de jugadores.
-        \pre Cierto.
-        \post Se ha listado, por orden creciente de identificador (nombre), el nombre, la posición en el ranking, los puntos y el resto de las estadísticas de cada jugador del parámetro implícito.
-    */
-    void listar_jugadores() const;
-
-    /** @brief Lista el ranking del conjunto de jugadores.
-        \pre Cierto.
-        \post Se ha listado el ranking de jugadores por orden creciente de posición del parámetro implícito.
-    */
-    void listar_ranking() const;
 };
 #endif
