@@ -23,6 +23,7 @@ using namespace std;
 class Torneo {
 
 private:
+    /** @brief Entero que representa */
 	int c;          // categoría del torneo
     int n_jugadores_edicion_anterior;
     int n;          // número de inscritos, 8 <= n <= 2^(K-1)
@@ -37,27 +38,27 @@ private:
         \post Retorna el número máximo de niveles del parámetro implícito.
     */
     // calcula la h
-    int numero_max_niveles() const;
+    static int numero_max_niveles(int n);
 
     /** @brief Retorna el número máximo de nodos posibles en un nivel del cuadro de emparejamientos del torneo.
         \pre 1 <= nivel <= numero_max_niveles().
         \post Retorna el número máximo de nodos posibles en un nivel del cuadro de emparejamientos del parámetro implícito.
     */
     // calcula la z o m
-    int nodos_por_nivel(int nivel) const;
+    static int nodos_por_nivel(int nivel);
 
     /** @brief Retorna el contrincante de a en un cierto nivel del cuadro de emparejamientos del torneo.
         \pre 1 <= id_jugador <= n, 1 <= nivel <= numero_max_niveles().
         \post Retorna el contrincante que le correspondría a id_jugador en un cierto nivel del cuadro de emparejamientos del parámetro implícito.
     */
     // calcula la b
-    int contrincante(int id_jugador, int nivel) const;
+    static int contrincante(int id_jugador, int nivel);
 
     /** @brief Crea el cuadro de emparejamientos del torneo.
         \pre 4 <= num_max_niveles, 8 <= num_max_nodos, 1 <= nivel <= numero_max_niveles() y 1 <= id_jugador <= n.
         \post Retorna el cuadro de emparejamientos del parámetro implícito.
     */
-    BinTree<int> i_crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const;
+    static BinTree<int> i_crear_cuadro_emparejamientos(int n, int num_max_niveles, int num_max_nodos, int nivel, int id_jugador);
     
     /** @brief Crea el cuadro de emparejamientos del torneo.
         \pre Cierto.
@@ -81,7 +82,7 @@ private:
         \pre Estan preparados en el canal de entrada una secuencia de X strings en preorden que representan los resultados de un match.
         \post Se ha creado el cuadro de resultados de los matches del parámetro implícito.
     */
-    void i_crear_cuadro_resultado_matches(BinTree<string>& cuadro_resultado_matches, string match, int& n);
+    static BinTree<string> i_crear_cuadro_resultado_matches();
 
     /** @brief Crea el cuadro de resultados de los matches del torneo.
         \pre Estan preparados en el canal de entrada una secuencia de X strings en preorden que representan los resultados de un match.

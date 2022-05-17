@@ -1,6 +1,9 @@
+/** @file Torneo.cc
+    @brief Implementación de la clase Torneo
+*/
 #include "Torneo.hh"
 
-int Torneo::numero_max_niveles() const {
+int Torneo::numero_max_niveles(int n) {
     int count = 0;
     int producto = 1;
     while (producto < n) {
@@ -10,27 +13,27 @@ int Torneo::numero_max_niveles() const {
     return count + 1;
 }
 
-int Torneo::nodos_por_nivel(int nivel) const {
+int Torneo::nodos_por_nivel(int nivel) {
     return pow(2, nivel - 1);
 }
 
-int Torneo::contrincante(int id_jugador, int nivel) const {
+int Torneo::contrincante(int id_jugador, int nivel) {
     return nodos_por_nivel(nivel) + 1 - id_jugador;
 }
 
-BinTree<int> Torneo::i_crear_cuadro_emparejamientos(int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) const {
+BinTree<int> Torneo::i_crear_cuadro_emparejamientos(int n, int num_max_niveles, int num_max_nodos, int nivel, int id_jugador) {
     if (nivel == num_max_niveles or (nivel == num_max_niveles - 1 and id_jugador < num_max_nodos - n + 1)) return BinTree<int>(id_jugador);
     else {
-        BinTree<int> left = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, nivel + 1, id_jugador);
-        BinTree<int> right = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, nivel + 1, contrincante(id_jugador, nivel + 1));
+        BinTree<int> left = i_crear_cuadro_emparejamientos(n, num_max_niveles, num_max_nodos, nivel + 1, id_jugador);
+        BinTree<int> right = i_crear_cuadro_emparejamientos(n, num_max_niveles, num_max_nodos, nivel + 1, contrincante(id_jugador, nivel + 1));
         return BinTree<int>(id_jugador, left, right);
     }
 }
 
 void Torneo::crear_cuadro_emparejamientos() {
-    int num_max_niveles = numero_max_niveles();
+    int num_max_niveles = numero_max_niveles(n);
     int num_max_nodos = nodos_por_nivel(num_max_niveles);
-    cuadro_emparejamientos = i_crear_cuadro_emparejamientos(num_max_niveles, num_max_nodos, 1, 1);
+    cuadro_emparejamientos = i_crear_cuadro_emparejamientos(n, num_max_niveles, num_max_nodos, 1, 1);
 }
 
 void Torneo::i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_emparejamientos, int num_max_niveles, int num_max_nodos, int nivel) const {
@@ -49,30 +52,26 @@ void Torneo::i_imprimir_cuadro_emparejamientos(const BinTree<int>& cuadro_empare
 }
 
 void Torneo::imprimir_cuadro_emparejamientos() const {
-    int num_max_niveles = numero_max_niveles();
+    int num_max_niveles = numero_max_niveles(n);
     int num_max_nodos = nodos_por_nivel(num_max_niveles);
     i_imprimir_cuadro_emparejamientos(cuadro_emparejamientos, num_max_niveles, num_max_nodos, 1);
     cout << endl;
 }
 
-void Torneo::i_crear_cuadro_resultado_matches(BinTree<string>& cuadro_resultado_matches, string match, int& n) {
-    if (n != 0) {
-        BinTree<string> left;
-        BinTree<string> right;
-        string l, r;
-        cin >> l;
-        if (l != "0") i_crear_cuadro_resultado_matches(left, l, --n);
-        cin >> r;
-        if (r != "0") i_crear_cuadro_resultado_matches(right, r, --n);
+BinTree<string> Torneo::i_crear_cuadro_resultado_matches() {
+    BinTree<string> cuadro_resultado_matches;
+    string match;
+    cin >> match;
+    if (match != "0") {
+        BinTree<string> left = i_crear_cuadro_resultado_matches();
+        BinTree<string> right = i_crear_cuadro_resultado_matches();
         cuadro_resultado_matches = BinTree<string>(match, left, right);
     }
+    return cuadro_resultado_matches;
 }
 
 void Torneo::crear_cuadro_resultado_matches() {
-    int n = this->n;
-    string match;
-    cin >> match;
-    i_crear_cuadro_resultado_matches(cuadro_resultado_matches, match, n);
+    cuadro_resultado_matches = i_crear_cuadro_resultado_matches();
 }
 
 int Torneo::ganador_del_match(const string& match, int a, int b, vector<Estadisticas>& estadisticas) {
