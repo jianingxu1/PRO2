@@ -1,16 +1,7 @@
+/** @file Cjt_torneos.cc
+    @brief Implementación de la clase Cjt_torneos
+*/
 #include "Cjt_torneos.hh"
-
-// Modificadoras
-void Cjt_torneos::leer(int T) {
-    this->T = T;
-    for (int i = 0; i < T; ++i) {
-        string t;
-        int c;
-        cin >> t >> c;
-        Torneo torneo(c);
-        torneos.insert(make_pair(t, torneo));
-    }
-}
 
 void Cjt_torneos::anadir_torneo(const string& t, int c) {
     ++T;
@@ -45,14 +36,15 @@ void Cjt_torneos::eliminar_puntos_jugador(const string& p) {
     }
 }
 
-// Consultoras
-bool Cjt_torneos::existe_torneo(const string& t) const {
-    map<string, Torneo>::const_iterator it = torneos.find(t);
-    return it != torneos.end();
-}
-
-int Cjt_torneos::consultar_numero_torneos() const {
-    return T;
+void Cjt_torneos::leer(int T) {
+    this->T = T;
+    for (int i = 0; i < T; ++i) {
+        string t;
+        int c;
+        cin >> t >> c;
+        Torneo torneo(c);
+        torneos.insert(make_pair(t, torneo));
+    }
 }
 
 void Cjt_torneos::listar_torneos(const Cjt_categorias& categorias) const {
@@ -60,4 +52,13 @@ void Cjt_torneos::listar_torneos(const Cjt_categorias& categorias) const {
     for (map<string, Torneo>::const_iterator it = torneos.begin(); it != torneos.end(); ++it) {
         cout << it->first << ' ' << categorias.consultar_nombre_categoria(it->second.consultar_categoria()) << endl;
     }
+}
+
+bool Cjt_torneos::existe_torneo(const string& t) const {
+    map<string, Torneo>::const_iterator it = torneos.find(t);
+    return it != torneos.end();
+}
+
+int Cjt_torneos::consultar_numero_torneos() const {
+    return T;
 }
