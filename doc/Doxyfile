@@ -1,5 +1,7 @@
-# Doxyfile sesion 8
-
+# Doxyfile
+# Enter the command 'doxygen Doxyfile' to create the documentation.
+# Must have doxygen and graphviz installed.
+# To install them: 'sudo apt install doxygen' and 'sudo apt install graphviz'
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
@@ -93,13 +95,9 @@ WARN_LOGFILE           =
 #---------------------------------------------------------------------------
 # configuration options related to the input files
 #---------------------------------------------------------------------------
-INPUT                  = "."
+INPUT                  = "../src"
 INPUT_ENCODING         = utf-8
-FILE_PATTERNS          = *.hpp \ *.hh \
-                         main*.cpp \ main*.cc \
-                         pro2*.cpp \ pro2*.cc \
-			 program.cpp \ program.cc \
-                         principal*.cpp \ principal*.cc
+FILE_PATTERNS          = *.hh \ *.cc # para que todos los ficheros .cc y .hh intervengan en la creacion de la documentacion
 RECURSIVE              = NO
 EXCLUDE                = *~ \ BinTree.hh # para excluir classes
 EXCLUDE_SYMLINKS       = NO

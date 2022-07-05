@@ -70,6 +70,14 @@ BinTree<string> Torneo::i_crear_cuadro_resultado_matches() {
     return cuadro_resultado_matches;
 }
 
+// BinTree<string> Torneo::i_crear_cuadro_resultado_matches() {
+//     string match;
+//     cin >> match;
+//     BinTree<string> cuadro_resultado_matches;
+//     if (match != "0" and match != "0 0") cuadro_resultado_matches = BinTree<string> (match, i_crear_cuadro_resultado_matches(), i_crear_cuadro_resultado_matches());
+//     return cuadro_resultado_matches;
+// }
+
 void Torneo::crear_cuadro_resultado_matches() {
     cuadro_resultado_matches = i_crear_cuadro_resultado_matches();
 }
