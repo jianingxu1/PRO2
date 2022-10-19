@@ -1,3 +1,10 @@
+[![HitCount](https://hits.dwyl.com/jianingxu1/practicaPRO2.svg?style=flat&show=unique)](http://hits.dwyl.com/jianingxu1/practicaPRO2)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat&show=unique)](/CONTRIBUTING.md)
+[![GitHub stars](https://img.shields.io/github/stars/jianingxu1/practicaPRO2.svg)](https://github.com/jianingxu1/practicaPRO2/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/jianingxu1/practicaPRO2.svg)](https://github.com/jianingxu1/practicaPRO2/network/)
+[![GitHub repo size in bytes](https://img.shields.io/github/repo-size/jianingxu1/practicaPRO2)](https://github.com/jianingxu1/practicaPRO2)
+[![GitHub contributors](https://img.shields.io/github/contributors/jianingxu1/practicaPRO2.svg)](https://github.com/jianingxu1/practicaPRO2/graphs/contributors/)
+
 # Circuito de torneos de tenis. Práctica de PRO2 (Primavera 2022).
 ## Información general
 Este repositorio contiene el código de la práctica de PRO2 del año 2021/2022 (Q2).
