@@ -3,7 +3,7 @@
 Este repositorio contiene el código de la práctica de PRO2 del año 2021/2022 (Q2).
 ## Enunciado de la práctica
 Se ha desarrollado un programa para manejar un circuito de tenis. 
-El enunciado de la práctica se puede leer en el fichero [enunciat_practica_21-22Q2.pdf](https://github.com/jianingxu1/practicaPRO2/blob/main/enunciat_practica_21-22Q2.pdf) que proviene de la web oficial de la asignatura de [PRO2](https://www.cs.upc.edu/pro2/index.php?id=practica-primavera-2022).
+El enunciado de la práctica se puede leer en el fichero [enunciat_practica_21-22Q2.pdf](https://github.com/jianingxu1/practicaPRO2/blob/main/enunciado_practica_21-22Q2.pdf) que proviene de la web oficial de la asignatura de [PRO2](https://www.cs.upc.edu/pro2/index.php?id=practica-primavera-2022).
 
 Este programa contiene todos los comandos que permiten manejar un circuito de tenis. Se posibilita, por ejemplo:
 - Manipular la cantidad de torneos y jugadores.
