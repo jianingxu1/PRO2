@@ -8,8 +8,8 @@
 ## Información general
 Este repositorio contiene el código con mi implementación de la práctica de PRO2 del curso 21-22Q2.
 ## Enunciado de la práctica
-Desarrollar un programa para manejar un circuito de tenis. 
-El enunciado de la práctica se puede leer en el fichero [enunciat_practica_21-22Q2.pdf](https://github.com/jianingxu1/practicaPRO2/blob/main/enunciado_practica_21-22Q2.pdf) que proviene de la web oficial de la asignatura de [PRO2](https://www.cs.upc.edu/pro2/index.php?id=practica-primavera-2022).
+Esta práctica consiste en desarrollar un programa para manejar un circuito de tenis. 
+El enunciado se puede leer en el documento [enunciat_practica_21-22Q2.pdf](https://github.com/jianingxu1/practicaPRO2/blob/main/enunciado_practica_21-22Q2.pdf) que proviene de la web oficial de la asignatura de [PRO2](https://www.cs.upc.edu/pro2/index.php?id=practica-primavera-2022).
 
 Este programa contiene la implementación de comandos que permiten manejar un circuito de tenis que son:
 1. `nuevo_jugador p`: lee y añade un nuevo jugador con identificador p (si éste es válido). El comando admite la forma abreviada `nj`. Si ya existe un jugador en el circuito con el mismo identificador, se imprime un mensaje de error. En caso contrario se añade el jugador con estadísticas a cero y última posición en el ranking y se imprime el número de jugadores P en el circuito después de añadirlo.
